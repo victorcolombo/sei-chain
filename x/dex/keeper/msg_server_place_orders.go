@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"fmt"
 	"math/big"
 
 	conversion "github.com/sei-protocol/sei-chain/utils"
@@ -20,6 +21,9 @@ func (k msgServer) transferFunds(goCtx context.Context, msg *types.MsgPlaceOrder
 	defer span.End()
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
+
+
+	ctx.Logger().Error(fmt.Sprintf("In dex transferFunds %s", msg.ContractAddr))
 	contractAddr, err := sdk.AccAddressFromBech32(msg.ContractAddr)
 	if err != nil {
 		return err
@@ -44,13 +48,18 @@ func (k msgServer) transferFunds(goCtx context.Context, msg *types.MsgPlaceOrder
 func (k msgServer) PlaceOrders(goCtx context.Context, msg *types.MsgPlaceOrders) (*types.MsgPlaceOrdersResponse, error) {
 	spanCtx, span := (*k.tracingInfo.Tracer).Start(goCtx, "PlaceOrders")
 	defer span.End()
+	
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
+	ctx.Logger().Error("In dex PlaceOrders")
 
 	if msg.AutoCalculateDeposit {
 		calculatedCollateral := sdk.NewDecFromBigInt(big.NewInt(0))
+		ctx.Logger().Error("In dex calculatedCollateral")
 		for _, order := range msg.Orders {
+			ctx.Logger().Error("In dex calculatedCollateral loop")
 			calculatedCollateral = calculatedCollateral.Add(order.Price.Mul(order.Quantity))
+			ctx.Logger().Error("In dex calculatedCollateral loop after")
 		}
 
 		// throw error if current funds amount is less than calculatedCollateral
@@ -69,12 +78,14 @@ func (k msgServer) PlaceOrders(goCtx context.Context, msg *types.MsgPlaceOrders)
 	}
 
 	if err := k.transferFunds(spanCtx, msg); err != nil {
+		ctx.Logger().Error("In dex transferFunds")
 		return nil, err
 	}
 
 	nextID := k.GetNextOrderID(ctx)
 	idsInResp := []uint64{}
 	for _, order := range msg.GetOrders() {
+		ctx.Logger().Error("In dex GetOrders begin")
 		ticksize, found := k.Keeper.GetTickSizeForPair(ctx, msg.GetContractAddr(), types.Pair{PriceDenom: order.PriceDenom, AssetDenom: order.AssetDenom})
 		if !found {
 			return nil, sdkerrors.Wrapf(sdkerrors.ErrKeyNotFound, "the pair {price:%s,asset:%s} has no ticksize configured", order.PriceDenom, order.AssetDenom)
@@ -87,6 +98,7 @@ func (k msgServer) PlaceOrders(goCtx context.Context, msg *types.MsgPlaceOrders)
 		k.MemState.GetBlockOrders(types.ContractAddress(msg.GetContractAddr()), pairStr).AddOrder(*order)
 		idsInResp = append(idsInResp, nextID)
 		nextID++
+		ctx.Logger().Error("In dex GetOrders end")
 	}
 	k.SetNextOrderID(ctx, nextID)
 

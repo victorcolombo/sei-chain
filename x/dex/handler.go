@@ -19,8 +19,11 @@ func NewHandler(k keeper.Keeper, tracingInfo *tracing.Info) sdk.Handler {
 	return func(ctx sdk.Context, msg sdk.Msg) (*sdk.Result, error) {
 		ctx = ctx.WithEventManager(sdk.NewEventManager())
 
+		ctx.Logger().Error("In dex handler")
+
 		switch msg := msg.(type) {
 		case *types.MsgPlaceOrders:
+			ctx.Logger().Error("In dex handler MsgPlaceOrders")
 			res, err := msgServer.PlaceOrders(sdk.WrapSDKContext(ctx), msg)
 			return sdk.WrapServiceResult(ctx, res, err)
 		case *types.MsgCancelOrders:
@@ -34,6 +37,7 @@ func NewHandler(k keeper.Keeper, tracingInfo *tracing.Info) sdk.Handler {
 			return sdk.WrapServiceResult(ctx, res, err)
 			// this line is used by starport scaffolding # 1
 		default:
+			ctx.Logger().Error("In dex handler default")
 			errMsg := fmt.Sprintf("unrecognized %s message type: %T", types.ModuleName, msg)
 			return nil, sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, errMsg)
 		}

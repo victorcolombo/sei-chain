@@ -20,10 +20,6 @@ func CustomEncoder(sender sdk.AccAddress, msg json.RawMessage) ([]sdk.Msg, error
 		return []sdk.Msg{}, sdkerrors.Wrap(err, "Error parsing Sei Wasm Message")
 	}
 
-	if true {
-		return []sdk.Msg{}, sdkerrors.New("in custom endoer after unmarshal", 1, "xxx")
-	}
-
 	switch {
 	case parsedMessage.PlaceOrders != nil:
 		return dexwasm.EncodeDexPlaceOrders(parsedMessage.PlaceOrders)

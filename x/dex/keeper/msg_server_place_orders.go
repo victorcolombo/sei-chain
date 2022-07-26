@@ -26,12 +26,15 @@ func (k msgServer) transferFunds(goCtx context.Context, msg *types.MsgPlaceOrder
 	ctx.Logger().Error(fmt.Sprintf("In dex transferFunds %s", msg.ContractAddr))
 	contractAddr, err := sdk.AccAddressFromBech32(msg.ContractAddr)
 	if err != nil {
+		ctx.Logger().Error(fmt.Sprintf("In dex AccAddressFromBech32 err"))
 		return err
 	}
 	if err := k.BankKeeper.IsSendEnabledCoins(ctx, msg.Funds...); err != nil {
+		ctx.Logger().Error(fmt.Sprintf("In dex IsSendEnabledCoins err"))
 		return err
 	}
 	if k.BankKeeper.BlockedAddr(contractAddr) {
+		ctx.Logger().Error(fmt.Sprintf("In dex BlockedAddr err"))
 		return sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s is not allowed to receive funds", contractAddr.String())
 	}
 

@@ -41,10 +41,3 @@ type CancelOrders struct {
 	Cancellations []*types.Cancellation `json:"cancellations"`
 	ContractAddr  string                `json:"contract_address"`
 }
-
-type EthereumTx struct {
-	MethodJson string        `json:"method_json"`
-	MethodName string        `json:"method_name"`
-	Inputs     []interface{} `json:"inputs"`
-	To         string        `json:"to"`
-}

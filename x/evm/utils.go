@@ -1,19 +1,18 @@
 package evm
 
 import (
-	"errors"
 	"math/big"
 	"reflect"
 	"strings"
 
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
 	evmtypes "github.com/evmos/ethermint/x/evm/types"
 	"github.com/sei-protocol/sei-chain/wasmbinding/bindings"
 )
 
-func ToTransactionArgs(tx bindings.EthereumTx) *evmtypes.TransactionArgs {
+func ToTransactionArgs(ctx sdk.Context, accountKeeper *authkeeper.AccountKeeper, tx bindings.EthereumTx) *evmtypes.TransactionArgs {
 	// create evmtypes.TransactionArgs
 
 	// set default gas price/upper bound/lower bound

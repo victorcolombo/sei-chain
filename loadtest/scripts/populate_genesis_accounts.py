@@ -6,7 +6,7 @@ import sys
 import threading
 import time
 
-PARALLEISM=32
+PARALLEISM=64
 LOCK=threading.Lock()
 
 def add_genesis_account(account_name, local=False):

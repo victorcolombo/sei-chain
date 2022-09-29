@@ -49,7 +49,7 @@ marsaddr=$(python3 parser.py contract_address $marsinsres)
 saturnaddr=$(python3 parser.py contract_address $saturninsres)
 venusaddr=$(python3 parser.py contract_address $venusinsres)
 
-marsinsres2=$(printf "12345678\n" | $seidbin tx wasm instantiate $marsid '{}' -y --no-admin --from=$keyname --chain-id=$chainid --gas=5000000 --fees=1000000usei --broadcast-mode=block  --label=dex --output=json)
+marsinsres2=$(printf "12345678\n" | $seidbin tx wasm intantiate $marsid '{}' -y --no-admin --from=$keyname --chain-id=$chainid --gas=5000000 --fees=1000000usei --broadcast-mode=block  --label=dex --output=json)
 saturninsres2=$(printf "12345678\n" | $seidbin tx wasm instantiate $saturnid '{}' -y --no-admin --from=$keyname --chain-id=$chainid --gas=5000000 --fees=1000000usei --broadcast-mode=block  --label=dex --output=json)
 venusinsres2=$(printf "12345678\n" | $seidbin tx wasm instantiate $venusid '{}' -y --no-admin --from=$keyname --chain-id=$chainid --gas=5000000 --fees=1000000usei --broadcast-mode=block  --label=dex --output=json)
 marsaddr2=$(python3 parser.py contract_address $marsinsres2)
@@ -70,7 +70,7 @@ marsaddr4=$(python3 parser.py contract_address $marsinsres4)
 echo "Registering..."
 
 valaddr=$(printf "12345678\n" | $seidbin keys show $(printf "12345678\n" | $seidbin keys show node_admin --output json | jq -r .address) --bech=val --output json | jq -r '.address')
-printf "12345678\n" | $seidbin tx staking delegate $valaddr 1000000000usei --from=$keyname --chain-id=$chainid -b block -y
+printf "12345678\n" | $seidbin tx staking delegate $valaddr 1000000000usei --from=$keyname --chain-id=$chainid -b block -y --fees 2000usei
 
 printf "12345678\n" | $seidbin tx dex register-contract $marsaddr $marsid false true  -y --from=$keyname --chain-id=$chainid --fees=10000000usei --gas=500000 --broadcast-mode=block
 printf "12345678\n" | $seidbin tx dex register-contract $saturnaddr $saturnid false true -y --from=$keyname --chain-id=$chainid --fees=10000000usei --gas=500000 --broadcast-mode=block
@@ -145,7 +145,7 @@ printf "12345678\n" | $seidbin tx gov vote $marsproposalid4 yes -y --from=$keyna
 
 sleep 90
 
-printf "12345678\n" | $seidbin tx staking unbond $valaddr 1000000000usei --from=$keyname --chain-id=$chainid -b block -y
+printf "12345678\n" | $seidbin tx staking unbond $valaddr 1000000000usei --from=$keyname --chain-id=$chainid -b block -y --fees 2000usei
 
 echo $marsaddr
 echo $saturnaddr

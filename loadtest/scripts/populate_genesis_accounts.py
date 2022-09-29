@@ -7,9 +7,8 @@ import threading
 import time
 
 PARALLEISM=32
-LOCK=threading.Lock()
 
-def add_genesis_account(account_name, local=False):
+def add_genesis_account(account_name, lock, local=False):
     if local:
         add_key_cmd = f"yes | ~/go/bin/seid keys add {account_name} --keyring-backend test"
     else:
@@ -41,7 +40,7 @@ def add_genesis_account(account_name, local=False):
     sleep_time = 1
     while not success and retry_counter > 0:
         try:
-            with LOCK:
+            with lock:
                 subprocess.check_call(
                     [add_account_cmd],
                     shell=True,
@@ -54,10 +53,10 @@ def add_genesis_account(account_name, local=False):
             time.sleep(sleep_time)
 
 
-def bulk_create_genesis_accounts(number_of_accounts, start_idx, is_local=False):
+def bulk_create_genesis_accounts(number_of_accounts, start_idx, lock, is_local=False):
     for i in range(start_idx, start_idx + number_of_accounts):
         print(f"Creating account {i}")
-        add_genesis_account(f"ta{i}", is_local)
+        add_genesis_account(f"ta{i}", lock, is_local)
 
 def main():
     args = sys.argv[1:]
@@ -67,8 +66,9 @@ def main():
         is_local = True
     num_processes = number_of_accounts // PARALLEISM
     processes = []
+    lock=threading.Lock()
     for i in range(0, number_of_accounts, num_processes):
-        processes.append(multiprocessing.Process(target=bulk_create_genesis_accounts, args=(num_processes, i, is_local)))
+        processes.append(multiprocessing.Process(target=bulk_create_genesis_accounts, args=(num_processes, i, lock, is_local)))
     for p in processes:
         p.start()
     for p in processes:

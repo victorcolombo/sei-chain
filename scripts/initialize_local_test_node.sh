@@ -52,7 +52,7 @@ else
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  sed -i 's/timeout_prevote =.*/timeout_prevote = "2000ms"/g' $CONFIG_PATH
+  sed -i 's/timeout_prevote =.*/timeout_prevote = "2000m"/g' $CONFIG_PATH
   sed -i 's/timeout_precommit =.*/timeout_precommit = "2000ms"/g' $CONFIG_PATH
   sed -i 's/timeout_commit =.*/timeout_commit = "2000ms"/g' $CONFIG_PATH
   sed -i 's/skip_timeout_commit =.*/skip_timeout_commit = false/g' $CONFIG_PATH

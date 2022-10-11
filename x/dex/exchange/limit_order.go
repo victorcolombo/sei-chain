@@ -1,6 +1,8 @@
 package exchange
 
 import (
+	"math"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/sei-protocol/sei-chain/x/dex/types"
 )
@@ -19,6 +21,7 @@ func MatchLimitOrders(
 		addOrderToOrderBookEntry(order, orderbook.Shorts)
 	}
 	totalExecuted, totalPrice := sdk.ZeroDec(), sdk.ZeroDec()
+	minPrice, maxPrice := sdk.NewDecFromInt(sdk.NewIntFromUint64(math.MaxInt64)), sdk.OneDec().Neg()
 	longPtr, shortPtr := len(orderbook.Longs.Entries)-1, 0
 
 	for longPtr >= 0 && shortPtr < len(orderbook.Shorts.Entries) && orderbook.Longs.Entries[longPtr].GetPrice().GTE(orderbook.Shorts.Entries[shortPtr].GetPrice()) {
@@ -29,11 +32,14 @@ func MatchLimitOrders(
 			executed = orderbook.Shorts.Entries[shortPtr].GetEntry().Quantity
 		}
 		totalExecuted = totalExecuted.Add(executed).Add(executed)
+		// I think the line-below is off... but I'm not really sure I udnerstand the logic
 		totalPrice = totalPrice.Add(
 			executed.Mul(
 				orderbook.Longs.Entries[longPtr].GetPrice().Add(orderbook.Shorts.Entries[shortPtr].GetPrice()),
 			),
 		)
+		minPrice = sdk.MinDec(minPrice, orderbook.Longs.Entries[longPtr].GetPrice())
+		maxPrice = sdk.MaxDec(maxPrice, orderbook.Longs.Entries[longPtr].GetPrice())
 
 		orderbook.Longs.AddDirtyEntry(orderbook.Longs.Entries[longPtr])
 		orderbook.Shorts.AddDirtyEntry(orderbook.Shorts.Entries[shortPtr])
@@ -56,6 +62,8 @@ func MatchLimitOrders(
 		TotalNotional: totalPrice,
 		TotalQuantity: totalExecuted,
 		Settlements:   settlements,
+		MinPrice:      minPrice,
+		MaxPrice:      maxPrice,
 	}
 }
 

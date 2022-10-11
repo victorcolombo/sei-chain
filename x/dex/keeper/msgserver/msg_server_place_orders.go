@@ -96,8 +96,6 @@ func (k msgServer) validateOrder(order *types.Order) error {
 	if len(order.PriceDenom) == 0 {
 		return fmt.Errorf("invalid order, price denom is empty")
 	}
-<<<<<<< Updated upstream
-=======
 	if order.OrderType == types.OrderType_FOKMARKETBYVALUE && (order.Nominal.IsNil() || order.Nominal.IsNegative()) {
 		return fmt.Errorf("invalid nominal value for market by value order: %s", order.Nominal)
 	}
@@ -105,6 +103,5 @@ func (k msgServer) validateOrder(order *types.Order) error {
 		(order.TriggerPrice.IsNil() || order.TriggerPrice.IsNegative()) {
 		return fmt.Errorf("invalid trigger price for stop loss/limit order: %s", order.TriggerPrice)
 	}
->>>>>>> Stashed changes
 	return nil
 }

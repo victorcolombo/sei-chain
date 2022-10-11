@@ -53,8 +53,6 @@ func CmdPlaceOrders() *cobra.Command {
 				}
 				newOrder.OrderType = argOrderType
 				newOrder.Data = orderDetails[6]
-<<<<<<< Updated upstream
-=======
 				if newOrder.OrderType == types.OrderType_FOKMARKETBYVALUE {
 					argNominal, err := sdk.NewDecFromStr(orderDetails[7])
 					if err != nil {
@@ -75,7 +73,6 @@ func CmdPlaceOrders() *cobra.Command {
 					newOrder.TriggerPrice = triggerPrice
 					newOrder.TriggerStatus = triggerStatus
 				}
->>>>>>> Stashed changes
 				orders = append(orders, &newOrder)
 			}
 

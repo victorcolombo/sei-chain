@@ -169,7 +169,7 @@ func run(config Config) {
 		wg := &sync.WaitGroup{}
 		var senders []func()
 		wgs = append(wgs, wg)
-		for _, account := range activeAccounts {
+		for j, account := range activeAccounts {
 			key := GetKey(uint64(account))
 
 			msg := generateMessage(config, key, batchSize)
@@ -177,6 +177,9 @@ func run(config Config) {
 			_ = txBuilder.SetMsgs(msg)
 			seqDelta := uint64(i / 2)
 			mode := typestx.BroadcastMode_BROADCAST_MODE_SYNC
+			if j == len(activeAccounts)-1 {
+				mode = typestx.BroadcastMode_BROADCAST_MODE_BLOCK
+			}
 
 			// Note: There is a potential race condition here with seqnos
 			// in which a later seqno is delievered before an earlier seqno
@@ -281,7 +284,8 @@ func getLastHeight() int {
 	if err := json.Unmarshal(out, &dat); err != nil {
 		panic(err)
 	}
-	height, err := strconv.Atoi(dat["last_height"].(string))
+	lastHeight, _ := dat["result"].(map[string]interface{})["last_height"].(string)
+	height, err := strconv.Atoi(lastHeight)
 	if err != nil {
 		panic(err)
 	}
@@ -291,7 +295,7 @@ func getLastHeight() int {
 func main() {
 	config := Config{}
 	pwd, _ := os.Getwd()
-	file, _ := os.ReadFile(pwd + "/loadtest/config.json")
+	file, _ := os.ReadFile(pwd + "/config.json")
 	if err := json.Unmarshal(file, &config); err != nil {
 		panic(err)
 	}

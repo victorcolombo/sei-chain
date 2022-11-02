@@ -71,29 +71,31 @@ func NewAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
 	// 	sigVerifyDecorator = ante.NewBatchSigVerificationDecorator(options.BatchVerifier, sequentialVerifyDecorator)
 	// }
 
-	anteDecorators := []sdk.AnteDecorator{
-		ante.NewSetUpContextDecorator(), // outermost AnteDecorator. SetUpContext must be called first
+	anteDecorators := []sdk.AnteFullDecorator{
+		sdk.DefaultWrappedAnteDecorator(ante.NewSetUpContextDecorator()), // outermost AnteDecorator. SetUpContext must be called first
 		// TODO: have dex antehandler separate, and then call the individual antehandlers FROM the gasless antehandler decorator wrapper
-		wasmkeeper.NewLimitSimulationGasDecorator(options.WasmConfig.SimulationGasLimit), // after setup context to enforce limits early
-		wasmkeeper.NewCountTXDecorator(options.TXCounterStoreKey),
-		ante.NewRejectExtensionOptionsDecorator(),
-		oracle.NewSpammingPreventionDecorator(*options.OracleKeeper),
-		ante.NewValidateBasicDecorator(),
-		ante.NewTxTimeoutHeightDecorator(),
-		ante.NewValidateMemoDecorator(options.AccountKeeper),
+		sdk.DefaultWrappedAnteDecorator(antedecorators.NewGaslessDecorator([]sdk.AnteDecorator{}, *options.OracleKeeper, *options.NitroKeeper)),
+		sdk.DefaultWrappedAnteDecorator(wasmkeeper.NewLimitSimulationGasDecorator(options.WasmConfig.SimulationGasLimit)), // after setup context to enforce limits early
+		sdk.DefaultWrappedAnteDecorator(ante.NewRejectExtensionOptionsDecorator()),
+		sdk.DefaultWrappedAnteDecorator(oracle.NewSpammingPreventionDecorator(*options.OracleKeeper)),
+		sdk.DefaultWrappedAnteDecorator(ante.NewValidateBasicDecorator()),
+		sdk.DefaultWrappedAnteDecorator(ante.NewTxTimeoutHeightDecorator()),
+		sdk.DefaultWrappedAnteDecorator(ante.NewValidateMemoDecorator(options.AccountKeeper)),
 		ante.NewConsumeGasForTxSizeDecorator(options.AccountKeeper),
 		ante.NewDeductFeeDecorator(options.AccountKeeper, options.BankKeeper, options.FeegrantKeeper, options.TxFeeChecker),
 		// PriorityDecorator must be called after DeductFeeDecorator which sets tx priority based on tx fees
-		antedecorators.NewPriorityDecorator(),
+		sdk.DefaultWrappedAnteDecorator(antedecorators.NewPriorityDecorator()),
 		// SetPubKeyDecorator must be called before all signature verification decorators
-		ante.NewSetPubKeyDecorator(options.AccountKeeper),
-		ante.NewValidateSigCountDecorator(options.AccountKeeper),
-		ante.NewSigGasConsumeDecorator(options.AccountKeeper, sigGasConsumer),
-		sequentialVerifyDecorator,
-		ante.NewIncrementSequenceDecorator(options.AccountKeeper),
-		ibcante.NewAnteDecorator(options.IBCKeeper),
-		dex.NewTickSizeMultipleDecorator(*options.DexKeeper),
+		sdk.DefaultWrappedAnteDecorator(ante.NewSetPubKeyDecorator(options.AccountKeeper)),
+		sdk.DefaultWrappedAnteDecorator(ante.NewValidateSigCountDecorator(options.AccountKeeper)),
+		sdk.DefaultWrappedAnteDecorator(ante.NewSigGasConsumeDecorator(options.AccountKeeper, sigGasConsumer)),
+		sdk.DefaultWrappedAnteDecorator(sequentialVerifyDecorator),
+		sdk.DefaultWrappedAnteDecorator(ante.NewIncrementSequenceDecorator(options.AccountKeeper)),
+		sdk.DefaultWrappedAnteDecorator(ibcante.NewAnteDecorator(options.IBCKeeper)),
+		sdk.DefaultWrappedAnteDecorator(dex.NewTickSizeMultipleDecorator(*options.DexKeeper)),
 	}
 
-	return sdk.ChainAnteDecorators(anteDecorators...), nil
+	anteHandler, _ := sdk.ChainAnteDecorators(anteDecorators...)
+
+	return anteHandler, nil
 }

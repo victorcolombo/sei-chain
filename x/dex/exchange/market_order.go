@@ -1,6 +1,7 @@
 package exchange
 
 import (
+	"fmt"
 	"math"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -33,6 +34,9 @@ func MatchMarketOrders(
 
 	if totalExecuted.IsPositive() {
 		clearingPrice := totalPrice.Quo(totalExecuted)
+		fmt.Println("totalPrice, ", totalPrice)
+		fmt.Println("total executed, ", totalExecuted)
+		fmt.Println("clearing price, ", clearingPrice)
 		for _, settlement := range allTakerSettlements {
 			settlement.ExecutionCostOrProceed = clearingPrice
 		}

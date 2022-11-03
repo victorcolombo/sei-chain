@@ -142,6 +142,11 @@ func handleSettlements(ctx context.Context, sdkCtx sdk.Context, env *environment
 		if !contractsNeedOrderMatching.Contains(contractAddr) {
 			return true
 		}
+
+		for _, settlement := range settlements {
+			fmt.Println("settlement margin debt ", settlement.ExecutionCostOrProceed)
+		}
+
 		if err := HandleSettlements(sdkCtx, contractAddr, keeper, settlements); err != nil {
 			sdkCtx.Logger().Error(fmt.Sprintf("Error handling settlements for %s", contractAddr))
 			env.failedContractAddresses.Add(contractAddr)

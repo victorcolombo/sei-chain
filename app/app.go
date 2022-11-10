@@ -3,6 +3,7 @@ package app
 import (
 	"context"
 	"fmt"
+	"github.com/sei-protocol/sei-chain/x/dex/migrations"
 	"io"
 	"os"
 	"path/filepath"
@@ -762,7 +763,8 @@ func New(
 	app.ScopedTransferKeeper = scopedTransferKeeper
 	app.ScopedWasmKeeper = scopedWasmKeeper
 	// this line is used by starport scaffolding # stargate/app/beforeInitReturn
-
+	ctx := app.BaseApp.NewUncachedContext(true, tmproto.Header{})
+	migrations.V9ToV10(ctx, app.DexKeeper)
 	return app
 }
 

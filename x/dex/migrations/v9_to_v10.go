@@ -17,26 +17,31 @@ func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper) error {
 			ctx.KVStore(dexkeeper.StoreKey),
 			types.MatchResultPrefix(contractInfo.ContractAddr),
 		)
-		prevHeight := ctx.BlockHeight() - 1
+		//prevHeight := ctx.BlockHeight() - 1
 		// Get latest match result
 		key := make([]byte, 8)
-		binary.BigEndian.PutUint64(key, uint64(prevHeight))
-		if !store.Has(key) {
-			panic(fmt.Sprintf("Match result key not found for height %d", prevHeight))
-		}
-		bz := store.Get(key)
-		result := types.MatchResult{}
-		if err := result.Unmarshal(bz); err != nil {
-			panic(err)
-		}
-		dexkeeper.SetMatchResult(ctx, contractInfo.ContractAddr, &result)
+		binary.BigEndian.PutUint64(key, uint64(1))
+		fmt.Sprintf("Match result key exists for 1 %t", store.Has(key))
+		binary.BigEndian.PutUint64(key, uint64(9736346))
+		fmt.Sprintf("Match result key exists for 9736346 %t", store.Has(key))
 
-		// Now, remove all older ones
-		for i := int64(0); i <= prevHeight; i++ {
-			key := make([]byte, 8)
-			binary.BigEndian.PutUint64(key, uint64(i))
-			store.Delete(key)
-		}
+		//binary.BigEndian.PutUint64(key, uint64(prevHeight))
+		//if !store.Has(key) {
+		//	panic(fmt.Sprintf("Match result key not found for height %d", prevHeight))
+		//}
+		//bz := store.Get(key)
+		//result := types.MatchResult{}
+		//if err := result.Unmarshal(bz); err != nil {
+		//	panic(err)
+		//}
+		//dexkeeper.SetMatchResult(ctx, contractInfo.ContractAddr, &result)
+		//
+		//// Now, remove all older ones
+		//for i := int64(0); i <= prevHeight; i++ {
+		//	key := make([]byte, 8)
+		//	binary.BigEndian.PutUint64(key, uint64(i))
+		//	store.Delete(key)
+		//}
 	}
 	return nil
 }

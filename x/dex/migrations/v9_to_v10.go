@@ -39,9 +39,9 @@ func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper, logger log.Logger) error 
 
 		// Now, remove all older ones
 		for i := 0; i <= prevHeight; i++ {
-			logger.Error(fmt.Sprintf("Removing match result from height %d, %t", i, store.Has(key)))
 			key := make([]byte, 8)
 			binary.BigEndian.PutUint64(key, uint64(i))
+			logger.Error(fmt.Sprintf("Removing match result from height %d, %t", i, store.Has(key)))
 			if store.Has(key) {
 				store.Delete(key)
 			}

@@ -2,14 +2,14 @@ package migrations
 
 import (
 	"encoding/binary"
-	"fmt"
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/sei-protocol/sei-chain/x/dex/keeper"
 	"github.com/sei-protocol/sei-chain/x/dex/types"
+	"github.com/tendermint/tendermint/libs/log"
 )
 
-func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper) error {
+func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper, logger log.Logger) error {
 	allContractInfo := dexkeeper.GetAllContractInfo(ctx)
 	for _, contractInfo := range allContractInfo {
 
@@ -21,9 +21,9 @@ func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper) error {
 		// Get latest match result
 		key := make([]byte, 8)
 		binary.BigEndian.PutUint64(key, uint64(1))
-		fmt.Sprintf("Match result key exists for 1 %t", store.Has(key))
+		logger.Error("Match result key exists for 1 %t", store.Has(key))
 		binary.BigEndian.PutUint64(key, uint64(9736346))
-		fmt.Sprintf("Match result key exists for 9736346 %t", store.Has(key))
+		logger.Error("Match result key exists for 9736346 %t", store.Has(key))
 
 		//binary.BigEndian.PutUint64(key, uint64(prevHeight))
 		//if !store.Has(key) {

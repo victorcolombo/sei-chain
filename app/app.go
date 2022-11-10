@@ -764,7 +764,7 @@ func New(
 	app.ScopedWasmKeeper = scopedWasmKeeper
 	// this line is used by starport scaffolding # stargate/app/beforeInitReturn
 	ctx := app.BaseApp.NewUncachedContext(true, tmproto.Header{})
-	migrations.V9ToV10(ctx, app.DexKeeper)
+	migrations.V9ToV10(ctx, app.DexKeeper, app.Logger())
 	return app
 }
 

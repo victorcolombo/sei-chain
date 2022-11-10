@@ -13,6 +13,7 @@ func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper) error {
 	allContractInfo := dexkeeper.GetAllContractInfo(ctx)
 	for _, contractInfo := range allContractInfo {
 
+		fmt.Printf("PSULOG - Running migration for %s\n", contractInfo.ContractAddr)
 		store := prefix.NewStore(
 			ctx.KVStore(dexkeeper.StoreKey),
 			types.MatchResultPrefix(contractInfo.ContractAddr),

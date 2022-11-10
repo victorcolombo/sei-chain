@@ -39,8 +39,10 @@ func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper, logger log.Logger) error 
 
 		iterator := sdk.KVStorePrefixIterator(ctx.KVStore(dexkeeper.StoreKey), types.MatchResultPrefix(contractInfo.ContractAddr))
 		defer iterator.Close()
+		i := 0
 		for ; iterator.Valid(); iterator.Next() {
-			logger.Error(fmt.Sprintf("Removing match result from contract %s: %d", contractInfo.ContractAddr, binary.BigEndian.Uint64(iterator.Key())))
+			logger.Error(fmt.Sprintf("Removing match result from contract %s: %d, %d", contractInfo.ContractAddr, iterator.Value(), i))
+			i++
 			store.Delete(iterator.Key())
 		}
 		//

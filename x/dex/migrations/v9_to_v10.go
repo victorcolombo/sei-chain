@@ -12,6 +12,8 @@ import (
 
 func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper, logger log.Logger) error {
 	allContractInfo := dexkeeper.GetAllContractInfo(ctx)
+	logger.Error(fmt.Sprintf("Contract info %s", allContractInfo))
+	return nil
 	for _, contractInfo := range allContractInfo {
 
 		store := prefix.NewStore(
@@ -41,7 +43,6 @@ func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper, logger log.Logger) error 
 		for i := 0; i <= prevHeight; i++ {
 			logger.Error(fmt.Sprintf("Removing match result from height %d, %t", i, store.Has(key)))
 			key := make([]byte, 8)
-			binary.BigEndian.PutUint64(key, uint64(i))
 			if store.Has(key) {
 				store.Delete(key)
 			}

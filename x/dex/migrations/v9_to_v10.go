@@ -37,15 +37,22 @@ func V9ToV10(ctx sdk.Context, dexkeeper keeper.Keeper, logger log.Logger) error 
 		}
 		dexkeeper.SetMatchResult(ctx, contractInfo.ContractAddr, &result)
 
-		// Now, remove all older ones
-		for i := 0; i <= prevHeight; i++ {
-			key := make([]byte, 8)
-			binary.BigEndian.PutUint64(key, uint64(i))
-			logger.Error(fmt.Sprintf("Removing match result from height %d, %t", i, store.Has(key)))
-			if store.Has(key) {
-				store.Delete(key)
-			}
+		iterator := sdk.KVStorePrefixIterator(ctx.KVStore(dexkeeper.StoreKey), types.MatchResultPrefix(contractInfo.ContractAddr))
+		defer iterator.Close()
+		for ; iterator.Valid(); iterator.Next() {
+			logger.Error(fmt.Sprintf("Removing match result from contract %s: %d", contractInfo.ContractAddr, binary.BigEndian.Uint64(iterator.Key())))
+			store.Delete(iterator.Key())
 		}
+		//
+		//// Now, remove all older ones
+		//for i := 0; i <= prevHeight; i++ {
+		//	key := make([]byte, 8)
+		//	binary.BigEndian.PutUint64(key, uint64(i))
+		//	logger.Error(fmt.Sprintf("Removing match result from height %d, %t", i, store.Has(key)))
+		//	if store.Has(key) {
+		//		store.Delete(key)
+		//	}
+		//}
 	}
 	return nil
 }

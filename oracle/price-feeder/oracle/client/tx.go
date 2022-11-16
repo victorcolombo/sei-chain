@@ -32,7 +32,7 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sd
 	}
 
 	// unsignedTx.SetFeeGranter(clientCtx.GetFeeGranterAddress())
-	unsignedTx.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("usei", sdk.NewInt(1500))))
+	unsignedTx.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("usei", sdk.NewInt(0))))
 	// unsignedTx.SetFeePayer(clientCtx.GetFeePayerAddress())
 
 	if err = tx.Sign(txf, clientCtx.GetFromName(), unsignedTx, true); err != nil {

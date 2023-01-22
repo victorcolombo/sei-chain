@@ -128,7 +128,6 @@ func (o *Oracle) Start(ctx context.Context) error {
 			telemetry.MeasureSince(startTime, "runtime", "tick")
 			telemetry.IncrCounter(1, "new", "tick")
 
-			time.Sleep(tickerSleep)
 		}
 	}
 }
@@ -490,6 +489,7 @@ func (o *Oracle) checkWhitelist(params oracletypes.Params) {
 func (o *Oracle) tick(ctx context.Context) error {
 	o.logger.Debug().Msg("executing oracle tick")
 
+	start := time.Now().UnixMicro()
 	blockHeight, err := o.oracleClient.ChainHeight.GetChainHeight()
 	if err != nil {
 		return err
@@ -516,6 +516,11 @@ func (o *Oracle) tick(ctx context.Context) error {
 
 	// Skip until new voting period. Specifically, skip when:
 	// index [0, oracleVotePeriod - 1] > oracleVotePeriod - 2 OR index is 0
+	o.logger.Info().
+		Int64("vote_period", oracleVotePeriod).
+		Float64("previous_vote_period", o.previousVotePeriod).
+		Float64("current_vote_period", currentVotePeriod).
+		Msg("skipping until next voting period")
 	if currentVotePeriod == o.previousVotePeriod {
 		o.logger.Info().
 			Int64("vote_period", oracleVotePeriod).
@@ -540,6 +545,9 @@ func (o *Oracle) tick(ctx context.Context) error {
 		Validator:     valAddr.String(),
 	}
 
+	getPricesComplete := time.Now().UnixMicro()
+	fmt.Printf("[Oracle] Get price latency: %d\n", getPricesComplete-start)
+
 	o.logger.Info().
 		Str("exchange_rates", voteMsg.ExchangeRates).
 		Str("validator", voteMsg.Validator).
@@ -553,6 +561,10 @@ func (o *Oracle) tick(ctx context.Context) error {
 	); err != nil {
 		return err
 	}
+
+	broadcastComplete := time.Now().UnixMicro()
+	fmt.Printf("[Oracle] Broadcast latency: %d\n", broadcastComplete-getPricesComplete)
+
 	o.previousVotePeriod = currentVotePeriod
 	o.healthchecksPing()
 

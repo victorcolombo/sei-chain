@@ -4,12 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"sync"
-	"time"
-
 	"github.com/rs/zerolog"
 	tmrpcclient "github.com/tendermint/tendermint/rpc/client"
 	tmtypes "github.com/tendermint/tendermint/types"
+	"sync"
 )
 
 var (
@@ -81,14 +79,11 @@ func (chainHeight *ChainHeight) subscribe(
 		if !ok {
 			chainHeight.Logger.Err(errParseEventDataNewBlockHeader)
 			chainHeight.updateChainHeight(chainHeight.lastChainHeight, errParseEventDataNewBlockHeader)
-			continue
-		}
-		if eventDataNewBlockHeader.Header.Height != chainHeight.lastChainHeight {
+		} else if eventDataNewBlockHeader.Header.Height != chainHeight.lastChainHeight {
+			fmt.Printf("[Oracle] Block height updated to %d\n", eventDataNewBlockHeader.Header.Height)
 			chainHeight.updateChainHeight(eventDataNewBlockHeader.Header.Height, nil)
 			chainHeight.Logger.Debug().Msg(fmt.Sprintf("New Chain Height: %d", eventDataNewBlockHeader.Header.Height))
 		}
-		// sleep 20 ms before checking for new block
-		time.Sleep(20 * time.Millisecond)
 	}
 }
 

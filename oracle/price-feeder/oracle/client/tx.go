@@ -1,9 +1,11 @@
 package client
 
 import (
+	"fmt"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"time"
 )
 
 // BroadcastTx attempts to generate, sign and broadcast a transaction with the
@@ -14,10 +16,14 @@ import (
 // things like prompting for confirmation and printing the response. Instead,
 // we return the TxResponse.
 func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sdk.TxResponse, error) {
+	startTime := time.Now().UnixMicro()
 	txf, err := prepareFactory(clientCtx, txf)
 	if err != nil {
 		return nil, err
 	}
+
+	prepareComplete := time.Now().UnixMicro()
+	fmt.Printf("[Oracle BroadcastTx] Prepare latency is: %d\n", prepareComplete-startTime)
 
 	// _, adjusted, err := tx.CalculateGas(clientCtx, txf, msgs...)
 	// if err != nil {
@@ -39,12 +45,22 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sd
 		return nil, err
 	}
 
+	signCompleted := time.Now().UnixMicro()
+
+	fmt.Printf("[Oracle BroadcastTx] Sign latency is: %d\n", signCompleted-prepareComplete)
+
 	txBytes, err := clientCtx.TxConfig.TxEncoder()(unsignedTx.GetTx())
 	if err != nil {
 		return nil, err
 	}
 
-	return clientCtx.BroadcastTx(txBytes)
+	result, err := clientCtx.BroadcastTx(txBytes)
+
+	broadcastComplete := time.Now().UnixMicro()
+
+	fmt.Printf("[Oracle BroadcastTx] Broadcast request latency is: %d\n", broadcastComplete-signCompleted)
+
+	return result, err
 }
 
 // prepareFactory ensures the account defined by ctx.GetFromAddress() exists and

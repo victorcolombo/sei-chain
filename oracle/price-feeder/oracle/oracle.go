@@ -558,7 +558,7 @@ func (o *Oracle) tick(ctx context.Context) error {
 	}
 
 	broadcastComplete := time.Now().UnixMicro()
-	fmt.Printf("[Oracle] Broadcast latency: %d\n", broadcastComplete-getPricesComplete)
+	fmt.Printf("[Oracle] Oracle client broadcast latency: %d\n", broadcastComplete-getPricesComplete)
 
 	o.previousVotePeriod = currentVotePeriod
 	o.healthchecksPing()

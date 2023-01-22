@@ -511,7 +511,9 @@ func (o *Oracle) tick(ctx context.Context) error {
 	// in the vote period.
 	oracleVotePeriod := int64(oracleParams.VotePeriod)
 	nextBlockHeight := blockHeight + 1
+	fmt.Printf("[Oracle] oracleVotePeriod is %d\n", oracleVotePeriod)
 	currentVotePeriod := math.Floor(float64(nextBlockHeight) / float64(oracleVotePeriod))
+	fmt.Printf("[Oracle] currentVotePeriod is %f\n", currentVotePeriod)
 	indexInVotePeriod := nextBlockHeight % oracleVotePeriod
 
 	// Skip until new voting period. Specifically, skip when:

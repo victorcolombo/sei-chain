@@ -72,11 +72,13 @@ func (chainHeight *ChainHeight) subscribe(
 	for {
 		eventData, err := tmrpcclient.WaitForOneEvent(ctx, eventsClient, queryEventNewBlockHeader.String())
 		if err != nil {
+			fmt.Println("[Oracle] Block height event wait failed")
 			chainHeight.Logger.Err(err)
 			chainHeight.updateChainHeight(chainHeight.lastChainHeight, err)
 		}
 		eventDataNewBlockHeader, ok := eventData.(tmtypes.EventDataNewBlockHeader)
 		if !ok {
+			fmt.Println("[Oracle] Block height event parse failed")
 			chainHeight.Logger.Err(errParseEventDataNewBlockHeader)
 			chainHeight.updateChainHeight(chainHeight.lastChainHeight, errParseEventDataNewBlockHeader)
 		} else if eventDataNewBlockHeader.Header.Height != chainHeight.lastChainHeight {

@@ -487,11 +487,12 @@ func (o *Oracle) checkWhitelist(params oracletypes.Params) {
 }
 
 func (o *Oracle) tick(ctx context.Context) error {
-	o.logger.Debug().Msg("executing oracle tick")
+	o.logger.Info().Msg("executing oracle tick")
 
 	start := time.Now().UnixMicro()
 	blockHeight, err := o.oracleClient.ChainHeight.GetChainHeight()
 	if err != nil {
+		fmt.Printf("[Oracle] Failure in getting chain height\n")
 		return err
 	}
 	if blockHeight < 1 {
@@ -500,6 +501,7 @@ func (o *Oracle) tick(ctx context.Context) error {
 
 	oracleParams, err := o.GetParamCache(ctx, blockHeight)
 	if err != nil {
+		fmt.Printf("[Oracle] Failure in getting oracle params\n")
 		return err
 	}
 
@@ -511,9 +513,7 @@ func (o *Oracle) tick(ctx context.Context) error {
 	// in the vote period.
 	oracleVotePeriod := int64(oracleParams.VotePeriod)
 	nextBlockHeight := blockHeight + 1
-	fmt.Printf("[Oracle] oracleVotePeriod is %d\n", oracleVotePeriod)
 	currentVotePeriod := math.Floor(float64(nextBlockHeight) / float64(oracleVotePeriod))
-	fmt.Printf("[Oracle] currentVotePeriod is %f\n", currentVotePeriod)
 	indexInVotePeriod := nextBlockHeight % oracleVotePeriod
 
 	// Skip until new voting period. Specifically, skip when:

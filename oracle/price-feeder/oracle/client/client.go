@@ -169,7 +169,11 @@ func (oc OracleClient) BroadcastTx(nextBlockHeight, timeoutHeight int64, msgs ..
 		// set last check height to latest block height
 		lastCheckHeight = latestBlockHeight
 
+		broadcastStart := time.Now().UnixMicro()
+		fmt.Printf("[Oracle] Broadcasting tx with lastCheckHeight %d, maxBlockHeight %d \n", lastCheckHeight, maxBlockHeight)
 		resp, err := BroadcastTx(clientCtx, factory, msgs...)
+		broadcastEnd := time.Now().UnixMicro()
+		fmt.Printf("[Oracle] Broadcast latency is %d\n", broadcastEnd-broadcastStart)
 		if resp != nil && resp.Code != 0 {
 			telemetry.IncrCounter(1, "failure", "tx", "code")
 			err = fmt.Errorf("invalid response code from tx: %d", resp.Code)
@@ -183,6 +187,7 @@ func (oc OracleClient) BroadcastTx(nextBlockHeight, timeoutHeight int64, msgs ..
 				code = resp.Code
 				hash = resp.TxHash
 			}
+			fmt.Printf("[Oracle] Failed to broadcast due to error: %s\n Will sleep 1 second", err.Error())
 
 			oc.Logger.Debug().
 				Err(err).

@@ -48,7 +48,7 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sd
 	for err != nil {
 		fmt.Printf("[Price Feeder] Retry broadcast tx to height with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
 		res, err = clientCtx.BroadcastTx(txBytes)
-		time.Sleep(10 * time.Millisecond)
+		time.Sleep(100 * time.Millisecond)
 	}
 
 	return res, nil

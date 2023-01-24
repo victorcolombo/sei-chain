@@ -6,6 +6,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"sync/atomic"
+	"time"
 )
 
 var (
@@ -41,9 +42,16 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sd
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("[Price Feeder] Sending broadcast tx with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
+	fmt.Printf("[Price Feeder] Sending broadcast tx to height with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
 
-	return clientCtx.BroadcastTx(txBytes)
+	res, err := clientCtx.BroadcastTx(txBytes)
+	for err != nil {
+		fmt.Printf("[Price Feeder] Retry broadcast tx to height with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
+		res, err = clientCtx.BroadcastTx(txBytes)
+		time.Sleep(10 * time.Millisecond)
+	}
+
+	return res, nil
 }
 
 // prepareFactory ensures the account defined by ctx.GetFromAddress() exists and

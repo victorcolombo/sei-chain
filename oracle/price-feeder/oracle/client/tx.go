@@ -5,11 +5,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"sync/atomic"
+	"sync"
 )
 
 var (
-	AtomicSequenceNumber atomic.Uint64
+	AccountNumber         = uint64(0)
+	AccountSequenceNumber = uint64(0)
+	seqMutex              = sync.Mutex{}
 )
 
 // BroadcastTx attempts to generate, sign and broadcast a transaction with the
@@ -43,6 +45,13 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sd
 	}
 	fmt.Printf("[Price Feeder] Sending broadcast tx with account %d sequence %d with mode %s\n", txf.AccountNumber(), txf.Sequence(), clientCtx.BroadcastMode)
 	res, err := clientCtx.BroadcastTx(txBytes)
+	if err != nil {
+		// When error happen, it could be that the sequence number are mismatching
+		// We need to reset sequence number to 0 so that it query from the chain next time
+		seqMutex.Lock()
+		AccountSequenceNumber = 0
+		seqMutex.Unlock()
+	}
 
 	return res, err
 }
@@ -72,17 +81,19 @@ func prepareFactory(clientCtx client.Context, txf tx.Factory) (tx.Factory, error
 	//		txf = txf.WithSequence(seq)
 	//	}
 	//}
-
-	accountNum, sequence, err := txf.AccountRetriever().GetAccountNumberSequence(clientCtx, fromAddr)
-	if err != nil {
-		return txf, err
+	seqMutex.Lock()
+	if AccountSequenceNumber == 0 {
+		accountNum, sequence, err := txf.AccountRetriever().GetAccountNumberSequence(clientCtx, fromAddr)
+		if err != nil {
+			return txf, err
+		}
+		AccountNumber = accountNum
+		AccountSequenceNumber = sequence
+	} else {
+		AccountSequenceNumber++
 	}
-	if !AtomicSequenceNumber.CompareAndSwap(0, sequence) {
-		fmt.Printf("[Price Feeder] Got sequence response of %d\n", sequence)
-		sequence = AtomicSequenceNumber.Add(1)
-		fmt.Printf("[Price Feeder] but will use this sequence instead %d\n", sequence)
-	}
-	txf = txf.WithAccountNumber(accountNum).WithSequence(sequence)
+	txf = txf.WithAccountNumber(AccountNumber).WithSequence(AccountSequenceNumber).WithGas(0)
+	seqMutex.Unlock()
 
 	txf = txf.WithGas(0)
 	return txf, nil

@@ -41,7 +41,7 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sd
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("[Price Feeder] Sending broadcast tx with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
+	fmt.Printf("[Price Feeder] Sending broadcast tx with account %d sequence %d with mode %s\n", txf.AccountNumber(), txf.Sequence(), clientCtx.BroadcastMode)
 	res, err := clientCtx.BroadcastTx(txBytes)
 
 	return res, err
@@ -57,6 +57,7 @@ func prepareFactory(clientCtx client.Context, txf tx.Factory) (tx.Factory, error
 		return txf, err
 	}
 	initNum, initSeq := txf.AccountNumber(), txf.Sequence()
+	fmt.Printf("[Price Feeder] initNumber is %d, initSeq is %d\n", initNum, initSeq)
 	if initNum == 0 || initSeq == 0 {
 		num, seq, err := txf.AccountRetriever().GetAccountNumberSequence(clientCtx, fromAddr)
 		if err != nil {

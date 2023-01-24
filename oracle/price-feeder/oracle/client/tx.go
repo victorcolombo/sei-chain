@@ -56,16 +56,32 @@ func prepareFactory(clientCtx client.Context, txf tx.Factory) (tx.Factory, error
 	if err := txf.AccountRetriever().EnsureExists(clientCtx, fromAddr); err != nil {
 		return txf, err
 	}
-	accountNum, sequence, err := txf.AccountRetriever().GetAccountNumberSequence(clientCtx, fromAddr)
-	if err != nil {
-		return txf, err
+	initNum, initSeq := txf.AccountNumber(), txf.Sequence()
+	if initNum == 0 || initSeq == 0 {
+		num, seq, err := txf.AccountRetriever().GetAccountNumberSequence(clientCtx, fromAddr)
+		if err != nil {
+			return txf, err
+		}
+
+		if initNum == 0 {
+			txf = txf.WithAccountNumber(num)
+		}
+
+		if initSeq == 0 {
+			txf = txf.WithSequence(seq)
+		}
 	}
+
+	//accountNum, sequence, err := txf.AccountRetriever().GetAccountNumberSequence(clientCtx, fromAddr)
+	//if err != nil {
+	//	return txf, err
+	//}
 	//if !AtomicSequenceNumber.CompareAndSwap(0, sequence) {
 	//	fmt.Printf("[Price Feeder] Got real sequence %d\n", sequence)
 	//	sequence = AtomicSequenceNumber.Add(1)
 	//	fmt.Printf("[Price Feeder] but will use this instead %d\n", sequence)
 	//}
 
-	txf = txf.WithAccountNumber(accountNum).WithSequence(sequence).WithGas(0)
+	txf = txf.WithGas(0)
 	return txf, nil
 }

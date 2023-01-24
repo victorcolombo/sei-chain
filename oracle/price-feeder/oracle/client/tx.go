@@ -6,7 +6,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"sync/atomic"
-	"time"
 )
 
 var (
@@ -42,16 +41,10 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, msgs ...sdk.Msg) (*sd
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("[Price Feeder] Sending broadcast tx to height with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
-
+	fmt.Printf("[Price Feeder] Sending broadcast tx with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
 	res, err := clientCtx.BroadcastTx(txBytes)
-	for err != nil {
-		fmt.Printf("[Price Feeder] Retry broadcast tx to height with account %d sequence %d\n", txf.AccountNumber(), txf.Sequence())
-		res, err = clientCtx.BroadcastTx(txBytes)
-		time.Sleep(100 * time.Millisecond)
-	}
 
-	return res, nil
+	return res, err
 }
 
 // prepareFactory ensures the account defined by ctx.GetFromAddress() exists and
@@ -68,8 +61,11 @@ func prepareFactory(clientCtx client.Context, txf tx.Factory) (tx.Factory, error
 		return txf, err
 	}
 	if !AtomicSequenceNumber.CompareAndSwap(0, sequence) {
+		fmt.Printf("[Price Feeder] Got real sequence %d\n", sequence)
 		sequence = AtomicSequenceNumber.Add(1)
+		fmt.Printf("[Price Feeder] but will use this instead %d\n", sequence)
 	}
+
 	txf = txf.WithAccountNumber(accountNum).WithSequence(sequence).WithGas(0)
 	return txf, nil
 }

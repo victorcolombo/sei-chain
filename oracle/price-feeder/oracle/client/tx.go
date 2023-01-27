@@ -82,11 +82,11 @@ func resetAccountSequence(ctx client.Context, txf tx.Factory) error {
 		return err
 	}
 	accountNum, sequence, err := txf.AccountRetriever().GetAccountNumberSequence(ctx, fromAddr)
-	fmt.Printf("[Oracle] Getting latest seuqnce from Account Retriever: %d\n", sequence)
 	if err != nil {
 		return err
 	}
 	oracleAccountInfo.AccountNumber = accountNum
 	oracleAccountInfo.AccountSequence = sequence
+	fmt.Printf("[Oracle] Getting latest seuqnce from Account Retriever: %d, updated accouont info seq to %d\n", sequence, oracleAccountInfo.AccountSequence)
 	return nil
 }

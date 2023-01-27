@@ -537,7 +537,7 @@ func (o *Oracle) tick(
 		Validator:     valAddr.String(),
 	}
 
-	o.logger.Info().
+	o.logger.Debug().
 		Str("exchange_rates", voteMsg.ExchangeRates).
 		Str("validator", voteMsg.Validator).
 		Str("feeder", voteMsg.Feeder).

@@ -45,7 +45,7 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, logger zerolog.Logger
 	if err != nil {
 		return nil, err
 	}
-	logger.Info().Msg(fmt.Sprintf("Sending broadcastTx with account sequence number %d", txf.Sequence()))
+	logger.Info().Msg(fmt.Sprintf("Sending broadcastTx with account sequence number %d, tx hash %X", txf.Sequence(), txBytes))
 	res, err := clientCtx.BroadcastTx(txBytes)
 	if err != nil {
 		// When error happen, it could be that the sequence number are mismatching

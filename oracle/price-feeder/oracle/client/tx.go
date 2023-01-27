@@ -51,7 +51,8 @@ func BroadcastTx(clientCtx client.Context, txf tx.Factory, logger zerolog.Logger
 		// When error happen, it could be that the sequence number are mismatching
 		// We need to reset sequence number to query the latest value from the chain
 		_ = resetAccountSequence(clientCtx, txf)
-
+	} else {
+		oracleAccountInfo.AccountSequence++
 	}
 
 	return res, err
@@ -66,8 +67,6 @@ func prepareFactory(ctx client.Context, txf tx.Factory) (tx.Factory, error) {
 		if err != nil {
 			return txf, err
 		}
-	} else {
-		oracleAccountInfo.AccountSequence++
 	}
 	txf = txf.WithAccountNumber(oracleAccountInfo.AccountNumber)
 	txf = txf.WithSequence(oracleAccountInfo.AccountSequence)

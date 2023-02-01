@@ -5,4 +5,6 @@ const (
 	SYNCHRONOUS   = "synchronous"
 	GovMsgInBlock = "gov-msg-in-block"
 	FailedToBuild = "failed-to-build"
+	ERROR = "error"
+	SUCCESS = "success"
 )

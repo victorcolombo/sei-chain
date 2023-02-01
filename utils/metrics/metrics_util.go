@@ -104,3 +104,12 @@ func MeasureDeliverTxDuration(start time.Time) {
 		start.UTC(),
 	)
 }
+
+// sei_check_tx_counter
+func IncrCheckTxCounter(status string) {
+	metrics.IncrCounterWithLabels(
+		[]string{"sei", "checktx", "counter"},
+		1,
+		[]metrics.Label{telemetry.NewLabel("status", status)},
+	)
+}

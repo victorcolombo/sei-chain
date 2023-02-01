@@ -35,7 +35,13 @@ func (app *App) EndBlock(ctx sdk.Context, req abci.RequestEndBlock) (res abci.Re
 func (app *App) CheckTx(ctx context.Context, req *abci.RequestCheckTx) (*abci.ResponseCheckTx, error) {
 	_, span := (*app.tracingInfo.Tracer).Start(app.tracingInfo.TracerContext, "CheckTx")
 	defer span.End()
-	return app.BaseApp.CheckTx(ctx, req)
+	res, err := app.BaseApp.CheckTx(ctx, req)
+	if err != nil {
+		metrics.IncrCheckTxCounter(metrics.ERROR)
+	} else {
+		metrics.IncrCheckTxCounter(metrics.SUCCESS)
+	}
+	return res, err
 }
 
 func (app *App) DeliverTx(ctx sdk.Context, req abci.RequestDeliverTx) abci.ResponseDeliverTx {

@@ -83,14 +83,18 @@ func SetAddressPrefixes() {
 func SetTendermintConfigs(config *tmcfg.Config) {
 	// P2P configs
 	config.P2P.MaxConnections = 200
-	config.P2P.SendRate = 20480000
-	config.P2P.RecvRate = 20480000
+	config.P2P.SendRate = 204800000
+	config.P2P.RecvRate = 204800000
 	config.P2P.MaxPacketMsgPayloadSize = 1000000 // 1MB
 	config.P2P.FlushThrottleTimeout = 10 * time.Millisecond
 	// Mempool configs
 	config.Mempool.Size = 5000
+	config.Mempool.CacheSize = 50000
 	config.Mempool.MaxTxsBytes = 10737418240
 	config.Mempool.MaxTxBytes = 2048576
+	config.Mempool.TxNotifyThreshold = 0
+	config.Mempool.CheckTxErrorBlacklistEnabled = false
+	config.Mempool.CheckTxErrorThreshold = 0
 	// Consensus Configs
 	config.Consensus.GossipTransactionKeyOnly = false // TODO(psu):: re-enable after investigation
 	config.Consensus.UnsafeProposeTimeoutOverride = 5 * time.Second

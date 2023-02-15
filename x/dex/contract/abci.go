@@ -267,6 +267,7 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	}
 
 	// ordering of events doesn't matter since events aren't part of consensus
+	fmt.Printf("[Cosmos-Debug] orderMatchingRunnable Locking mutex env event manager for %s\n", contractInfo.ContractAddr)
 	env.eventManagerMutex.Lock()
 	defer env.eventManagerMutex.Unlock()
 	parentSdkContext.EventManager().EmitEvents(sdkContext.EventManager().Events())

@@ -219,12 +219,15 @@ func handleFinalizedBlocks(ctx context.Context, sdkCtx sdk.Context, env *environ
 }
 
 func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *environment, keeper *keeper.Keeper, contractInfo types.ContractInfoV2, tracer *otrace.Tracer) {
+
 	defer func() {
 		if channel, ok := env.executionTerminationSignals.Load(contractInfo.ContractAddr); ok {
 			_, err := logging.LogIfNotDoneAfter(sdkContext.Logger(), func() (struct{}, error) {
+				fmt.Printf("[Cosmos-Debug] orderMatchingRunnable going to push a struct{} to channel for %s\n", contractInfo.ContractAddr)
 				channel <- struct{}{}
+				fmt.Printf("[Cosmos-Debug] orderMatchingRunnable finished waiting and pushed channel for %s\n", contractInfo.ContractAddr)
 				return struct{}{}, nil
-			}, LogExecSigSendAfter, fmt.Sprintf("send execution terminal signal for %s", contractInfo.ContractAddr))
+			}, LogExecSigSendAfter, fmt.Sprintf("[Cosmos-Debug] send execution terminal signal for %s", contractInfo.ContractAddr))
 			if err != nil {
 				// this should never happen
 				panic(err)
@@ -236,15 +239,15 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	}
 	parentSdkContext := sdkContext
 	sdkContext = decorateContextForContract(sdkContext, contractInfo, keeper.GetParams(sdkContext).EndBlockGasLimit)
-	sdkContext.Logger().Debug(fmt.Sprintf("End block for %s with balance of %d", contractInfo.ContractAddr, contractInfo.RentBalance))
+	sdkContext.Logger().Info(fmt.Sprintf("[Cosmos-Debug] End block for %s with balance of %d", contractInfo.ContractAddr, contractInfo.RentBalance))
 	pairs, pairFound := env.registeredPairs.Load(contractInfo.ContractAddr)
 	orderBooks, found := env.orderBooks.Load(contractInfo.ContractAddr)
 
 	if !pairFound || !found {
-		sdkContext.Logger().Error(fmt.Sprintf("No pair or order book for %s", contractInfo.ContractAddr))
+		sdkContext.Logger().Error(fmt.Sprintf("[Cosmos-Debug] No pair or order book for %s", contractInfo.ContractAddr))
 		env.failedContractAddresses.Add(contractInfo.ContractAddr)
 	} else if orderResultsMap, settlements, err := HandleExecutionForContract(ctx, sdkContext, contractInfo, keeper, pairs, orderBooks, tracer); err != nil {
-		sdkContext.Logger().Error(fmt.Sprintf("Error for EndBlock of %s", contractInfo.ContractAddr))
+		sdkContext.Logger().Error(fmt.Sprintf("[Cosmos-Debug] Error for EndBlock of %s", contractInfo.ContractAddr))
 		env.failedContractAddresses.Add(contractInfo.ContractAddr)
 	} else {
 		for account, orderResults := range orderResultsMap {
@@ -253,16 +256,20 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 				// ordering of `AddContractResult` among multiple orderMatchingRunnable instances doesn't matter
 				// since it's not persisted as state, and it's only used for invoking registered contracts'
 				// FinalizeBlock sudo endpoints, whose state updates are gated by whitelist stores anyway.
+				fmt.Printf("[Cosmos-Debug] orderMatchingRunnable going to AddContractResult for account %s result %s\n", account, orderResults.ContractAddr)
 				msg.AddContractResult(orderResults, env.finalizeMsgMutex)
+				fmt.Printf("[Cosmos-Debug] orderMatchingRunnable finished AddContractResult for account %s result %s\n", account, orderResults.ContractAddr)
 			}
 		}
 		env.settlementsByContract.Store(contractInfo.ContractAddr, settlements)
+		fmt.Printf("[Cosmos-Debug] Finished orderMatchingRunnable processing for %s\n", contractInfo.ContractAddr)
 	}
 
 	// ordering of events doesn't matter since events aren't part of consensus
 	env.eventManagerMutex.Lock()
 	defer env.eventManagerMutex.Unlock()
 	parentSdkContext.EventManager().EmitEvents(sdkContext.EventManager().Events())
+	fmt.Printf("[Cosmos-Debug] Returning from orderMatchingRunnable for %s\n", contractInfo.ContractAddr)
 }
 
 func filterNewValidContracts(ctx sdk.Context, env *environment) []types.ContractInfoV2 {

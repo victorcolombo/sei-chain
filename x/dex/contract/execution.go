@@ -203,25 +203,31 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 		pairCtx := ctx.WithMultiStore(multi.NewStore(ctx.MultiStore(), GetPerPairWhitelistMap(contractAddr, pair))).WithEventManager(sdk.NewEventManager())
 		go func() {
 			defer wg.Done()
+			fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel go func started for %s\n", contractAddr)
 			pairCopy := pair
 			pairStr := dextypesutils.GetPairString(&pairCopy)
 			MoveTriggeredOrderForPair(ctx, typedContractAddr, pairStr, dexkeeper)
 			orderbook, found := orderBooks.Load(pairStr)
+			fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel go func orderbook loaded for %s\n", contractAddr)
 			if !found {
-				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
+				panic(fmt.Sprintf("[Cosmos-Debug] Orderbook not found for %s", pairStr))
 			}
 			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook.DeepCopy())
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)
-
+			fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel go func going to aquire lock for %s\n", contractAddr)
 			mu.Lock()
-			defer mu.Unlock()
+
 			orders, cancels := GetMatchResults(ctx, typedContractAddr, dextypesutils.GetPairString(&pairCopy))
+			fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel go func got some orders for %s\n", contractAddr)
 			orderResults = append(orderResults, orders...)
 			cancelResults = append(cancelResults, cancels...)
 			settlements = append(settlements, pairSettlements...)
 			// ordering of events doesn't matter since events aren't part of consensus
 			ctx.EventManager().EmitEvents(pairCtx.EventManager().Events())
+			fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel go func going to release lock for %s\n", contractAddr)
+			mu.Unlock()
+
 		}()
 	}
 	fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel waiting for wg to finish for %s\n", contractAddr)

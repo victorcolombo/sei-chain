@@ -53,6 +53,7 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	runner := NewParallelRunner(func(contract types.ContractInfoV2) {
 		orderMatchingRunnable(spanCtx, cachedCtx, env, keeper, contract, tracer)
 	}, validContractsInfo, cachedCtx)
+	fmt.Printf("[Cosmos-Debug] Created a new parallel runner with inprogress count %d, ready count %d\n", runner.inProgressCnt, runner.readyCnt)
 
 	_, err := logging.LogIfNotDoneAfter(ctx.Logger(), func() (struct{}, error) {
 		runner.Run()

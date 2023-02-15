@@ -118,10 +118,14 @@ func (r *ParallelRunner) Run() {
 			atomic.AddInt64(&r.readyCnt, -1)
 			return true
 		})
+		fmt.Printf("[Cosmos-Debug] Within loop inprogress count %d, ready count %d\n", r.inProgressCnt, r.readyCnt)
+
 		// This corresponds to the "wait for any existing run (could be
 		// from previous iteration) to finish" part in the pseudocode above.
 		_, err := logging.LogIfNotDoneAfter(r.sdkCtx.Logger(), func() (struct{}, error) {
+			fmt.Printf("[Cosmos-Debug] Waiting for some contract to be finished\n")
 			<-r.someContractFinished
+			fmt.Printf("[Cosmos-Debug] Some contract finished\n")
 			return struct{}{}, nil
 		}, LogAfter, "runner wait for some contract to finish")
 		if err != nil {
@@ -129,14 +133,17 @@ func (r *ParallelRunner) Run() {
 			panic(err)
 		}
 	}
-
+	fmt.Printf("[Cosmos-Debug] Waiting for something is done \n")
 	// make sure there is no orphaned goroutine blocked on channel send
 	r.done <- struct{}{}
+	fmt.Printf("[Cosmos-Debug] Something is done, so we returned\n")
 }
 
 func (r *ParallelRunner) wrapRunnable(contractAddr utils.ContractAddress) {
 	contractInfo, _ := r.contractAddrToInfo.Load(contractAddr)
+	fmt.Printf("[Cosmos-Debug] wrapRunnable: runnable running contract info %s\n", contractAddr)
 	r.runnable(*contractInfo)
+	fmt.Printf("[Cosmos-Debug] wrapRunnable: runnable finished running contract info %s\n", contractAddr)
 
 	// Check if there is any contract that should be promoted to the frontier set.
 	if contractInfo.Dependencies != nil {
@@ -146,11 +153,12 @@ func (r *ParallelRunner) wrapRunnable(contractAddr utils.ContractAddress) {
 			dependentInfo, ok := r.contractAddrToInfo.Load(typedDependentContract)
 			if !ok {
 				// If we cannot find the dependency in the contract address info, then it's not a valid contract in this round
-				r.sdkCtx.Logger().Error(fmt.Sprintf("Couldn't find dependency %s of contract %s in the contract address info", contractInfo.ContractAddr, dependentContract))
+				r.sdkCtx.Logger().Error(fmt.Sprintf("[Cosmos-Debug] Couldn't find dependency %s of contract %s in the contract address info", contractInfo.ContractAddr, dependentContract))
 				continue
 			}
 			// It's okay to mutate ContractInfo here since it's a copy made in the runner's
 			// constructor.
+
 			newNumIncomingPaths := atomic.AddInt64(&dependentInfo.NumIncomingDependencies, -1)
 			// This corresponds to the "for which all contracts that depend on it have
 			// already finished." definition for frontier contract.
@@ -160,12 +168,14 @@ func (r *ParallelRunner) wrapRunnable(contractAddr utils.ContractAddress) {
 			}
 		}
 	}
-
+	fmt.Printf("[Cosmos-Debug] wrapRunnable: Decrement inProgressCnt by 1 for %s from %d\n", contractAddr, r.inProgressCnt)
 	atomic.AddInt64(&r.inProgressCnt, -1) // this has to happen after any potential increment to readyCnt
 	select {
 	case r.someContractFinished <- struct{}{}:
+		fmt.Printf("[Cosmos-Debug] wrapRunnable found some contract finished for %s\n", contractAddr)
 	case <-r.done:
 		// make sure other goroutines can also receive from 'done'
 		r.done <- struct{}{}
+		fmt.Printf("[Cosmos-Debug] wrapRunnable: We are done for %s\n", contractAddr)
 	}
 }

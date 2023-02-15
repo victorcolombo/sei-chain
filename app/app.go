@@ -953,17 +953,18 @@ func (app *App) ProcessProposalHandler(ctx sdk.Context, req *abci.RequestProcess
 		app.optimisticProcessingInfo = optimisticProcessingInfo
 
 		plan, found := app.UpgradeKeeper.GetUpgradePlan(ctx)
+		app.optimisticProcessingInfo.Aborted = true
 		if found && plan.ShouldExecute(ctx) {
 			app.Logger().Info(fmt.Sprintf("Potential upgrade planned for height=%d skipping optimistic processing", plan.Height))
-			app.optimisticProcessingInfo.Aborted = true
+			//app.optimisticProcessingInfo.Aborted = true
 		} else {
-			go func() {
-				events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.ProposedLastCommit)
-				optimisticProcessingInfo.Events = events
-				optimisticProcessingInfo.TxRes = txResults
-				optimisticProcessingInfo.EndBlockResp = endBlockResp
-				optimisticProcessingInfo.Completion <- struct{}{}
-			}()
+			//go func() {
+			//	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.ProposedLastCommit)
+			//	optimisticProcessingInfo.Events = events
+			//	optimisticProcessingInfo.TxRes = txResults
+			//	optimisticProcessingInfo.EndBlockResp = endBlockResp
+			//	optimisticProcessingInfo.Completion <- struct{}{}
+			//}()
 		}
 	} else if !bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
 		app.optimisticProcessingInfo.Aborted = true

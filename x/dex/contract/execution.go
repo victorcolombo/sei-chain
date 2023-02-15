@@ -36,12 +36,15 @@ func CallPreExecutionHooks(
 	defer span.End()
 	span.SetAttributes(attribute.String("contract", contractAddr))
 	abciWrapper := dexkeeperabci.KeeperWrapper{Keeper: dexkeeper}
+	fmt.Printf("[Cosmos-Debug] CallPreExecutionHooks call HandleEBCancelOrders for %s\n", contractAddr)
 	if err := abciWrapper.HandleEBCancelOrders(spanCtx, sdkCtx, tracer, contractAddr, registeredPairs); err != nil {
 		return err
 	}
+	fmt.Printf("[Cosmos-Debug] CallPreExecutionHooks call HandleEBPlaceOrders for %s\n", contractAddr)
 	if err := abciWrapper.HandleEBPlaceOrders(spanCtx, sdkCtx, tracer, contractAddr, registeredPairs); err != nil {
 		return err
 	}
+	fmt.Printf("[Cosmos-Debug] CallPreExecutionHooks done for %s\n", contractAddr)
 	return nil
 }
 

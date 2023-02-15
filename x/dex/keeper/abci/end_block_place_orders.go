@@ -20,6 +20,7 @@ import (
 const MaxOrdersPerSudoCall = 50000
 
 func (w KeeperWrapper) HandleEBPlaceOrders(ctx context.Context, sdkCtx sdk.Context, tracer *otrace.Tracer, contractAddr string, registeredPairs []types.Pair) error {
+	fmt.Printf("[Cosmos-Debug] HandleEBPlaceOrders started for %s\n", contractAddr)
 	_, span := (*tracer).Start(ctx, "SudoPlaceOrders")
 	span.SetAttributes(attribute.String("contractAddr", contractAddr))
 	defer span.End()
@@ -30,10 +31,12 @@ func (w KeeperWrapper) HandleEBPlaceOrders(ctx context.Context, sdkCtx sdk.Conte
 	responses := []wasm.SudoOrderPlacementResponse{}
 
 	for _, msg := range msgs {
+
 		userProvidedGas := w.GetParams(sdkCtx).DefaultGasPerOrder * uint64(len(msg.OrderPlacements.Orders))
+		fmt.Printf("[Cosmos-Debug] HandleEBPlaceOrders call CallContractSudo for %s\n", contractAddr)
 		data, err := utils.CallContractSudo(sdkCtx, w.Keeper, contractAddr, msg, userProvidedGas)
 		if err != nil {
-			sdkCtx.Logger().Error(fmt.Sprintf("Error during order placement: %s", err.Error()))
+			sdkCtx.Logger().Error(fmt.Sprintf("[Cosmos-Debug] Error during order placement: %s", err.Error()))
 			return err
 		}
 		response := wasm.SudoOrderPlacementResponse{}
@@ -42,17 +45,18 @@ func (w KeeperWrapper) HandleEBPlaceOrders(ctx context.Context, sdkCtx sdk.Conte
 			return err
 		}
 		if len(response.UnsuccessfulOrders) > 0 {
-			sdkCtx.Logger().Info(fmt.Sprintf("%s has %d unsuccessful order placements", contractAddr, len(response.UnsuccessfulOrders)))
+			sdkCtx.Logger().Info(fmt.Sprintf("[Cosmos-Debug] %s has %d unsuccessful order placements", contractAddr, len(response.UnsuccessfulOrders)))
 		}
 		responses = append(responses, response)
 	}
-
+	fmt.Printf("[Cosmos-Debug] HandleEBPlaceOrders call MarkFailedToPlace for %s\n", contractAddr)
 	for _, pair := range registeredPairs {
 		typedPairStr := typesutils.GetPairString(&pair) //nolint:gosec // USING THE POINTER HERE COULD BE BAD, LET'S CHECK IT.
 		for _, response := range responses {
 			dexutils.GetMemState(sdkCtx.Context()).GetBlockOrders(sdkCtx, typedContractAddr, typedPairStr).MarkFailedToPlace(response.UnsuccessfulOrders)
 		}
 	}
+	fmt.Printf("[Cosmos-Debug] HandleEBPlaceOrders is done for %s\n", contractAddr)
 	return nil
 }
 

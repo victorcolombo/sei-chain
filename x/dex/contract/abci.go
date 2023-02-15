@@ -264,15 +264,15 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 			}
 		}
 		env.settlementsByContract.Store(contractInfo.ContractAddr, settlements)
-		fmt.Printf("[Cosmos-Debug] Finished orderMatchingRunnable processing for %s\n", contractInfo.ContractAddr)
+		fmt.Printf("[Cosmos-Debug] orderMatchingRunnable finished processing for %s\n", contractInfo.ContractAddr)
 	}
 
 	// ordering of events doesn't matter since events aren't part of consensus
-	fmt.Printf("[Cosmos-Debug] orderMatchingRunnable Locking mutex env event manager for %s\n", contractInfo.ContractAddr)
+	fmt.Printf("[Cosmos-Debug] orderMatchingRunnable lock mutex env event manager for %s\n", contractInfo.ContractAddr)
 	env.eventManagerMutex.Lock()
 	defer env.eventManagerMutex.Unlock()
 	parentSdkContext.EventManager().EmitEvents(sdkContext.EventManager().Events())
-	fmt.Printf("[Cosmos-Debug] Returning from orderMatchingRunnable for %s\n", contractInfo.ContractAddr)
+	fmt.Printf("[Cosmos-Debug] orderMatchingRunnable returned for %s\n", contractInfo.ContractAddr)
 }
 
 func filterNewValidContracts(ctx sdk.Context, env *environment) []types.ContractInfoV2 {

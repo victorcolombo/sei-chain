@@ -42,6 +42,7 @@ func CallPreExecutionHooks(
 	}
 	fmt.Printf("[Cosmos-Debug] CallPreExecutionHooks call HandleEBPlaceOrders for %s\n", contractAddr)
 	if err := abciWrapper.HandleEBPlaceOrders(spanCtx, sdkCtx, tracer, contractAddr, registeredPairs); err != nil {
+		fmt.Printf("[Cosmos-Debug] CallPreExecutionHooks HandleEBPlaceOrders got exception for %s, due to %s\n", contractAddr, err.Error())
 		return err
 	}
 	fmt.Printf("[Cosmos-Debug] CallPreExecutionHooks done for %s\n", contractAddr)
@@ -259,6 +260,7 @@ func HandleExecutionForContract(
 	fmt.Printf("[Cosmos-Debug] HandleExecutionForContract call CallPreExecutionHooks for %s\n", contract.ContractAddr)
 	// Call contract hooks so that contracts can do internal bookkeeping
 	if err := CallPreExecutionHooks(ctx, sdkCtx, contractAddr, dexkeeper, registeredPairs, tracer); err != nil {
+		fmt.Printf("[Cosmos-Debug] HandleExecutionForContract got error and returned with empty result for %s\n", contractAddr)
 		return orderResults, []*types.SettlementEntry{}, err
 	}
 	fmt.Printf("[Cosmos-Debug] HandleExecutionForContract call ExecutePairsInParallel for %s\n", contract.ContractAddr)

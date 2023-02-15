@@ -187,6 +187,7 @@ func GetOrderIDToSettledQuantities(settlements []*types.SettlementEntry) map[uin
 }
 
 func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *keeper.Keeper, registeredPairs []types.Pair, orderBooks *datastructures.TypedSyncMap[dextypesutils.PairString, *types.OrderBook]) ([]*types.SettlementEntry, []*types.Cancellation) {
+	fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel started for %s\n", contractAddr)
 	typedContractAddr := dextypesutils.ContractAddress(contractAddr)
 	orderResults := []*types.Order{}
 	cancelResults := []*types.Cancellation{}
@@ -223,6 +224,7 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 			ctx.EventManager().EmitEvents(pairCtx.EventManager().Events())
 		}()
 	}
+	fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel waiting for wg to finish for %s\n", contractAddr)
 	wg.Wait()
 	dexkeeper.SetMatchResult(ctx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
 

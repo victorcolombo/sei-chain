@@ -253,6 +253,7 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	} else {
 		for account, orderResults := range orderResultsMap {
 			// only add to finalize message for contract addresses
+			fmt.Printf("[Cosmos-Debug] orderMatchingRunnable message for account %s result %s\n", account, orderResults.ContractAddr)
 			if msg, ok := env.finalizeBlockMessages.Load(account); ok {
 				// ordering of `AddContractResult` among multiple orderMatchingRunnable instances doesn't matter
 				// since it's not persisted as state, and it's only used for invoking registered contracts'

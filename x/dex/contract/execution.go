@@ -227,7 +227,7 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 	fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel waiting for wg to finish for %s\n", contractAddr)
 	wg.Wait()
 	dexkeeper.SetMatchResult(ctx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
-
+	fmt.Printf("[Cosmos-Debug] ExecutePairsInParallel wg finished waiting for %s\n", contractAddr)
 	return settlements, cancelResults
 }
 

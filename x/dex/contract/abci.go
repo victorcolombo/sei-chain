@@ -219,7 +219,7 @@ func handleFinalizedBlocks(ctx context.Context, sdkCtx sdk.Context, env *environ
 }
 
 func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *environment, keeper *keeper.Keeper, contractInfo types.ContractInfoV2, tracer *otrace.Tracer) {
-
+	fmt.Printf("[Cosmos-Debug] orderMatchingRunnable started for %s\n", contractInfo.ContractAddr)
 	defer func() {
 		if channel, ok := env.executionTerminationSignals.Load(contractInfo.ContractAddr); ok {
 			_, err := logging.LogIfNotDoneAfter(sdkContext.Logger(), func() (struct{}, error) {
@@ -235,6 +235,7 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 		}
 	}()
 	if !contractInfo.NeedOrderMatching {
+		fmt.Printf("[Cosmos-Debug] orderMatchingRunnable returned because of not NeedOrderMatching for %s\n", contractInfo.ContractAddr)
 		return
 	}
 	parentSdkContext := sdkContext
@@ -242,7 +243,7 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	sdkContext.Logger().Info(fmt.Sprintf("[Cosmos-Debug] End block for %s with balance of %d", contractInfo.ContractAddr, contractInfo.RentBalance))
 	pairs, pairFound := env.registeredPairs.Load(contractInfo.ContractAddr)
 	orderBooks, found := env.orderBooks.Load(contractInfo.ContractAddr)
-
+	fmt.Printf("[Cosmos-Debug] orderMatchingRunnable loaded orderbooks and pairs for %s\n", contractInfo.ContractAddr)
 	if !pairFound || !found {
 		sdkContext.Logger().Error(fmt.Sprintf("[Cosmos-Debug] No pair or order book for %s", contractInfo.ContractAddr))
 		env.failedContractAddresses.Add(contractInfo.ContractAddr)

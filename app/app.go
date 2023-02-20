@@ -981,17 +981,14 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 		ctx.Logger().Info(fmt.Sprintf("FinalizeBlock took %dms", duration/time.Millisecond))
 	}()
 
-	if app.optimisticProcessingInfo != nil && !app.optimisticProcessingInfo.Aborted && bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
-		select {
-		case <-app.optimisticProcessingInfo.Completion:
-			app.SetProcessProposalStateToCommit()
-			appHash := app.WriteStateToCommitAndGetWorkingHash()
-			resp := app.getFinalizeBlockResponse(appHash, app.optimisticProcessingInfo.Events, app.optimisticProcessingInfo.TxRes, app.optimisticProcessingInfo.EndBlockResp)
-			return &resp, nil
-		case <-time.After(OptimisticProcessingTimeoutInSeconds * time.Second):
-			ctx.Logger().Info("optimistic processing timed out")
-			break
-		}
+	if app.optimisticProcessingInfo != nil {
+		<-app.optimisticProcessingInfo.Completion
+	}
+	if !app.optimisticProcessingInfo.Aborted && bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
+		app.SetProcessProposalStateToCommit()
+		appHash := app.WriteStateToCommitAndGetWorkingHash()
+		resp := app.getFinalizeBlockResponse(appHash, app.optimisticProcessingInfo.Events, app.optimisticProcessingInfo.TxRes, app.optimisticProcessingInfo.EndBlockResp)
+		return &resp, nil
 	}
 	ctx.Logger().Info("optimistic processing ineligible")
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)

@@ -983,12 +983,12 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 
 	if app.optimisticProcessingInfo != nil {
 		<-app.optimisticProcessingInfo.Completion
-	}
-	if !app.optimisticProcessingInfo.Aborted && bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
-		app.SetProcessProposalStateToCommit()
-		appHash := app.WriteStateToCommitAndGetWorkingHash()
-		resp := app.getFinalizeBlockResponse(appHash, app.optimisticProcessingInfo.Events, app.optimisticProcessingInfo.TxRes, app.optimisticProcessingInfo.EndBlockResp)
-		return &resp, nil
+		if !app.optimisticProcessingInfo.Aborted && bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
+			app.SetProcessProposalStateToCommit()
+			appHash := app.WriteStateToCommitAndGetWorkingHash()
+			resp := app.getFinalizeBlockResponse(appHash, app.optimisticProcessingInfo.Events, app.optimisticProcessingInfo.TxRes, app.optimisticProcessingInfo.EndBlockResp)
+			return &resp, nil
+		}
 	}
 	ctx.Logger().Info("optimistic processing ineligible")
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)

@@ -952,9 +952,7 @@ func (app *App) ProcessProposalHandler(ctx sdk.Context, req *abci.RequestProcess
 		}
 		app.optimisticProcessingInfo = optimisticProcessingInfo
 
-		plan, found := app.UpgradeKeeper.GetUpgradePlan(ctx)
-		if found && plan.ShouldExecute(ctx) {
-			app.Logger().Info(fmt.Sprintf("Potential upgrade planned for height=%d skipping optimistic processing", plan.Height))
+		if true {
 			app.optimisticProcessingInfo.Aborted = true
 		} else {
 			go func() {

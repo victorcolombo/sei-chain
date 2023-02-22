@@ -15,14 +15,14 @@ func (k KeeperWrapper) GetTwaps(goCtx context.Context, req *types.QueryGetTwapsR
 	twaps := []*types.Twap{}
 	for _, pair := range allRegisteredPairs {
 		prices := k.GetAllPrices(ctx, req.ContractAddr, pair)
-		ctx.Logger().Info(fmt.Sprintf("Got %d prices for pair %s at %s", len(prices), pair.String(), ctx.BlockTime()))
+		ctx.Logger().Info(fmt.Sprintf("Got %d prices for pair %s at %s, height=%d", len(prices), pair.String(), ctx.BlockTime(), ctx.BlockHeight()))
 		twaps = append(twaps, &types.Twap{
 			Pair:            &pair, //nolint:gosec,exportloopref // USING THE POINTER HERE COULD BE BAD, LET'S CHECK IT.
 			Twap:            calculateTwap(ctx, prices, req.LookbackSeconds),
 			LookbackSeconds: req.LookbackSeconds,
 		})
 	}
-
+	ctx.Logger().Info(fmt.Sprintf("Got %d twaps at with %d pairs at %s, height=%d", len(twaps), len(allRegisteredPairs), ctx.BlockTime(), ctx.BlockHeight()))
 	return &types.QueryGetTwapsResponse{
 		Twaps: twaps,
 	}, nil

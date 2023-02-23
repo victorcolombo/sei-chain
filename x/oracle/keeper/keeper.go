@@ -432,7 +432,7 @@ func (k Keeper) IteratePriceSnapshotsReverse(ctx sdk.Context, handler func(snaps
 func (k Keeper) DeletePriceSnapshot(ctx sdk.Context, timestamp int64) {
 	store := ctx.KVStore(k.storeKey)
 	store.Delete(types.GetPriceSnapshotKey(uint64(timestamp)))
-	ctx.Logger().Info("Deleted price snapshot timestamp=%d for height=%d", timestamp, ctx.BlockHeight())
+	ctx.Logger().Info(fmt.Sprintf("Deleted price snapshot timestamp=%d for height=%d", timestamp, ctx.BlockHeight()))
 }
 
 func (k Keeper) CalculateTwaps(ctx sdk.Context, lookbackSeconds uint64) (types.OracleTwaps, error) {

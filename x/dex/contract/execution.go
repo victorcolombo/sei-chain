@@ -46,12 +46,17 @@ func CallPreExecutionHooks(
 }
 
 func ExecutePair(
+	tracer *otrace.Tracer, 
+	ctxCtx context.Context, 
 	ctx sdk.Context,
 	contractAddr string,
 	pair types.Pair,
 	dexkeeper *keeper.Keeper,
 	orderbook *types.OrderBook,
 ) []*types.SettlementEntry {
+	_, span := (*tracer).Start(ctxCtx, "ExecutePair")
+	defer span.End()
+
 	typedContractAddr := dextypesutils.ContractAddress(contractAddr)
 	typedPairStr := dextypesutils.GetPairString(&pair)
 
@@ -63,9 +68,9 @@ func ExecutePair(
 	limitSells := orders.GetLimitOrders(types.PositionDirection_SHORT)
 	exchange.AddOutstandingLimitOrdersToOrderbook(orderbook, limitBuys, limitSells)
 	// Fill market orders
-	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
+	marketOrderOutcome := matchMarketOrderForPair(tracer, ctxCtx, ctx, typedContractAddr, typedPairStr, orderbook)
 	// Fill limit orders
-	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
+	limitOrderOutcome := exchange.MatchLimitOrdersWithTracer(tracer, ctxCtx, ctx, orderbook)
 	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
 
@@ -86,11 +91,15 @@ func cancelForPair(
 }
 
 func matchMarketOrderForPair(
+	tracer *otrace.Tracer, 
+	ctxCtx context.Context, 
 	ctx sdk.Context,
 	typedContractAddr dextypesutils.ContractAddress,
 	typedPairStr dextypesutils.PairString,
 	orderbook *types.OrderBook,
 ) exchange.ExecutionOutcome {
+	_, span := (*tracer).Start(ctxCtx, "matchMarketOrderForPair")
+	defer span.End()
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
 	marketBuys := orders.GetSortedMarketOrders(types.PositionDirection_LONG, true)
 	marketSells := orders.GetSortedMarketOrders(types.PositionDirection_SHORT, true)
@@ -186,7 +195,10 @@ func GetOrderIDToSettledQuantities(settlements []*types.SettlementEntry) map[uin
 	return res
 }
 
-func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *keeper.Keeper, registeredPairs []types.Pair, orderBooks *datastructures.TypedSyncMap[dextypesutils.PairString, *types.OrderBook]) ([]*types.SettlementEntry, []*types.Cancellation) {
+func ExecutePairsInParallel(tracer *otrace.Tracer, ctxCtx context.Context, ctx sdk.Context, contractAddr string, dexkeeper *keeper.Keeper, registeredPairs []types.Pair, orderBooks *datastructures.TypedSyncMap[dextypesutils.PairString, *types.OrderBook]) ([]*types.SettlementEntry, []*types.Cancellation) {
+	_, span := (*tracer).Start(ctxCtx, "ExecutePairsInParallel")
+	defer span.End()
+
 	typedContractAddr := dextypesutils.ContractAddress(contractAddr)
 	orderResults := []*types.Order{}
 	cancelResults := []*types.Cancellation{}
@@ -209,7 +221,7 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 			if !found {
 				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
 			}
-			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook.DeepCopy())
+			pairSettlements := ExecutePair(tracer, ctxCtx, pairCtx, contractAddr, pair, dexkeeper, orderbook.DeepCopy())
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)
 
@@ -248,7 +260,7 @@ func HandleExecutionForContract(
 	if err := CallPreExecutionHooks(ctx, sdkCtx, contractAddr, dexkeeper, registeredPairs, tracer); err != nil {
 		return orderResults, []*types.SettlementEntry{}, err
 	}
-	settlements, cancellations := ExecutePairsInParallel(sdkCtx, contractAddr, dexkeeper, registeredPairs, orderBooks)
+	settlements, cancellations := ExecutePairsInParallel(tracer, ctx, sdkCtx, contractAddr, dexkeeper, registeredPairs, orderBooks)
 	defer EmitSettlementMetrics(settlements)
 	// populate order placement results for FinalizeBlock hook
 	dextypeswasm.PopulateOrderPlacementResults(contractAddr, dexutils.GetMemState(sdkCtx.Context()).GetAllBlockOrders(sdkCtx, typedContractAddr), cancellations, orderResults)

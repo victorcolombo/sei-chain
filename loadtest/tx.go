@@ -38,6 +38,7 @@ func SendTx(
 			if failureExpected {
 				fmt.Printf("Error: %s\n", err)
 			} else {
+				println("error account is ", sdk.AccAddress(key.PubKey().Address()).String())
 				panic(err)
 			}
 		}

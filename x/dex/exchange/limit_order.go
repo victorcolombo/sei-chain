@@ -1,11 +1,25 @@
 package exchange
 
 import (
+	"context"
 	"math"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/sei-protocol/sei-chain/x/dex/types"
+	otrace "go.opentelemetry.io/otel/trace"
 )
+
+func MatchLimitOrdersWithTracer(
+	tracer *otrace.Tracer, 
+	ctxCtx context.Context, 
+	ctx sdk.Context,
+	orderbook *types.OrderBook,
+) ExecutionOutcome {
+	_, span := (*tracer).Start(ctxCtx, "MatchLimitOrdersWithTracer")
+	defer span.End()
+
+	return MatchLimitOrders(ctx, orderbook)
+}
 
 func MatchLimitOrders(
 	ctx sdk.Context,

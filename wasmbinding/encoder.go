@@ -2,6 +2,7 @@ package wasmbinding
 
 import (
 	"encoding/json"
+	"fmt"
 
 	wasmvmtypes "github.com/CosmWasm/wasmvm/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -20,10 +21,16 @@ type SeiWasmMessage struct {
 }
 
 func CustomEncoder(sender sdk.AccAddress, msg json.RawMessage) ([]sdk.Msg, error) {
+
+	fmt.Println("raw msg is: ", string(msg))
+
 	var parsedMessage SeiWasmMessage
 	if err := json.Unmarshal(msg, &parsedMessage); err != nil {
 		return []sdk.Msg{}, sdkerrors.Wrap(err, "Error parsing Sei Wasm Message")
 	}
+
+	fmt.Println("parsedMessage is: ", parsedMessage)
+
 	switch {
 	case parsedMessage.PlaceOrders != nil:
 		return dexwasm.EncodeDexPlaceOrders(parsedMessage.PlaceOrders, sender)

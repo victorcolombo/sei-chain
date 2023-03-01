@@ -1,12 +1,35 @@
 package exchange
 
 import (
+	"context"
 	"math"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	cache "github.com/sei-protocol/sei-chain/x/dex/cache"
 	"github.com/sei-protocol/sei-chain/x/dex/types"
+	otrace "go.opentelemetry.io/otel/trace"
 )
+
+func MatchMarketOrdersWithTracer(
+	tracer *otrace.Tracer, 
+	ctxCtx context.Context, 
+	ctx sdk.Context,
+	marketOrders []*types.Order,
+	orderBookEntries *types.CachedSortedOrderBookEntries,
+	direction types.PositionDirection,
+	blockOrders *cache.BlockOrders,
+) ExecutionOutcome {
+	_, span := (*tracer).Start(ctxCtx, "MatchMarketOrdersWithTracer")
+	defer span.End()
+	
+	return MatchMarketOrders(
+		ctx,
+		marketOrders,
+		orderBookEntries,
+		types.PositionDirection_LONG,
+		blockOrders,
+	)
+}
 
 func MatchMarketOrders(
 	ctx sdk.Context,

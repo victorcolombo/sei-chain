@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"strings"
@@ -12,6 +13,7 @@ import (
 	"github.com/sei-protocol/sei-chain/utils/metrics"
 	"github.com/sei-protocol/sei-chain/x/dex/keeper"
 	dextypeswasm "github.com/sei-protocol/sei-chain/x/dex/types/wasm"
+	otrace "go.opentelemetry.io/otel/trace"
 )
 
 const ErrWasmModuleInstCPUFeatureLiteral = "Error instantiating module: CpuFeature"
@@ -37,6 +39,45 @@ func getMsgType(msg interface{}) string {
 	default:
 		return "unknown"
 	}
+}
+
+func sudoWithTrace(tracer *otrace.Tracer, ctx context.Context, sdkCtx sdk.Context, k *keeper.Keeper, contractAddress sdk.AccAddress, wasmMsg []byte, msgType string) ([]byte, uint64, error) {
+	_, span := (*tracer).Start(ctx, "sudoWithTrace")
+	defer span.End()
+
+	defer utils.PanicHandler(func(err any) {
+		utils.MetricsPanicCallback(err, sdkCtx, fmt.Sprintf("%s|%s", contractAddress, msgType))
+	})()
+
+	// Measure the time it takes to execute the contract in WASM
+	defer metrics.MeasureSudoExecutionDuration(time.Now(), msgType)
+	// set up a tmp context to prevent race condition in reading gas consumed
+	// Note that the limit will effectively serve as a soft limit since it's
+	// possible for the actual computation to go above the specified limit, but
+	// the associated contract would be charged corresponding rent.
+	gasLimit, err := k.GetContractGasLimit(sdkCtx, contractAddress)
+	if err != nil {
+		return nil, 0, err
+	}
+	tmpCtx := sdkCtx.WithGasMeter(sdk.NewGasMeter(gasLimit))
+	data, err := sudoWithoutOutOfGasPanicWithTrace(tracer, ctx, tmpCtx, k, contractAddress, wasmMsg, msgType)
+	gasConsumed := tmpCtx.GasMeter().GasConsumed()
+	sdkCtx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			SudoGasEventKey,
+			sdk.NewAttribute("consumed", fmt.Sprintf("%d", gasConsumed)),
+			sdk.NewAttribute("type", msgType),
+			sdk.NewAttribute("contract", contractAddress.String()),
+			sdk.NewAttribute("height", fmt.Sprintf("%d", sdkCtx.BlockHeight())),
+		),
+	)
+	if gasConsumed > 0 {
+		sdkCtx.GasMeter().ConsumeGas(gasConsumed, "sudo")
+	}
+	if hasErrInstantiatingWasmModuleDueToCPUFeature(err) {
+		panic(utils.DecorateHardFailError(err))
+	}
+	return data, gasConsumed, err
 }
 
 func sudo(sdkCtx sdk.Context, k *keeper.Keeper, contractAddress sdk.AccAddress, wasmMsg []byte, msgType string) ([]byte, uint64, error) {
@@ -75,6 +116,26 @@ func sudo(sdkCtx sdk.Context, k *keeper.Keeper, contractAddress sdk.AccAddress, 
 	return data, gasConsumed, err
 }
 
+func sudoWithoutOutOfGasPanicWithTrace(tracer *otrace.Tracer, ctx context.Context, sdkCtx sdk.Context, k *keeper.Keeper, contractAddress []byte, wasmMsg []byte, logName string) ([]byte, error) {
+	// create trace for sudo 
+	_, span := (*tracer).Start(ctx, "sudoWithoutOutOfGasPanicWithTrace")
+	defer span.End()
+
+	defer func() {
+		if err := recover(); err != nil {
+			// only propagate panic if the error is NOT out of gas
+			if _, ok := err.(sdk.ErrorOutOfGas); !ok {
+				panic(err)
+			} else {
+				sdkCtx.Logger().Error(fmt.Sprintf("%s %s is out of gas", sdk.AccAddress(contractAddress).String(), logName))
+			}
+		}
+	}()
+	return logging.LogIfNotDoneAfter(sdkCtx.Logger(), func() ([]byte, error) {
+		return k.WasmKeeper.Sudo(sdkCtx, contractAddress, wasmMsg)
+	}, LogAfter, fmt.Sprintf("wasm_sudo_%s", logName))
+}
+
 func sudoWithoutOutOfGasPanic(ctx sdk.Context, k *keeper.Keeper, contractAddress []byte, wasmMsg []byte, logName string) ([]byte, error) {
 	defer func() {
 		if err := recover(); err != nil {
@@ -96,6 +157,36 @@ func hasErrInstantiatingWasmModuleDueToCPUFeature(err error) bool {
 		return false
 	}
 	return strings.Contains(err.Error(), ErrWasmModuleInstCPUFeatureLiteral)
+}
+
+func CallContractSudoWithTracer(tracer *otrace.Tracer, ctx context.Context, sdkCtx sdk.Context, k *keeper.Keeper, contractAddr string, msg interface{}, userProvidedGas uint64) ([]byte, error) {
+	_, span := (*tracer).Start(ctx, "CallContractSudoWithTracer")
+	defer span.End()
+	
+
+	contractAddress, err := sdk.AccAddressFromBech32(contractAddr)
+	if err != nil {
+		sdkCtx.Logger().Error(err.Error())
+		return []byte{}, err
+	}
+	wasmMsg, err := json.Marshal(msg)
+	if err != nil {
+		sdkCtx.Logger().Error(err.Error())
+		return []byte{}, err
+	}
+	msgType := getMsgType(msg)
+	data, gasUsed, err := sudoWithTrace(tracer, ctx, sdkCtx, k, contractAddress, wasmMsg, msgType)
+	if err != nil {
+		metrics.IncrementSudoFailCount(msgType)
+		sdkCtx.Logger().Error(err.Error())
+		return []byte{}, err
+	}
+	if err := k.ChargeRentForGas(sdkCtx, contractAddr, gasUsed, userProvidedGas); err != nil {
+		metrics.IncrementSudoFailCount(msgType)
+		sdkCtx.Logger().Error(err.Error())
+		return []byte{}, err
+	}
+	return data, nil
 }
 
 func CallContractSudo(sdkCtx sdk.Context, k *keeper.Keeper, contractAddr string, msg interface{}, userProvidedGas uint64) ([]byte, error) {

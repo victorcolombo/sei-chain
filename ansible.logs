@@ -1,0 +1,2050 @@
+Starting threads account
+Running: $~/go/bin/seid add-genesis-account sei1a24969lhqnt2s8778fjpswgyqpsrjrgu09hsdn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1csjgpy4za54x2c9kknjdq08sxasqz06mwjuj63 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g2kza66yvjfjruz9sv0putsef2tpk39tr5lkhr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1c0c0fcaphqqykp0pncrndrss2h6xyv5k44vjda 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1euluxs84cdwvm69r3zpp858cmh3nvk8kkjs904 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1s3aga7wd9c2c2kf7jgmec3sh6wxjtur9pkywkg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1uf8nfey40n2rz4qju3s9t8uzqdy6fy04n5u274 1000000000usei --keyring-backend test
+Waiting for threads
+Running: $~/go/bin/seid add-genesis-account sei1zp9nzfpz5epr0yk8pjkdm2cfc626x8u98d4f2a 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei184dhaty0yw925ts679qv74344kkfjtskf3xsyx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ka7alxe5rwmg378hr0jlzlep2ydmvts6mll9gk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1k0w9arzxnfv04wwxgxd6nu45p3s58djm0jeyjm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pr8mgdy00j3l7eucz3szmnxjksgkghzs337jc3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t0lwd50ry6f2rrzaesx27a92fcewumvhtaz739 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1v0ev8g2t9yc5x7kc9vy7vwh20v8gwjuej0lwe0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xx7c722aj3rmgrv7wdayyffrl3smp3mppkga0n 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ht4yp2xv9tqm789qh5g5a3jv0s5gs8pg4l4lmd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1n46gv0ltypsjp3wrwxyl88ph8n82kazf4e8v40 1000000000usei --keyring-backend test
+Created account 434
+Created account 93
+Running: $~/go/bin/seid add-genesis-account sei13kvyaxxmz96u00arhv7fyy8dmmmc2a093a2792 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei168p7y68m8dg3hn0sqlqn35px2v4j3jfe4e533j 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1npyec5snhxwymz6j64jw7vq333tzs8eas350uc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ksy00zhguwnx489krca970c0qpaej0m04a6ltk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gdv7swp72ewcg5ezel66c3fa9v2uwxku6an0xp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1e9gy9j0czuj94muxw6tv5apznnxx3z5j88jujx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei133frjv8e6tcvnr4vkv2at9aqsmk3q7a02nftpm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10tg9p84v6cggv23kpxzpyrxj09zvcq75mkde3n 1000000000usei --keyring-backend test
+Created account 341
+Running: $~/go/bin/seid add-genesis-account sei1y8c48h6emqt5tkamppjl4a4lekzh6m83h2lkl8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1qtu59wgqss7sxu4n3xc72np0duqaxml9h8gqdp 1000000000usei --keyring-backend test
+Created account 155
+Running: $~/go/bin/seid add-genesis-account sei1lffnqczyvc8lv5zqxsgvm9d979tsjpkrrdj002 1000000000usei --keyring-backend test
+Created account 310
+Created account 217
+Running: $~/go/bin/seid add-genesis-account sei1xezpftexm4syxk7kzj45mwjmx4nnzuy8mlwuns 1000000000usei --keyring-backend test
+Created account 186
+Running: $~/go/bin/seid add-genesis-account sei1k5p804d6dw0y280c4rgah3p657f4r05rggcy29 1000000000usei --keyring-backend test
+Created account 0
+Created account 403
+Created account 31
+Running: $~/go/bin/seid add-genesis-account sei1k3r3nmax2fh9q5lqsfa08trkq4sm2rtsu966cq 1000000000usei --keyring-backend test
+Created account 620
+Created account 651
+Running: $~/go/bin/seid add-genesis-account sei1a60upq42kzwqklu0s7sdsxlnh22s6keackps4f 1000000000usei --keyring-backend test
+Created account 124
+Created account 775
+Created account 62
+Created account 465
+Running: $~/go/bin/seid add-genesis-account sei1y4s5szf0zztqtpz76lp3z8dac9ngcn3cyjyv2s 1000000000usei --keyring-backend test
+Created account 372
+Created account 279
+Created account 248
+Created account 961
+Running: $~/go/bin/seid add-genesis-account sei1rcdrnrjmrlxnkm4829s8kfwtsxavfvcfrpv0c6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16zpd4kd9fsnenrtqff75rwspg8wq3rrdnuv7jq 1000000000usei --keyring-backend test
+Created account 527
+Created account 713
+Created account 744
+Created account 899
+Created account 496
+Running: $~/go/bin/seid add-genesis-account sei1uwumwnkly4ydvhp8uay5erve6fch0g5wm6627t 1000000000usei --keyring-backend test
+Created account 806
+Running: $~/go/bin/seid add-genesis-account sei1d3a9n58z690rxdu0vz6zpdrl9005vqzrtkncsg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15aypslm6gx7sp5e5ve8ngh0m2ahqgklkfw9d86 1000000000usei --keyring-backend test
+Created account 558
+Created account 930
+Created account 868
+Running: $~/go/bin/seid add-genesis-account sei1ny4jt3e685ygjcgtnv508v6lh60x755hrql2yn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1kspv0c7uqte7prhphfeatrgf03c8a6xf82ekej 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1a2nuclw2ep2vnt7xcax7gm8kv9rl4rgdwefa2e 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17vf28vnwvqgmwrx5dhyds635hyaufh6phql4jx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dklx7awxnh4ju9qzcdx8wmdayszzt29phv0mwg 1000000000usei --keyring-backend test
+Created account 435
+Created account 837
+Running: $~/go/bin/seid add-genesis-account sei1u4vmj54expvv8fmgawdrwsqqfwxhacldtfm767 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18ch57zkszf7yvupygxg9majmjm8rcyqr3u3mdg 1000000000usei --keyring-backend test
+Created account 682
+Running: $~/go/bin/seid add-genesis-account sei17mdum09fxuvehy858ctzqd25ejqhm3unnzrd6n 1000000000usei --keyring-backend test
+Created account 992
+Running: $~/go/bin/seid add-genesis-account sei1ezalf9ly9wuyzk8xf62mcrp4w30h6xfts26q38 1000000000usei --keyring-backend test
+Created account 94
+Running: $~/go/bin/seid add-genesis-account sei17gnwjewuyasrk4t5m88s4dc2fce938em0h0w32 1000000000usei --keyring-backend test
+Created account 589
+Running: $~/go/bin/seid add-genesis-account sei15ay7darvf4qpf7ggjrk0t87vwj6nh20mcrmm3u 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1v4e9eqxrt7wupxv0l2rdkj2938sv2rshhtaczr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1228ekalyl8ejxe08tdhvjn07pd63rxcdq7a4lt 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19swwfed3dxkzma2j0cnt0l7vhdlhnqfhpn6vdd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tz58t4rj0gnc4mh07aytzn2muehmxv87x6v3gp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei199zrjp36jcjsf0sqzsqlwsngqk26hgtl6hdz9m 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei138pr3r5nzn7kgnk204mge34gy4j3q4tjnlwhja 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12h53cy7yc78zu3d7fewyrtl88w8gqwes6403xv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18nnurjq43tpd32c9nglmhut8qhnhj8xny4lqax 1000000000usei --keyring-backend test
+Created account 652
+Created account 404
+Running: $~/go/bin/seid add-genesis-account sei12acukayekehnwrtdn8ljec34vasxzwtzq9wmqj 1000000000usei --keyring-backend test
+Created account 311
+Running: $~/go/bin/seid add-genesis-account sei12ar7ulc3hrl9x9a8k8nmpphxhpyhepj05fv93x 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dszwty7pqlp8f793kmpn9tkn4rtlqngs6yl3u5 1000000000usei --keyring-backend test
+Created account 621
+Created account 218
+Running: $~/go/bin/seid add-genesis-account sei1jahzzmsdfsechezt56jdaharpuc2jd8t2ghxtp 1000000000usei --keyring-backend test
+Created account 1
+Running: $~/go/bin/seid add-genesis-account sei1w53v2fpaujvvdhcspvjxx4dat7f5xjg2zj9ae5 1000000000usei --keyring-backend test
+Created account 187
+Created account 466
+Created account 63
+Created account 156
+Running: $~/go/bin/seid add-genesis-account sei1m7plwpwap86j3krznkwxgtww9tlz68vpufuqhh 1000000000usei --keyring-backend test
+Created account 869
+Created account 342
+Created account 32
+Created account 249
+Running: $~/go/bin/seid add-genesis-account sei1hgu0tzfa9wq8etx3zespa385l4stjdwp6s7rm7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cw24e5xlhluulw4egljn68e4ac2dyqmp6fcvue 1000000000usei --keyring-backend test
+Created account 900
+Created account 776
+Running: $~/go/bin/seid add-genesis-account sei1c4mmu6czhe0wkn2r2asal45xus08nwga9a0pdh 1000000000usei --keyring-backend test
+Created account 962
+Created account 280
+Created account 373
+Created account 125
+Running: $~/go/bin/seid add-genesis-account sei1s6jrmv39mfq3k3lun2vg6hq9z5m0rauayhul65 1000000000usei --keyring-backend test
+Created account 497
+Running: $~/go/bin/seid add-genesis-account sei19gklfa98un7la39zu4mksdth4ydakmwnsdp854 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jrv5tgq5zk8f8a8glwwjgg7wweudjvt7e7xewt 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ur8kkec3a3skymgfv5xen9f836v0sett2g0kjj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei183xh67275p5y7v5gz4w66rugnhudx0u4k27dvq 1000000000usei --keyring-backend test
+Created account 745
+Created account 559
+Created account 714
+Created account 993
+Running: $~/go/bin/seid add-genesis-account sei1zppzlut6002gyqecy8tkru86qchah7q2hty32w 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vwgvwclfyrgrhc6jtsncdyzq6hq42tldy5mt2t 1000000000usei --keyring-backend test
+Created account 436
+Running: $~/go/bin/seid add-genesis-account sei1v07zep9pxwdjkseryges64q7lncjuufunv3tzk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hwlw7cjkp9uhzjetcc2yrvdl8k00v7gaw6kzed 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ts0plj6f7s4dh4wrmweh6aujuc7euzaed2qp6j 1000000000usei --keyring-backend test
+Created account 528
+Created account 931
+Created account 590
+Running: $~/go/bin/seid add-genesis-account sei1q6l2tn64jggucndm8zvfrmtxj3u7jvvkv3wwxk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1kw8py5elhe0zr03xrm2vgjj4pze6pffenyusnp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1e2zkf6qanf9xvm535r8lfteat3aakwaj8ey8s7 1000000000usei --keyring-backend test
+Created account 807
+Running: $~/go/bin/seid add-genesis-account sei1mfuu4myg023ts02mwnkdffm0hhvl3cgtzqkz6c 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei154krz2uaytmk608gkrhpnr3tv5wuqfwma3vt5m 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hggpe52vddqw68e0up55xhwu40238s4v076x2y 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wrhf4cw6n7lze4e6gyky5scfuqty7hsq3dn3dc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei199523a4z0d4q3nvdz5d4jtvzgce6673hxu5tsg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t4zqdu0s5p5k2z87k6s5a6zs45rrupsucedjtj 1000000000usei --keyring-backend test
+Created account 683
+Created account 405
+Created account 64
+Running: $~/go/bin/seid add-genesis-account sei1dgk9d73e7x8s5qnqmm7ypcjvq35sqj7mq4uawn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xd2k253t6kmhs8pdtgrhd9f8y4fcztlytzswhd 1000000000usei --keyring-backend test
+Created account 838
+Created account 2
+Running: $~/go/bin/seid add-genesis-account sei1r2clj7dq233u7pnhzzejvxj4zdgze0rl7mjjs5 1000000000usei --keyring-backend test
+Created account 95
+Running: $~/go/bin/seid add-genesis-account sei17q3yyd78m7lzgw06smwl5w8vtx6fvqh9sg9jsv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1l9qgh8k5m83zqhl89pnx7z58sgfdd2njl5mhfr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1lau5lfr8fp550y86ngey54qfvzqn2z0qtjd7jf 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei122gkpatftgcyn860eh76aaw7t7a7n6h5na77qw 1000000000usei --keyring-backend test
+Created account 312
+Created account 188
+Running: $~/go/bin/seid add-genesis-account sei1786r5sax2m030p8mk60fy83fjmha7cpzg2z2jl 1000000000usei --keyring-backend test
+Created account 219
+Created account 250
+Created account 777
+Created account 653
+Created account 343
+Running: $~/go/bin/seid add-genesis-account sei15rmp9tnx3vqnxeajs8hlya620chx3m9ypzwvaq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jepfavh3va20749d2a53e6t395nfkncy87stre 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1uf3gsra5aw4k04jyy3m5gh3mpx55l89qmuljgl 1000000000usei --keyring-backend test
+Created account 622
+Created account 467
+Created account 33
+Created account 498
+Created account 963
+Running: $~/go/bin/seid add-genesis-account sei1zhuwhkfsak3cvzcczz3umrat0ccktnqesgezu3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1geqazthnqscnxe6avlqe28rppurp42klf64vhy 1000000000usei --keyring-backend test
+Created account 746
+Running: $~/go/bin/seid add-genesis-account sei1ns47hz5aefv7kwxfkm8h8m9p3x83skv648vndk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1uar4gang6ymcuzsgcvyt6fpr92wjv6al53dqzd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t9pym25862xfgm5kkpacljs95lzud62g8kcmck 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1c7neus0z8f56jdwcep6fc457dq69r5g6aa8dnc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cn084u0j52azh0adyzfdl8c5yzvcjfqqw744gd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ekf9jqfhkd7wss3e380zh4ce7n3py2fqwf6mre 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1v88gar5phev54empyj236ur2rgzp26z0md72rp 1000000000usei --keyring-backend test
+Created account 437
+Created account 374
+Running: $~/go/bin/seid add-genesis-account sei18susglm2v9k6vj4vlarcvaxvcpx8mutx20qclq 1000000000usei --keyring-backend test
+Created account 870
+Running: $~/go/bin/seid add-genesis-account sei1ldezpl9peq40npmh2flwrzgfm4v36vdzyaylne 1000000000usei --keyring-backend test
+Created account 591
+Running: $~/go/bin/seid add-genesis-account sei1tr35wdaw3au53drefacls6ezkuywg0rzrsjdk8 1000000000usei --keyring-backend test
+Created account 901
+Created account 994
+Running: $~/go/bin/seid add-genesis-account sei1ryuyw6gmff48v9vu22p5m69z0ump64jrtkyxg8 1000000000usei --keyring-backend test
+Created account 126
+Created account 560
+Created account 157
+Created account 281
+Running: $~/go/bin/seid add-genesis-account sei10fd077lcs8kpf2wquu33hjtn68262lpdkaqf3a 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16zu3z29fsn5q97r5fgt2sulj60939d3ljdyzp6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1w6dn25s3lxrjc7fl87zjjt5zwzkx3tl2heva8q 1000000000usei --keyring-backend test
+Created account 65
+Running: $~/go/bin/seid add-genesis-account sei1a2gku75adq9fgqqr6cln6ze0czsf20trkt3k3n 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18wcjfkgvmd0kzyfjf56j3ptgghl2mzv6su80em 1000000000usei --keyring-backend test
+Created account 529
+Running: $~/go/bin/seid add-genesis-account sei1n9ha0f3m8x7er3xa99rhu8jl5mcnrlkktuyddw 1000000000usei --keyring-backend test
+Created account 932
+Created account 406
+Running: $~/go/bin/seid add-genesis-account sei1s0pdfkr8xp548uvzh930g8e3l32w0cpz9jn3p0 1000000000usei --keyring-backend test
+Created account 654
+Running: $~/go/bin/seid add-genesis-account sei1yl8d3zc2m5hdl47twyd6nrm33x7kjy0wanchcq 1000000000usei --keyring-backend test
+Created account 684
+Created account 808
+Created account 715
+Running: $~/go/bin/seid add-genesis-account sei1h8khgk2u2x5lljw9l7g5xk3srepg409p6yd5f2 1000000000usei --keyring-backend test
+Created account 839
+Running: $~/go/bin/seid add-genesis-account sei1kuez96sdscw2nlvewte37vu0aqhxvpsdj744cz 1000000000usei --keyring-backend test
+Created account 344
+Created account 313
+Running: $~/go/bin/seid add-genesis-account sei1h9kdmc5waeyv82vakctzdu3tmw88adfxsqnwn6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1utt4gxkct0uq9grg6sv4a3azzydjjhay4dh3qj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12f997gmjjwpeluam2dytjyd9wtdak5k0xmgj3l 1000000000usei --keyring-backend test
+Created account 251
+Created account 189
+Running: $~/go/bin/seid add-genesis-account sei1ljgcc97hqu4k0sqzed73xp990napsdhreghavx 1000000000usei --keyring-backend test
+Created account 623
+Created account 499
+Running: $~/go/bin/seid add-genesis-account sei1gfrucnt2eazn2tne525yqw5zkjzlxkhwa9azyc 1000000000usei --keyring-backend test
+Created account 3
+Running: $~/go/bin/seid add-genesis-account sei19qzg8q90egyx5h8rfvuqrdfk5sdmxk6hygr4g0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1j6n8vhdgx0m0w4w3uld89dfzwqs6yuyn9lqw8l 1000000000usei --keyring-backend test
+Created account 96
+Running: $~/go/bin/seid add-genesis-account sei1tynd87jwmh0atafacuycgusqm5h677afqyaa30 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1sgqd4ze037cughfgjrj46h4mynlnvqmz96m2e9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rtxsdav5ftaw38ccf3hk4pm65zkfnxjsm9p7ev 1000000000usei --keyring-backend test
+Created account 158
+Created account 34
+Created account 220
+Running: $~/go/bin/seid add-genesis-account sei183aqjhxdlwkrsppyew6c6kpgfq3f0vcx45gt8c 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19ces33z2amqu4ees07sxq4jktfluduqdls9tj9 1000000000usei --keyring-backend test
+Created account 468
+Running: $~/go/bin/seid add-genesis-account sei1uhmz68pdjvlepaeh959vncewnjztqdsv6e2fvl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19wcfnnkfartq00lyan4p6v0yzslc2ugtw0e6pz 1000000000usei --keyring-backend test
+Created account 778
+Running: $~/go/bin/seid add-genesis-account sei1w7mq9npdaqdwfmjkmjgwd5zse6akhthhzm5etz 1000000000usei --keyring-backend test
+Created account 530
+Created account 964
+Running: $~/go/bin/seid add-genesis-account sei1eatkq0a7kk69k8kvs3txz75ysvgqwgl3xqjh0h 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12c3sfnwj5xgzhl3ap9ctjf4gwwxhlehpd3vzc4 1000000000usei --keyring-backend test
+Created account 438
+Running: $~/go/bin/seid add-genesis-account sei1242z2qtau24ftesaftavwas5yn3ukrt9j56nx4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fmfme5n83hur7t9tdww9a83ns8uwur9nd9sudh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1w2dfzxhmg5zrrc8c7xcpklev02qfh7syzaqc3d 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rxuy00er4mmcml8tu638gfm0nj3c4ccrqvcypr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ff8heytfrcwkguezg4rkwuqdq2r8khlh2sfs3d 1000000000usei --keyring-backend test
+Created account 902
+Created account 592
+Created account 282
+Running: $~/go/bin/seid add-genesis-account sei1rmqdduydw9kye7r4xe885vyq6982g96nuyagak 1000000000usei --keyring-backend test
+Created account 685
+Created account 871
+Running: $~/go/bin/seid add-genesis-account sei13zefsm4w976dc6nsumqqk62s4v6fhf95duvy05 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei106scxggrskw2gq34nn8ves5c22v895hc8n6hdy 1000000000usei --keyring-backend test
+Created account 747
+Running: $~/go/bin/seid add-genesis-account sei14lj792ngrdg3mzevxk3m7klf80svkarex64e8r 1000000000usei --keyring-backend test
+Created account 840
+Created account 35
+Created account 375
+Created account 933
+Created account 66
+Created account 127
+Running: $~/go/bin/seid add-genesis-account sei1pjas8yj23ggh7lcz8ez49w9xft2ghr7esq2m4j 1000000000usei --keyring-backend test
+Created account 561
+Created account 655
+Running: $~/go/bin/seid add-genesis-account sei1f894wumae88g6m8tkddttrahgtedpz8kmrckqn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t6nq9swhlxjxhavpa3mw925addgsjj5leer32t 1000000000usei --keyring-backend test
+Created account 314
+Running: $~/go/bin/seid add-genesis-account sei1gs55jpt0fs9es4c0e5egy8eu3gfy7jqcs92dhf 1000000000usei --keyring-backend test
+Created account 809
+Created account 995
+Running: $~/go/bin/seid add-genesis-account sei1yhfgsk4e7uf7flw2kglgwuvynpcczg3p5c6c3y 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1afnt67n9h0fspaya7490zj7nk84ycs38r7mdc9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1c50f2d0e87uelthnz03a86ygwewn9lrp42m6e4 1000000000usei --keyring-backend test
+Created account 97
+Created account 190
+Running: $~/go/bin/seid add-genesis-account sei1xyvtqtdh4y5hnx8pcqnsnpayq84aed8996uf9m 1000000000usei --keyring-backend test
+Created account 345
+Running: $~/go/bin/seid add-genesis-account sei19s8f4vgpljrsk9lvnj2ufs8w44mes4mldsv7h4 1000000000usei --keyring-backend test
+Created account 407
+Created account 500
+Created account 4
+Created account 221
+Running: $~/go/bin/seid add-genesis-account sei1ez9lj2vhgfjmj59dszwu3haayp5qfs7whftf3s 1000000000usei --keyring-backend test
+Created account 716
+Running: $~/go/bin/seid add-genesis-account sei1d3r3q5pl7h9x7te72xkf2uh0w0q872yjkdxa38 1000000000usei --keyring-backend test
+Created account 624
+Running: $~/go/bin/seid add-genesis-account sei1fh6edp4ph5lp9fz6lplv3phzuw4ssqnr26vert 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei194jzdry8r8ptj26fv3grv2slfk605w9dfesqcu 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1urxsxsxzhjdjyjnmznaf2d0pqlf09q4y2yaj7p 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei100ep06t4eewlqsqclz7kudh86l33f79f67tgda 1000000000usei --keyring-backend test
+Created account 439
+Running: $~/go/bin/seid add-genesis-account sei1c60nk49wd5h7ma65lcmw082ts8egn6u2jwueqa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16cthd4dd5nhx8dkkj66774jsws9vrm8yyy6ecx 1000000000usei --keyring-backend test
+Created account 252
+Running: $~/go/bin/seid add-genesis-account sei1y9agrspq4szplpluypyrzekv8yyfd0hx6928mg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1r3jqhx0vkdrr7a9d6nhqpm6frrs2hmyplpv5r7 1000000000usei --keyring-backend test
+Created account 283
+Created account 469
+Running: $~/go/bin/seid add-genesis-account sei1v9dtlg8wlfywyumjlza6pxw28jch6v5gd308xj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1te447rpqxckyxuppzf7l3ja2ydd2vxa4lmxdpa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1exkup0t5v9t73krlewwd4n7vr6muf7zeg0j6jj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dld44sf9mvemh5lvlph29ggwsl5y8nj8nfpfvt 1000000000usei --keyring-backend test
+Created account 779
+Running: $~/go/bin/seid add-genesis-account sei1yc2jture3yhwd53f2cp8lgmtvled6paympdqpn 1000000000usei --keyring-backend test
+Created account 903
+Running: $~/go/bin/seid add-genesis-account sei13cx8esthnnqhec0zcjvzd4qp7jcd6harfrpfl0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1l379n0m6739y25z30znw7l7rm9lwztyghp9h6l 1000000000usei --keyring-backend test
+Created account 686
+Created account 159
+Running: $~/go/bin/seid add-genesis-account sei10q7xkcd377uzrpjum8w4xyqxeq3h0cr0j7e5r2 1000000000usei --keyring-backend test
+Created account 593
+Running: $~/go/bin/seid add-genesis-account sei18zjraavx5m6rnhv6ak4ayh52m2z7a0nc8pv7vm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1l5vwfk5erpje5j860g6mspqagcjn22adeed3py 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ld4r6t2zwx8drj4uplznu3dngmrsune4lpwpsv 1000000000usei --keyring-backend test
+Created account 376
+Created account 531
+Running: $~/go/bin/seid add-genesis-account sei1ajllw2yp6hggs0evv5scd453mcs0uf3u0t7zza 1000000000usei --keyring-backend test
+Created account 562
+Created account 67
+Created account 841
+Running: $~/go/bin/seid add-genesis-account sei1zzhfmzppca3hcdpu9dnsx8r6ls7vhxqg43fdw6 1000000000usei --keyring-backend test
+Created account 965
+Created account 810
+Running: $~/go/bin/seid add-genesis-account sei138phgpd7yuxfv5m3cmwmfdf0qxjt3605t70nq3 1000000000usei --keyring-backend test
+Created account 315
+Running: $~/go/bin/seid add-genesis-account sei1qw6qefjhucjgnvhqs9npw0dc7ts3vmhqzh6thn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18r3wqh7k9s28av9d58s5nhmw9sujvufmk0fn63 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rjjws85lc6uh64fr4glgv6sk5hw24ndm3rjxqk 1000000000usei --keyring-backend test
+Created account 748
+Created account 934
+Created account 36
+Created account 191
+Created account 872
+Created account 996
+Running: $~/go/bin/seid add-genesis-account sei1js4u99a9qcjgp6g34ktdv45xtkaax8u5a8q8jt 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vgw3kz6qdvh4rhlp9p3zsdfxvjzvlkz0k96f7z 1000000000usei --keyring-backend test
+Created account 656
+Running: $~/go/bin/seid add-genesis-account sei1xj9zstzge973ge3td8ejfv7p2wa9stze6wgww4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1n58443tj54hvg3n34a3hd3r40zvfahll4z7j9j 1000000000usei --keyring-backend test
+Created account 717
+Running: $~/go/bin/seid add-genesis-account sei1r5t87nawhgc54nk5ny04mrjd2w8qrdvx778qag 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ej8wu3aqfy54kkku3ensyfff4awryl6hj7s8s9 1000000000usei --keyring-backend test
+Created account 128
+Created account 440
+Running: $~/go/bin/seid add-genesis-account sei184e030wgluw6qyhlfzr0dt6sdn2ft8cuaekau2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1exwmhccj9v6ckpfe48qd8hujwdpz8zs2008wp9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1n673enwhdayyyywcrum45d3lwjp79mmwr8sv64 1000000000usei --keyring-backend test
+Created account 408
+Created account 98
+Created account 346
+Running: $~/go/bin/seid add-genesis-account sei1k74cykm0p920n3kj4t7exjft3drjfdxmw4yc6l 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mv3rcw5y4rrjjzfnyvm5yutw6yaxm5u9vk9336 1000000000usei --keyring-backend test
+Created account 780
+Created account 501
+Running: $~/go/bin/seid add-genesis-account sei1234q46yul2dzhu68q8zrvh5m4lsmr6yfmpasmd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12dkdkld2urpnxuf5js84l6mw7q0kd9l5z9dqsm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1q9cdx9g9zqjhqlrls8p62lgrd8clxu4aee8rv7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1szqp29cyf82mcw79lfhsmfxpe58u7ynn4asgu6 1000000000usei --keyring-backend test
+Created account 5
+Created account 222
+Created account 625
+Running: $~/go/bin/seid add-genesis-account sei1avxp49vmthmhdqjleutzy0jw58qp268m7x6zhh 1000000000usei --keyring-backend test
+Created account 687
+Running: $~/go/bin/seid add-genesis-account sei1s9qu9ssvh7dpdva5ztlc80q968m2czjk3kfv2k 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1lkhqnqm33wpj4n2th3zy68aukekm677ut4fqkd 1000000000usei --keyring-backend test
+Created account 253
+Created account 904
+Running: $~/go/bin/seid add-genesis-account sei1y0wfe776yc4vtnugp7rgjscynxwfdmt2vpzd6x 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wrycj49kwngn30rg472d4zp52ala6r2rltm0qz 1000000000usei --keyring-backend test
+Created account 68
+Running: $~/go/bin/seid add-genesis-account sei1slufyksk825744zjt6ynt8s87x7xghnxku35r5 1000000000usei --keyring-backend test
+Created account 470
+Running: $~/go/bin/seid add-genesis-account sei1gvp8yml842gdsk608v89pxukpxfnf2chsg6f6y 1000000000usei --keyring-backend test
+Created account 284
+Running: $~/go/bin/seid add-genesis-account sei1kp90tl0rv88d4tnruwe8qmahxpv6utw0ccwmdv 1000000000usei --keyring-backend test
+Created account 563
+Created account 160
+Created account 594
+Created account 966
+Running: $~/go/bin/seid add-genesis-account sei1g784aq3uk40nnd0phfy6z0zdd0kr6r2ffxc4sv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei135rmhj3lg9tf5tseyrqydnnc0lmg3cvk0p48vl 1000000000usei --keyring-backend test
+Created account 37
+Created account 657
+Running: $~/go/bin/seid add-genesis-account sei1356csaz904g687fzmkjewjxun2kaaj4xdcdhkz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wvdnkujljxdu4c6d0hfy4qpz6nyfu52ytwwlss 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1va2z5um3gchfdm8qx450a9u2pw9vmmeh9jumvs 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mg7eelfar2yyqz8xhmxm8kwynvvwx8vulexjy0 1000000000usei --keyring-backend test
+Created account 532
+Running: $~/go/bin/seid add-genesis-account sei1s7dq309y8zxwm8uy2l254fcc8nw4qvjza2zttm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1zep0uvmzxgmecsdj7e0spnjdtk2a7n2jxgexkf 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1lgjvvmtpggadkxu3yla3e6585rpt9lycwd9ysz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16fn0re3zj2zaykpc8mrxlhdtueygjl8xnkjz9g 1000000000usei --keyring-backend test
+Created account 377
+Created account 811
+Running: $~/go/bin/seid add-genesis-account sei1p6tmky5vsy80c9rdstta8rnd0at7jumcqlkc63 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1q75ftj7yvuz8hn6p56yys7cqu6sv63e92907xn 1000000000usei --keyring-backend test
+Created account 749
+Created account 316
+Running: $~/go/bin/seid add-genesis-account sei1a5h7wuctlwvuw2zmxfsfw0zgnur8wjeyugtcsg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rzw5p0jhz8d6zqhhfzwr8dspgtz3llwr5zfknf 1000000000usei --keyring-backend test
+Created account 192
+Created account 842
+Created account 99
+Created account 935
+Running: $~/go/bin/seid add-genesis-account sei18ccxpjlm0wnvsmk2nhqk28flrmqh0y9ha2rzze 1000000000usei --keyring-backend test
+Created account 718
+Created account 997
+Created account 781
+Running: $~/go/bin/seid add-genesis-account sei1u4lnws4uyqv9zlfaxdd2hfzpcj3379w0xfvcxm 1000000000usei --keyring-backend test
+Created account 873
+Running: $~/go/bin/seid add-genesis-account sei10wzvg7vuyngh2sf3tslpjrcaxdlt2lyg6gzq3a 1000000000usei --keyring-backend test
+Created account 441
+Running: $~/go/bin/seid add-genesis-account sei17cvdtnmmtd53rkevnfa56dap0hyuw04a5h54h9 1000000000usei --keyring-backend test
+Created account 347
+Running: $~/go/bin/seid add-genesis-account sei18njcypxwr7e54rkl7cm5srrlm4uzfg8kzxjdwf 1000000000usei --keyring-backend test
+Created account 905
+Created account 502
+Created account 6
+Created account 409
+Created account 223
+Running: $~/go/bin/seid add-genesis-account sei1dce66qfzkjgc7yw5etwfda4tq6f3602n9z73qg 1000000000usei --keyring-backend test
+Created account 688
+Created account 129
+Running: $~/go/bin/seid add-genesis-account sei1dazudwq2eqgt33ydvk9x45fafd73htjnph0kd6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nm7g8zvu96mzvlvyk756hh7j457yjzr7q3lk80 1000000000usei --keyring-backend test
+Created account 595
+Created account 161
+Running: $~/go/bin/seid add-genesis-account sei1wdf0r00elt967xcsj0wwz8hlh3chu0709hxkwp 1000000000usei --keyring-backend test
+Created account 69
+Created account 285
+Running: $~/go/bin/seid add-genesis-account sei1xnefyxa0yeuzwthq74k3v987ysuhhw5pr0kjnz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1plnrxw3wcs5u50sk2nx6cwsq4nhdxn2xylxrzf 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1lx6dxc5p626k5fd0lvwg56zhlstsfmcdnjzpwa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mnacwk2v9mprk67r8z4u9ty0gn9g8060459w65 1000000000usei --keyring-backend test
+Created account 626
+Running: $~/go/bin/seid add-genesis-account sei16mx97v6erk9ulqrg8k35e0t58vqpkvv7pzqa4z 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1suy6nawrqqt992t34kpxwana0rgw4lulvusawm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jkxvdqklmd6ljnjqt9kwxql4mkgxauvvlrgkwh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xwk49n8cd95t87g0ymc9xjw0cez8l3xlqe9dn3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vasx2pl4e8d4fu3wm3ve77pyfyjfgqaxej7exc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1f92nra0m445wa7wlz5g5m957lwun8nctpdnpz0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1a2lhse63jjs07gn99vwqd3tc4hf7u5j6w46lxl 1000000000usei --keyring-backend test
+Created account 38
+Running: $~/go/bin/seid add-genesis-account sei1l47hjcsydaaxmlpfcp7eh0lgzf5d9p3pmz07ql 1000000000usei --keyring-backend test
+Created account 967
+Created account 254
+Running: $~/go/bin/seid add-genesis-account sei1p7arkdztc8e2mwjh5336gd66h0p99cstz6y7gq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ydaj5h8u5f6jkge92cd20kczfjh7kqt8t27z49 1000000000usei --keyring-backend test
+Created account 471
+Running: $~/go/bin/seid add-genesis-account sei1xl2jy2pcetafppturk9wuuwhtcx7wks25a4wfc 1000000000usei --keyring-backend test
+Created account 812
+Running: $~/go/bin/seid add-genesis-account sei1d755t4lcphddvwk2d3z9zeuymm878mxrkte763 1000000000usei --keyring-backend test
+Created account 998
+Created account 378
+Running: $~/go/bin/seid add-genesis-account sei1uxp8qylx4e7xpn8u3qf04ktwqm92cp9pufay65 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1u49dpcy2ka9alu78we88cgl9nhz56c8wls2wrj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17sqk3vqj7qp9r3wg9ewvtst36q9jjzusq3q5gt 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vl82fgjt9clj9hk6uu0w4lham4evpupydsjmj0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19hucetykjt7r73trc4m0wfxycz5zkmu5vgtq70 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jlcr6rt4sek70fr6ufpfqctc8t2nq76a6z6ds0 1000000000usei --keyring-backend test
+Created account 442
+Running: $~/go/bin/seid add-genesis-account sei1ghrjy7pxgxlxp6umpwlhpjpt3pus8ha6pl9z4g 1000000000usei --keyring-backend test
+Created account 533
+Running: $~/go/bin/seid add-genesis-account sei1jmd3e5z23yl54fctqp75520h04ue3uslfmskdt 1000000000usei --keyring-backend test
+Created account 936
+Created account 100
+Created account 193
+Created account 658
+Created account 317
+Running: $~/go/bin/seid add-genesis-account sei1zvlzgd79jzuvjr02ksq270m4qg5wazepg7gzj6 1000000000usei --keyring-backend test
+Created account 564
+Created account 224
+Created account 874
+Created account 843
+Created account 906
+Created account 503
+Created account 719
+Running: $~/go/bin/seid add-genesis-account sei18znfxcfay7mtakwqt85s8677qg39e5xdl47ylx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yczj3ynjevyjtutpe6qlg0c33edc0xhv3m4m0j 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1syff6twrc50gdpc5f93axy8rlcedpqg0xa4d4r 1000000000usei --keyring-backend test
+Created account 70
+Created account 286
+Running: $~/go/bin/seid add-genesis-account sei1ll02rz8qn2cgzkcr2eea8hhp45tehh50c5uyl6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1n3vnsx7lwysz7ygl4vxt4lf5p4tef9q2a7hyjt 1000000000usei --keyring-backend test
+Created account 596
+Created account 750
+Created account 782
+Created account 7
+Running: $~/go/bin/seid add-genesis-account sei1cqdf2l04tq35p5rf9k9u5jsa5sekefcmzyxdfq 1000000000usei --keyring-backend test
+Created account 130
+Created account 39
+Running: $~/go/bin/seid add-genesis-account sei1g5ks25jpk083zqtzdvchvw74w4rm7j5qy6x2th 1000000000usei --keyring-backend test
+Created account 410
+Running: $~/go/bin/seid add-genesis-account sei1u6u5uthrj0dqcygytkxjeggfaf3ylnwlhq643m 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1npk6ehfcezlpevsyzdwwqmre8sfclvw0q0urky 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19jy9p6zznp460er88cd87mnma6ck70k7l8dt6c 1000000000usei --keyring-backend test
+Created account 627
+Running: $~/go/bin/seid add-genesis-account sei18ghucsuuarsd5xhgsgm4gatwvmjzag7ry2dwl9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hchdldqmts8fwchfph3rgqr820l2wfawcanwg7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1f9m4g65sah9s0rkvppfehvq4vhpeldpv5zkvnh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1l46a0243e06tnd3y590s73rv2fnhha68rnfs83 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15am5tcewje43peqwcehd2hang5d8n8fq4242jq 1000000000usei --keyring-backend test
+Created account 348
+Running: $~/go/bin/seid add-genesis-account sei1h92ze8v6p2jxuluf4n6cgpprzkldt8f3zcu26k 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10zwmysc0xsfjp9a03p2a5x02mzks7dhcx04cx6 1000000000usei --keyring-backend test
+Created account 472
+Running: $~/go/bin/seid add-genesis-account sei1rmdl4pj2g9vcjrzhlyu2ujuuslqfc2f2pxf8r2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dgm4r3n3dlvy2rn5ypqccsggsvk4yl05hrzvt8 1000000000usei --keyring-backend test
+Created account 689
+Created account 255
+Running: $~/go/bin/seid add-genesis-account sei1eapgtx2yam9xt9c5xe3nyvyz2ccywcu9gxeewt 1000000000usei --keyring-backend test
+Created account 443
+Running: $~/go/bin/seid add-genesis-account sei1ln7e94ah0wpsy6sqxl5eq0clnrt877chu5zxln 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1lzw4285lpfymp84lrl836d34nj6xgp6rfuvnyu 1000000000usei --keyring-backend test
+Created account 162
+Running: $~/go/bin/seid add-genesis-account sei1jcynjtvehsnneh4587vxvztafgjwkjyflpf7js 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1k6kmhlkl2g9j75tm60f0wjac7d03qstjw320vv 1000000000usei --keyring-backend test
+Created account 379
+Running: $~/go/bin/seid add-genesis-account sei1t347vdn8y70xyygzqvu3hgvv7p277j9444cy5x 1000000000usei --keyring-backend test
+Created account 101
+Running: $~/go/bin/seid add-genesis-account sei1ntcdyf2z4dumzemfdhuphq0v6qfkznkt0700lh 1000000000usei --keyring-backend test
+Created account 999
+Created account 194
+Running: $~/go/bin/seid add-genesis-account sei1e7zunfmxzdgvu722asxer9y2yv437frvdlgpjx 1000000000usei --keyring-backend test
+Created account 875
+Running: $~/go/bin/seid add-genesis-account sei1dyk28vdmnupym96fn4mjg0lf7qtjvpkwm9yf34 1000000000usei --keyring-backend test
+Created account 937
+Created account 720
+Running: $~/go/bin/seid add-genesis-account sei14362d3ejd2qd0y9pv08ts8rkajy8nra94z3uqd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rxcadxtkrxyqjm0daln4u58xtpym2rqv6jqzrc 1000000000usei --keyring-backend test
+Created account 968
+Created account 8
+Created account 813
+Created account 534
+Running: $~/go/bin/seid add-genesis-account sei1gm78jrcjae0d9073c8xmguj2dxe7el2x0e5s5r 1000000000usei --keyring-backend test
+Created account 565
+Created account 225
+Created account 659
+Running: $~/go/bin/seid add-genesis-account sei1wme93zmxrg2m3k8rxd8n5apeyxn5vlj2tz2rw6 1000000000usei --keyring-backend test
+Created account 318
+Created account 628
+Running: $~/go/bin/seid add-genesis-account sei1hpvgml3ezpqyw0r4s0aj2v46nssl25rmxxa04q 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1k00ywpnwcdd4rjdr0hvvr5v53j2sdj9lxkpuzf 1000000000usei --keyring-backend test
+Created account 131
+Created account 504
+Running: $~/go/bin/seid add-genesis-account sei1ap6l9vlrwrlcdau9as0l79z6wm8ks5xey9kkq0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15q4ayhcud9tefv9yzkyj9qhrmfa32v4f4dy2tn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14pufvkzc6zfpnrznfhnvdpusu2ek7ujx369u58 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1h398xlnn40gsta8v9qztf3sj3wghxjke78um0j 1000000000usei --keyring-backend test
+Created account 411
+Running: $~/go/bin/seid add-genesis-account sei13kjw7qatjls6e4z3va2m3lm5jukmyzjhyk3373 1000000000usei --keyring-backend test
+Created account 287
+Created account 751
+Created account 907
+Running: $~/go/bin/seid add-genesis-account sei1uyvl9f7ra9c393hygugdzedpvcgyk3v8s5zqwl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei170w674gjs60mhh4988j9ewnfct20dtetlg8r2u 1000000000usei --keyring-backend test
+Created account 844
+Running: $~/go/bin/seid add-genesis-account sei1062hyh50m67gyy86swst30f3lkp7nfzszyd62j 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dm8esy9hlg4yfz7xw0kj2w395zcn7laze54382 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1exv7kv865t9npv2ykdmgu5ud203d26jn7jjjz8 1000000000usei --keyring-backend test
+Created account 71
+Created account 597
+Running: $~/go/bin/seid add-genesis-account sei1rd82fuxrrhnxl0celfxae0e4cy78658d9nvys9 1000000000usei --keyring-backend test
+Created account 690
+Running: $~/go/bin/seid add-genesis-account sei1ajcxpljk7rajx2dahyc4xq2v0f3a899h4hr45x 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1grf0y4mfpkla2gmp5djae338texwdrvr55vxqy 1000000000usei --keyring-backend test
+Created account 783
+Running: $~/go/bin/seid add-genesis-account sei1zgtcn8zvnfejgyfkl637dw8zs7h6ry87avfgk4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ntyvhz58wznn0h026dhdv27qc00pm84jkqclr3 1000000000usei --keyring-backend test
+Created account 40
+Running: $~/go/bin/seid add-genesis-account sei1x3v9s5y0wmfq52lyj0rph23merhnzlkep2tkqp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wmkrg9lz5gcl9y8qvs2z59hvukt0vshr992u95 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jheygty87tplvq3pk9atcdu6e8xz9mnvshxhzg 1000000000usei --keyring-backend test
+Created account 721
+Created account 473
+Running: $~/go/bin/seid add-genesis-account sei17jjaqw495qh8hl2vds7pxkh0cfkrvq2r3l3v5l 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19m37rj9uy86jp2yvzcepgaljgvxn084yzfytnd 1000000000usei --keyring-backend test
+Created account 349
+Created account 256
+Running: $~/go/bin/seid add-genesis-account sei1jemdax96da8kqagthvwamdshe0gvf6d2w7qyja 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1da7ns3d6fena54dwpdmeaxxr55wt3sapr9zk9j 1000000000usei --keyring-backend test
+Created account 1000
+Created account 380
+Created account 163
+Running: $~/go/bin/seid add-genesis-account sei1m3q6dlpsnqd98amseuxzh6ey7xlt52mt2p9vgy 1000000000usei --keyring-backend test
+Created account 102
+Created account 876
+Created account 195
+Running: $~/go/bin/seid add-genesis-account sei1tftgvg94a259tmpz9tl0u5c559v8mpvyrzyc8w 1000000000usei --keyring-backend test
+Created account 938
+Created account 9
+Created account 629
+Created account 566
+Created account 535
+Created account 444
+Created account 660
+Running: $~/go/bin/seid add-genesis-account sei1zqg0kxqnfgnuvevj5dza2gren4fpgxemhet69q 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cpnyerzvw6na86zklx390h8v94ht5cehx2uvfh 1000000000usei --keyring-backend test
+Created account 412
+Running: $~/go/bin/seid add-genesis-account sei1vml66u3futc5mmydjy3m5f7j0t8el706c6s9hr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xxr62crw97jv2acgg4ylqj8lq7pg9mlga38mj2 1000000000usei --keyring-backend test
+Created account 814
+Running: $~/go/bin/seid add-genesis-account sei1hu0rk6ktgnqc0d8d726dmr8m8hr27esfwfc495 1000000000usei --keyring-backend test
+Created account 132
+Running: $~/go/bin/seid add-genesis-account sei1e6nv32re9glut5rxq9dfclxk90nzz763csn9sk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18sssc58g73ca2w9vpcnkedlngwf8z8h4pnv6vx 1000000000usei --keyring-backend test
+Created account 226
+Created account 505
+Running: $~/go/bin/seid add-genesis-account sei1fm6zhp0fuech342hc2538wjkqtpvv4f5ldpzug 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10d7dcjvfp3tmndz773g037ue83w7tcg3snld7q 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1crd0wzljlfrt3z5fsnws3gpvtvyjxvqygpy9g6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cvjqksp5urqpzs2kg9mu66yrq9fsfvwjfs34mv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1njq5dkk6fm4ufc6lxxzu87nfjcafvpwx4ev4pa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gdt0a5rrua4d0s5cw04ey74x0hz2g59y2xn4ru 1000000000usei --keyring-backend test
+Created account 319
+Created account 969
+Running: $~/go/bin/seid add-genesis-account sei1x6z6r5xvzkny8vdg6aj5g2758agu49g0l4azya 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vz0x80l0zxrl8xlcrpm0cpxwj4tfq0d0cgn0l4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1w2hlxwet2up23geya8kxu7c3huks7mfsvd4pcl 1000000000usei --keyring-backend test
+Created account 845
+Running: $~/go/bin/seid add-genesis-account sei196u98ehk2zdc2ujcyyqghncdn2f47kdus8l4v8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1grul6x7ndr38qrqdlhnfedmyvyepctgzrkp89s 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1l038d559uk6y2amdmxwcpy64nfw43dfsj0nldx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t6v9ujdd0dqj448xhcrjya86a6fnttwr823sfh 1000000000usei --keyring-backend test
+Created account 288
+Created account 908
+Running: $~/go/bin/seid add-genesis-account sei1ylggjnpu5gdz8wlpda9wyua5d29sxwlefa5gm6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18zyfpgly0dm8d6j0hhe2qeeft26gu4xyfrtwzp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1swrrlk9rk0j5z6m6yzuv3n98gfpt8v4ng5g9yu 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14cp4egfmy0yg3x0sgfsqlnaz0vez5kkc7yaedg 1000000000usei --keyring-backend test
+Created account 41
+Running: $~/go/bin/seid add-genesis-account sei1c4ga3spm5dmchkxdzr04eyg9zdemw5qk5kute9 1000000000usei --keyring-backend test
+Created account 1001
+Running: $~/go/bin/seid add-genesis-account sei16ptfgmt6dxt98wdhpkpkvr0jmvc7z7xpzuyy02 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12l3nwe6lg97mljjt745kzeaywkauup8s7jwta4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1npyq783h4000mfvlc5d0jqerpm9a68xu3yjdu3 1000000000usei --keyring-backend test
+Created account 598
+Created account 72
+Running: $~/go/bin/seid add-genesis-account sei13lntesaa3kh240jpj7zfp3sktxg0qjm3flqgjv 1000000000usei --keyring-backend test
+Created account 474
+Created account 257
+Created account 877
+Created account 784
+Created account 752
+Created account 350
+Created account 381
+Created account 661
+Created account 196
+Created account 815
+Created account 722
+Running: $~/go/bin/seid add-genesis-account sei1lh4laemmlnwxf9q6llknq8c4n8hqf2p9z9kky7 1000000000usei --keyring-backend test
+Created account 103
+Running: $~/go/bin/seid add-genesis-account sei1ue83y9rwt94wwc68q09sptgu3rrjmq8m4srpml 1000000000usei --keyring-backend test
+Created account 133
+Created account 164
+Running: $~/go/bin/seid add-genesis-account sei1wlred6hqvazn37yc7lys5vlqa4l8qlujh9r07n 1000000000usei --keyring-backend test
+Created account 691
+Created account 567
+Running: $~/go/bin/seid add-genesis-account sei1mvuvg8jpwqrw40djv3eh0spcq8026mxu8ullga 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gup366la8z47ehnkpklsfft4fftnnxc53vkmwv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dzlt3mz02c9lnams874wsuma4h49krgp6jxdn2 1000000000usei --keyring-backend test
+Created account 536
+Running: $~/go/bin/seid add-genesis-account sei1ctqdxra79k7nvda72u044729rle9m0qkf25ety 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g9u0c0yld299y8ywthapfyr3y2fgwnujgswww4 1000000000usei --keyring-backend test
+Created account 445
+Running: $~/go/bin/seid add-genesis-account sei1pltq5hlk986pzndyg99gn5cj59gejpvgt48u2y 1000000000usei --keyring-backend test
+Created account 630
+Created account 320
+Created account 506
+Created account 939
+Running: $~/go/bin/seid add-genesis-account sei1u4ggla690jrnvkmv6n3sf0yxzkmrr8up7c53wd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei130hr0evcu5u2z29mzrmylxyak7vy62rh33azq3 1000000000usei --keyring-backend test
+Created account 1002
+Created account 413
+Running: $~/go/bin/seid add-genesis-account sei15spzl938kuwhazqzprdpt2256q60y9246gxflh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ygemnnxfgfrhgl0pc77u8d2fev7mj0l5ja94wu 1000000000usei --keyring-backend test
+Created account 970
+Running: $~/go/bin/seid add-genesis-account sei1djlsdgpw44fr2u2w6u7apmshwvq6jz6dsg90j0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cuckl33uqj8lh2xvr46ueklkynezwprrzd8x0k 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nhx9a0znmq3cqaqun0me9gks9xfmgdl255jy5w 1000000000usei --keyring-backend test
+Created account 10
+Running: $~/go/bin/seid add-genesis-account sei1md6zmfznajt8k4v7kvzxazq4hy98347edrac4e 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14s4vjr04sp6wpr5ta0p3wug3dgev0g6guh5sn8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ztqt8gjjt8nv0zww5qh6wuz86pqjm09fsyqn2d 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wpgtnv6xeeek985yqsgmyynux33tfztzvv4snm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g55nrc3zns4d3jhculyk9hwfrm585h97udsl5z 1000000000usei --keyring-backend test
+Created account 289
+Running: $~/go/bin/seid add-genesis-account sei1dnegfrkdvw3q5zpq0l8sletsp4cdpr8zge77yw 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jntg97g0xh6h0kxr6gdl79h4rf3rf4wkllpnl7 1000000000usei --keyring-backend test
+Created account 909
+Running: $~/go/bin/seid add-genesis-account sei18frpunxt5qrtl947m9cxmedsa8e56ulahey4uf 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16gplwfj77afs8ujzseanwk6plkw28dg64n7plz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10qk49sdaj39zrw9smpc66m0zj5yxjc3tvejpvk 1000000000usei --keyring-backend test
+Created account 227
+Created account 846
+Running: $~/go/bin/seid add-genesis-account sei1eed4kevkpwa8cs9hdthx2794ejwfm2rmd0y7u8 1000000000usei --keyring-backend test
+Created account 785
+Created account 599
+Running: $~/go/bin/seid add-genesis-account sei1jt3uxfev52pdasdjjpcjryn6zjfwhc5k8xllj6 1000000000usei --keyring-backend test
+Created account 475
+Created account 42
+Created account 816
+Running: $~/go/bin/seid add-genesis-account sei1qwjdj97jm4lej4hjmysa0yxhg08q8ess8n6nrl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yhw3lld2027alrmukh9l4e7gyxgnj5m0xhwdna 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15qrr4t8pvva3mfahmvy7zumhckgakjadhkq96u 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pfqygyfdkrzj05psslrkmc8n3dku8pduvxzhm9 1000000000usei --keyring-backend test
+Created account 258
+Created account 878
+Running: $~/go/bin/seid add-genesis-account sei1m8ks4ns52sdf7xyusw5rmupcppqan9fqmclx8x 1000000000usei --keyring-backend test
+Created account 351
+Running: $~/go/bin/seid add-genesis-account sei1cf98mu43rq22wpq2fts2wuzhymgktpc3srjxud 1000000000usei --keyring-backend test
+Created account 73
+Running: $~/go/bin/seid add-genesis-account sei1gtwkqaq4f6nlc0admhslhzcftre7y3rt0fam77 1000000000usei --keyring-backend test
+Created account 104
+Created account 134
+Running: $~/go/bin/seid add-genesis-account sei1s6j9d8ks4nudm5jx72t7e3xwv3a6c5n9aputr7 1000000000usei --keyring-backend test
+Created account 197
+Running: $~/go/bin/seid add-genesis-account sei186axkcvznmy7j07pr8lxndldapyrq5v5k2mypr 1000000000usei --keyring-backend test
+Created account 723
+Created account 753
+Created account 940
+Created account 692
+Created account 507
+Running: $~/go/bin/seid add-genesis-account sei1ct6dft7ecm59xdn6h7ph7gk8h95d4pfcdhl4n3 1000000000usei --keyring-backend test
+Created account 568
+Created account 382
+Running: $~/go/bin/seid add-genesis-account sei16mvd6c4t3kvhjxnepx68nrxhpzax2vgc49e29j 1000000000usei --keyring-backend test
+Created account 662
+Running: $~/go/bin/seid add-genesis-account sei142sedcxzv3mc5jr5ywl0lsluy4fvmp7e5fz685 1000000000usei --keyring-backend test
+Created account 414
+Created account 165
+Created account 446
+Running: $~/go/bin/seid add-genesis-account sei1l6mexjlf9a6kuryhfsgcdsya7wl63tqf6xqkf5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei184pxuprvsev7uy6vmvlqc3ygg09pe368fq2myn 1000000000usei --keyring-backend test
+Created account 631
+Running: $~/go/bin/seid add-genesis-account sei1upy9ykv2yj0j550a3yr9ktjssn8qn4t64mn0t4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hnt3f7gktxhj9kg5e406kz5mqnjp76usetl8hk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jdhmed8syv442v8kytzfd7v0lx5v2dfav4drg9 1000000000usei --keyring-backend test
+Created account 1003
+Created account 537
+Created account 971
+Running: $~/go/bin/seid add-genesis-account sei1perdx744gn2hd4xvl494mrruy8vlz08cqhgchz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18sff2n08y9m6nkx3z5lyvlat9czzn6v05qjc6u 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g3rlfehn9chfpjs9y7n2cxn2uzrwpppcwk0cen 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pcwru88zdz7282mkv34u8rjzwjj9vh3ykxgjlk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10f7j9lxs9rkcptkuctzppwhwt350d2657kuuku 1000000000usei --keyring-backend test
+Created account 11
+Running: $~/go/bin/seid add-genesis-account sei1jzdc9l3kcpk3zhr4d7x8k3hxm73rxwy9azeyaa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1n6dc20nav0lfzpaxdagnez70v6geavcllckrwj 1000000000usei --keyring-backend test
+Created account 321
+Created account 290
+Created account 910
+Created account 847
+Running: $~/go/bin/seid add-genesis-account sei1sa62gyxs8mk8ky6753tcerkrrs929mwzuasg2a 1000000000usei --keyring-backend test
+Created account 135
+Created account 786
+Running: $~/go/bin/seid add-genesis-account sei1lqq2zfpyr3k759sncv7tdcz3zxyyc5vxnavmxh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1aj64zlkvlw0gnzyyvhdsu7kjurfu20rpj6sp09 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dnmksrtadvn2hglxw8pryj2c82r64yp3dqxt64 1000000000usei --keyring-backend test
+Created account 43
+Running: $~/go/bin/seid add-genesis-account sei1cayz2fm6dnq4qz6eg7c5p09ddhztdmxr4eja44 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1utnwjg9pt7mp8uehsm6gada552x239hvy9m4cn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei137dvnstl0ctrtqjuuq34ftw9g73vjsqugrwuav 1000000000usei --keyring-backend test
+Created account 476
+Running: $~/go/bin/seid add-genesis-account sei1ad8l4s9eg4ekzetglju84zegfkfm3e2pq3t7ph 1000000000usei --keyring-backend test
+Created account 198
+Running: $~/go/bin/seid add-genesis-account sei1cdqa36qgwtju7et62k4xhjtn7taa806uv0maqa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1533ueqgcwes36p76msuqyx3txksjqcx7uskys3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17c8r94fu90h8as2uff3qd7dyfw9mzcxauqzqhg 1000000000usei --keyring-backend test
+Created account 817
+Running: $~/go/bin/seid add-genesis-account sei1e6uflxmxuyxf9rvvp460cp9qvpmcur5ratu4t0 1000000000usei --keyring-backend test
+Created account 105
+Running: $~/go/bin/seid add-genesis-account sei13geyt5yjezcee836hdhfqzs7nxjkj59xa75zps 1000000000usei --keyring-backend test
+Created account 508
+Running: $~/go/bin/seid add-genesis-account sei1ptvg09pdua3t0urz0ne3xhklqhd9rzznk29lnw 1000000000usei --keyring-backend test
+Created account 600
+Created account 74
+Created account 879
+Created account 352
+Created account 166
+Created account 228
+Running: $~/go/bin/seid add-genesis-account sei1scjkr49euns3l782cnlpx36enae4kfym55yh24 1000000000usei --keyring-backend test
+Created account 259
+Running: $~/go/bin/seid add-genesis-account sei183a2wug5gpsvuq0vlu0u9jmpzjsengyfvrdne6 1000000000usei --keyring-backend test
+Created account 754
+Created account 383
+Running: $~/go/bin/seid add-genesis-account sei1jx3jtd9h2jlnlxz5pm5t9sqq6yf6sq5c8nq3lk 1000000000usei --keyring-backend test
+Created account 724
+Created account 415
+Running: $~/go/bin/seid add-genesis-account sei1sc64hz5yf7rzr20z973dank2f00l3uynzpzlaw 1000000000usei --keyring-backend test
+Created account 569
+Created account 1004
+Running: $~/go/bin/seid add-genesis-account sei1k8j69m3ghvs8ayvh47ydpkct8564xzhd3a7tm9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19tffcwq8sals0g5rg8h3nj5lcrp63hw26snvnj 1000000000usei --keyring-backend test
+Created account 941
+Running: $~/go/bin/seid add-genesis-account sei1pl2qsnflrl5upx6930g6a3t2zssrczttfwzgcf 1000000000usei --keyring-backend test
+Created account 693
+Running: $~/go/bin/seid add-genesis-account sei1qc52l4dnngmc2hg78pvfnhcnhtxml7eaqjwggy 1000000000usei --keyring-backend test
+Created account 663
+Created account 972
+Running: $~/go/bin/seid add-genesis-account sei10edymt9d4se3ztdrq30xdm2um7z900ggvtkxn5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1v6xuwf9mu52flcnkdgt8w9t45jrlu8k9d7xrys 1000000000usei --keyring-backend test
+Created account 447
+Running: $~/go/bin/seid add-genesis-account sei1w5sq9mm7jdsklj8ll3nz20ekvu27a9lqm740g3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14qx5q9rpc9h83634y02fvnrv52tzg9ulkhjjt7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yw7yrfw0yaxzzj70u6yzqaez6jenrjt3aps8xe 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1h6xw884ae62xlhv6dkykj6f78jpq9fu2ssvukv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1l5lcgyjma5r0mzsh477mtdpf2ktktd4umfr5da 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1qkus47wlqpnhwmqc02vxruslwd45peqv0hg06r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1r8c8glj9ka9zqfpufqeaztu8l2q0739ph5axa8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1qwhkr8sf2s34u8d6vawgzp2u2rd3pjvmludhpy 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12c5hm8f8dyrjumufrq37whdwu255nv7t32422t 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10n2ad4z2dkljev23eyudfh6z5z2rumqgwmxyt9 1000000000usei --keyring-backend test
+Created account 538
+Running: $~/go/bin/seid add-genesis-account sei1uzuk5y0httc8qf5h8vd5wa0cdjzprhqh3jpkau 1000000000usei --keyring-backend test
+Created account 136
+Created account 12
+Running: $~/go/bin/seid add-genesis-account sei1d7jsn55wfa8qm5pa38tlt46gpn5yjmq6s4qvjg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ja602nxqccmaw90mm0jqlax30sxvghjlf5d7vj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1j3aacrcf7jy5r7wsl2a83dn3rn2xfrd58e458e 1000000000usei --keyring-backend test
+Created account 353
+Created account 291
+Created account 818
+Created account 632
+Running: $~/go/bin/seid add-genesis-account sei108sehsxcg3asccfsehukhafjk2fd5n57f8e76x 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17fnu25s9n567j78khvugpp00v0nt65vry3kwmj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pywfuzgzznzskn74rtup8djzps0eq93h7wrlk0 1000000000usei --keyring-backend test
+Created account 848
+Created account 477
+Running: $~/go/bin/seid add-genesis-account sei1m4vcu8u56ldk5tcvne43jahghr9a4ydjjq40t6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1s9wvjatkudeuhyhum3aa9gefn0fe77jc69zat9 1000000000usei --keyring-backend test
+Created account 509
+Created account 44
+Running: $~/go/bin/seid add-genesis-account sei1myr9fkngf0pu085mla59rcwe2aavup9cvprw5j 1000000000usei --keyring-backend test
+Created account 322
+Created account 787
+Created account 167
+Running: $~/go/bin/seid add-genesis-account sei1z98ekq03x43ds6rzy26yacd9v5w7cgxwas5v0m 1000000000usei --keyring-backend test
+Created account 106
+Created account 199
+Created account 229
+Created account 384
+Created account 911
+Created account 694
+Created account 601
+Created account 755
+Created account 1005
+Running: $~/go/bin/seid add-genesis-account sei1xzgct2nlank87ude4ptwfm7evta5lqjg7c50d4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17dwgg2jkvrcrwmyv6r7zyl9yn87qfq8aq7n973 1000000000usei --keyring-backend test
+Created account 260
+Running: $~/go/bin/seid add-genesis-account sei1yzhp336vsztcjemzkqur9uum47sa425e2hrvx5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1607e43vyaydqkdvddjfhrknlu972z7a4y34ljm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14mmyrk4g8q4uj53p38kmkjrhglrtyfpt8m04xq 1000000000usei --keyring-backend test
+Created account 725
+Running: $~/go/bin/seid add-genesis-account sei1q9ges6tcdkpud79vnhd04lvuz0efwsfdp3xdnr 1000000000usei --keyring-backend test
+Created account 664
+Running: $~/go/bin/seid add-genesis-account sei1cnzkj8f0xkhazq38pym6egztwlra7gznzyuecr 1000000000usei --keyring-backend test
+Created account 570
+Running: $~/go/bin/seid add-genesis-account sei1t0a353jqpsg6l3tp2e4qxz9vfsw0mjxtcalg30 1000000000usei --keyring-backend test
+Created account 880
+Created account 942
+Running: $~/go/bin/seid add-genesis-account sei1wa3z5jzhrzxern7k0kks3vkn8sjjlreakjcy5f 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16pht56p5yhelqtxjpc9ttl8gk9d8a73t70geqs 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei108gu0ry7x607vjfufqxe6qdh8r5px53uxugusp 1000000000usei --keyring-backend test
+Created account 75
+Created account 416
+Created account 448
+Running: $~/go/bin/seid add-genesis-account sei1gtvh99svy2trchnkfa20ntqst5pryyl4mvam7c 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1f7rtdenr8dll5p4rc32qjgf9dvzx92dp33mrcq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nzh0uuvflvy0xy8cu2tecjptlnyphn6mq7jmjg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yhp5msmcx6n5e8epzmt097eusrnnjpvdlyrvmg 1000000000usei --keyring-backend test
+Created account 539
+Running: $~/go/bin/seid add-genesis-account sei1cnu8sy6upwd9uqxfm932v6wl5hux3uu6vh4suk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jwnlaxwkqmypyuyxt7je4a74g0lmjx3yg0yt56 1000000000usei --keyring-backend test
+Created account 973
+Created account 819
+Running: $~/go/bin/seid add-genesis-account sei1jxu5sruazuqtjzv9xueyddd9dsflk4mx4psn3t 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10fj2l9x6488u7dlp4cnjwu9a0xceqpkawg3jj6 1000000000usei --keyring-backend test
+Created account 45
+Running: $~/go/bin/seid add-genesis-account sei1vdyv85ej54j3wdhdjt3xe6ewt3tqkc2awyn3vs 1000000000usei --keyring-backend test
+Created account 137
+Running: $~/go/bin/seid add-genesis-account sei15up6sqs6jz2kd3k7yld98449w6gjteqeu869sg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nrsqhvsqzgv57u5l23gflw8expph5us3fy2r3r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dy45zm829e5ux40gf9awzs99532xce5v2ye55q 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1d28th7au76wqvn8eupg7myc9q74rvkhc4sa4nj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19fnza6q8tva3rwmztc2ukvpu0exdnumkmzu7jm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1n6aeea8mmzw65xj2xucflwt78tegvz0jw0a5jx 1000000000usei --keyring-backend test
+Created account 478
+Created account 107
+Created account 354
+Running: $~/go/bin/seid add-genesis-account sei19al3885uwamzam90k56x3ayrxjxjmgk4x7ujc3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1qa5aufsft6x9nyts9pd99jsl2gykf5yazjg65v 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cx2rvlke0cl5h02dywm0tc3ucq03jymel78yez 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ja5cdpvwz8xdtj6v5lzg3g82ay94kfask2vfhx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1f4gx6fzaxerg5a2f7sudvz72ynuxannj6dvzq0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rt2fmpchqenkg0pzpxfa8x9xqwf2kxvrw2asfl 1000000000usei --keyring-backend test
+Created account 292
+Running: $~/go/bin/seid add-genesis-account sei1zz6phwkwcvgez3arvyj85xrqqexqm80fmyhvy5 1000000000usei --keyring-backend test
+Created account 602
+Running: $~/go/bin/seid add-genesis-account sei1huczu86yrj042phnvr4qzllj8lrgaau6zkg9f7 1000000000usei --keyring-backend test
+Created account 385
+Created account 13
+Running: $~/go/bin/seid add-genesis-account sei1nj7kw3zuf2q8m0lttfc87p85nhx44wax79ske6 1000000000usei --keyring-backend test
+Created account 510
+Created account 943
+Created account 261
+Created account 849
+Created account 633
+Created account 788
+Created account 200
+Created account 323
+Created account 168
+Created account 1006
+Running: $~/go/bin/seid add-genesis-account sei1eq9n4famv9mcqfltfummp0twlplwevvrjt6d60 1000000000usei --keyring-backend test
+Created account 756
+Running: $~/go/bin/seid add-genesis-account sei1e9m0mef7lvqtqd0c7kq4feswatwxfj6fvrlhur 1000000000usei --keyring-backend test
+Created account 974
+Created account 665
+Created account 449
+Created account 912
+Created account 230
+Running: $~/go/bin/seid add-genesis-account sei1mge8faylfmnjsjhds9n0dhgnfyff0hz7vux0c6 1000000000usei --keyring-backend test
+Created account 76
+Created account 695
+Running: $~/go/bin/seid add-genesis-account sei1dqkp3gn23ygze54vw9zu9u3ldk3yfe2ycxaylh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1qy2qa2df6tqum4kdzr3jnw3qs6w92fdat75ula 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wv2sm0q2y5xzsxnwtfy9h6vk9t8f3jkeatz3d8 1000000000usei --keyring-backend test
+Created account 820
+Running: $~/go/bin/seid add-genesis-account sei1styq82x7r26cm6rajrcdq45zph6aj27ygahpzn 1000000000usei --keyring-backend test
+Created account 46
+Running: $~/go/bin/seid add-genesis-account sei1fr0vt89a7ay9h5tpxy7kyeass48p6jvugkackd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15j59529ck35453dk50g2axre6s8w5lqqz5hzk8 1000000000usei --keyring-backend test
+Created account 726
+Running: $~/go/bin/seid add-genesis-account sei1s32yewe8e2s50m60hrwzjrm3j92utfn62wpyhq 1000000000usei --keyring-backend test
+Created account 540
+Running: $~/go/bin/seid add-genesis-account sei1u8fwsv2upl0lstnqf5lahpyq5rcyz9f98m9hd0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fl7uhzfsxx8xwdm2sw5mf2vr9jnnnht6d5mdup 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gnr7fns25ukngn3cen4rekejjg8hlthmtxzk9y 1000000000usei --keyring-backend test
+Created account 571
+Running: $~/go/bin/seid add-genesis-account sei1mu3qckaea7zml98xc9p8szg0la6800wvzqw8qu 1000000000usei --keyring-backend test
+Created account 417
+Created account 881
+Running: $~/go/bin/seid add-genesis-account sei1c4c4p4craylrtckx0wyucuqd6y7fjqxhgg8660 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18uswahrgnukd6cd585p6dy8wcz82tgwu45v9fc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1l6v2lv5lx6mjhcr9wl2jglzm0j96x33n9fe6f2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1v2dn6m536y08c2mplpgus965vsfptxytlnj877 1000000000usei --keyring-backend test
+Created account 138
+Running: $~/go/bin/seid add-genesis-account sei10pzzq6lfv6hu0yk5sckrrh2ffj6s3twvgf396h 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tx3z0a0hvggcyrlr5l5v4ke7f5shfj7rrg0wga 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18ukkcsl2eqa44r25kf7lshrc4aqat4qeewnrz9 1000000000usei --keyring-backend test
+Created account 479
+Running: $~/go/bin/seid add-genesis-account sei16gpj3gnd0yzr9cz0zsfef83u8atdmfychr3ay5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15d5dc3sh2ualjzxntmvm2dz3yp907glz5ne2l0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cmqn87tsh38knn0dr7jkk7ljxt6jzd46vu8mzq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17z79h6a9mw9vskfhgjt8lwyx5kaqyxuargk0sp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1y9a48x9s8tjnhnalv95rwcay8kjxg8dg60kjjm 1000000000usei --keyring-backend test
+Created account 355
+Running: $~/go/bin/seid add-genesis-account sei1gllh2zsruhtsy3u929yxwy8dad64rt7zrxmmp7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12lha4yjzn9ezynru4fh3ehrc29u8j6jruptnd9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mly4w4qwqqxr7jy0xkfqctdp4ztnwncden4eem 1000000000usei --keyring-backend test
+Created account 262
+Created account 169
+Running: $~/go/bin/seid add-genesis-account sei197qf8gqd86g86r77yp85sng44jdqjmpfeudtnr 1000000000usei --keyring-backend test
+Created account 603
+Running: $~/go/bin/seid add-genesis-account sei172tq689n52svgm9qg2atshct8c8pj4un2gkhjr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1lgg9hx4d2c4x8f586526ss337xqrutzr5chfc3 1000000000usei --keyring-backend test
+Created account 293
+Created account 324
+Created account 77
+Created account 634
+Created account 666
+Created account 511
+Created account 850
+Created account 696
+Running: $~/go/bin/seid add-genesis-account sei1k4unul9xw4mvc3g3g7rlue8ks57e6ypgvhafhm 1000000000usei --keyring-backend test
+Created account 47
+Created account 944
+Created account 108
+Created account 386
+Running: $~/go/bin/seid add-genesis-account sei1qhm09g8y8ca7h9tnhrcs5az5mxehzpl6am6cyn 1000000000usei --keyring-backend test
+Created account 450
+Running: $~/go/bin/seid add-genesis-account sei1lgcsuxy4gkr6gkn6zp8rsfw7hnutpxvqa2rn3t 1000000000usei --keyring-backend test
+Created account 201
+Created account 1007
+Created account 975
+Created account 789
+Created account 14
+Created account 231
+Running: $~/go/bin/seid add-genesis-account sei1gk5ryatkm27l2j0hsannxxu0l728tzwuzyqtet 1000000000usei --keyring-backend test
+Created account 913
+Created account 757
+Running: $~/go/bin/seid add-genesis-account sei1ea62r8shvj7rjn3x4mllj5n9k808u92nsjhsj7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1qa2kv44mcm97edzma9p98d90cfx9xmntjwhs2g 1000000000usei --keyring-backend test
+Created account 821
+Created account 727
+Running: $~/go/bin/seid add-genesis-account sei1fa8fn86ldz3am6r6v02np5h0x535gptqpt7sjj 1000000000usei --keyring-backend test
+Created account 541
+Running: $~/go/bin/seid add-genesis-account sei19nh2zftmctncqvnum40pgp7ffqfa3v9l26cagg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1523llj8qsypwalunr0k3eyvskwhyv5f3vjtq9z 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19da6l4ltn4k9elg3ad6c8zv5gysetrd8r4xvv7 1000000000usei --keyring-backend test
+Created account 572
+Running: $~/go/bin/seid add-genesis-account sei1nu66atuase9j8nd5kae8a6vte29n02ec7vfymu 1000000000usei --keyring-backend test
+Created account 139
+Running: $~/go/bin/seid add-genesis-account sei1utv5we0efgnl90ncw3r5djwxah503up2j6gzj2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1epv6u90sags43ss2h44dq0huwxanuyrj7kh3g2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10j78dj4mhcz6jjwp0682gyv9ued5nqpp7gh4lq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12khdflguqsagwxt5qskxh952wpay7vyjpqdj0l 1000000000usei --keyring-backend test
+Created account 418
+Running: $~/go/bin/seid add-genesis-account sei1exdxlr0eqt7trdwy33tnq6wz5lj7rrx0yhvp37 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1smf9fl3ue87qfkpz3d47u48r4azw34qr9pjj59 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1r6vtutcwcrqhetes9mu9s728szy23gcvyram5r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1a8enc70tt4fd3j875v99sz40d62s87gshs6tjv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1e9eqdaazaazu3lw8eqdd9094k8tt07kp8sphzg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17kl7jmgfy9la3jucyttfgyjn8gzvx8aspky8fn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1phd8hav6e289pg9slmtgd949u4cyy4v2k5dkjz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dv0g7s5vf6452ljhun5lgu3q7k9tau7vvpar7y 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xhaugh2ketzk0az94zzxyjft3nfef7cuezumhl 1000000000usei --keyring-backend test
+Created account 170
+Created account 356
+Running: $~/go/bin/seid add-genesis-account sei1cdl5rkle9z20scqudta9s5rnyt27vavdkaq52m 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei109x8w3x4p0upaz9act4c4fp8xwxkskwnyxx64t 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vw3s08jhp2t4gywlc56lnh5c2ll35x63dsnu2a 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1z7e6q4rspmwdz8qe8r9phqq6sx7lyn4fqqhv9q 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hstfwkvmerhrlfqgt0yvywtchymha05avks2gd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fcmuwplsz30tfx8cfefc4d8zg30gpgrr8fvw7q 1000000000usei --keyring-backend test
+Created account 294
+Created account 325
+Running: $~/go/bin/seid add-genesis-account sei1ups7mh73upaaajlwmut7r5nyu7zh5qu6c478zd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1htjfgd6sjxlys9f7pjn54gkjqvy98drkkhesm0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g2gkvkt7msm5srxez06rx209t8f6k89vclpt3c 1000000000usei --keyring-backend test
+Created account 48
+Created account 512
+Created account 451
+Created account 480
+Created account 109
+Created account 604
+Created account 15
+Running: $~/go/bin/seid add-genesis-account sei18fw57zw4232puxu67m27349gydd7e5h2cy8l2g 1000000000usei --keyring-backend test
+Created account 202
+Created account 78
+Created account 851
+Created account 1008
+Running: $~/go/bin/seid add-genesis-account sei1rrwr6c4e9r3r4je6g92kc6rzj0j74asdn0hnah 1000000000usei --keyring-backend test
+Created account 263
+Created account 697
+Created account 882
+Created account 945
+Created account 635
+Created account 728
+Running: $~/go/bin/seid add-genesis-account sei1akcax9mmkt92zwfr0vg2525qjgn2y848k8xllk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wzg69l96dxkufmd8c9g7r2hqwxeuy67n6djxwr 1000000000usei --keyring-backend test
+Created account 790
+Created account 976
+Running: $~/go/bin/seid add-genesis-account sei1xxna0rgxfgcrxl9cgy0m3merafguyq954l6u2q 1000000000usei --keyring-backend test
+Created account 232
+Created account 387
+Created account 140
+Running: $~/go/bin/seid add-genesis-account sei1fluppvppa8g8hj20mclpdstujz5j25ty5vj9e7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1486g9hjm8wpjgexdl2h03lf0v02qn8akp8lzdz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fhnx4q7syhvreu2e22vh60cskzx56h69lkt0kk 1000000000usei --keyring-backend test
+Created account 542
+Running: $~/go/bin/seid add-genesis-account sei1yu9j05w90cz0uued8shhxwkjr7qjcfeq3hk7r2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fufdwpm7lhhtegaw99hncwhv5v0mvt5r2c6wcu 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1sfgyg8vvg6wjhjmucc5q539hsdn7h28v0sk58w 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ac37y9zujsjm93ctp0udze648awmcs724ec9rl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1uauqc6zs8de7l78q7j5xnw5pckgpzlzacv2g0r 1000000000usei --keyring-backend test
+Created account 914
+Running: $~/go/bin/seid add-genesis-account sei1zxapdhqdm708cpt7yaejlm3u53lzuuyvvwl3z5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10k3pdemsnyjr9d0s0508afnrrvd2yec8y7lnl5 1000000000usei --keyring-backend test
+Created account 667
+Created account 758
+Created account 419
+Created account 822
+Running: $~/go/bin/seid add-genesis-account sei1u7a2d224em6p3kmyz8fqts8nl02yryxmnxwqjd 1000000000usei --keyring-backend test
+Created account 295
+Running: $~/go/bin/seid add-genesis-account sei1g0td50v6srkmp7c8pqp983tgxmrk65rhcwu567 1000000000usei --keyring-backend test
+Created account 573
+Running: $~/go/bin/seid add-genesis-account sei15p39lpdzz0puc9qygrwjpgud098cj8r7hkcyjj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mz5p57wryw5hsa3fdxqfjsym3jsudq36v5eu44 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fe386047a0rtrzhs8xmjqvwthjg0mn0k3zuyl0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14s24j002w6fe0gx8arlaj5zzgpr8k6vzhajgv0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10rmugyp2k625xlp4kn73tljgpmtl2n4gahhavx 1000000000usei --keyring-backend test
+Created account 357
+Running: $~/go/bin/seid add-genesis-account sei1kwz6f99p7pl4m6uynt5n8hrnu3sttssym3rln3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1u7ew7333t0gpzl0383yrr5wjdaqck5raqgtq9c 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1k4uda5w2d0qs8gvkfjmvyuj94fj4824ap4yn3h 1000000000usei --keyring-backend test
+Created account 452
+Running: $~/go/bin/seid add-genesis-account sei1w2dx5233lrycypl6c56rxw88hm8lm9hpzan763 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dh65wp2rw2g3z9kpy4gnuxghvvzcl9pl6pcc76 1000000000usei --keyring-backend test
+Created account 481
+Running: $~/go/bin/seid add-genesis-account sei13fepymu04rme3c249rgyahp5q8z2cjwf38886c 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei159s5uw0s8y0rr27ynu7lc5xhc66l4te7t2vq9u 1000000000usei --keyring-backend test
+Created account 203
+Created account 171
+Created account 698
+Created account 513
+Created account 16
+Created account 852
+Created account 110
+Created account 49
+Running: $~/go/bin/seid add-genesis-account sei12ctjecqqeynga8z0dkeagc534uh77h8msxlej4 1000000000usei --keyring-backend test
+Created account 326
+Running: $~/go/bin/seid add-genesis-account sei18uwpqket78ucwhnjjmrzaaftfwfr24drud3872 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19azhz4n28nd9zs9pql8pwdf8pxqplg8nyymlxj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei170zjl79lyftwe79z93eavfc7xed3udm6e96pxz 1000000000usei --keyring-backend test
+Created account 1009
+Created account 729
+Running: $~/go/bin/seid add-genesis-account sei1kemgggstjglpsg3azq0g3t2nk0elautae3c8g7 1000000000usei --keyring-backend test
+Created account 79
+Running: $~/go/bin/seid add-genesis-account sei15xw4chgp070qthqmaqvpx9ktt7q4vqycny8qxg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1md6qttf8jqs9t4y9x0n0uj02vnus9ya5rw0st6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1kc97a7r23n74at0hjxujgf5kdpepc8kcrqcts8 1000000000usei --keyring-backend test
+Created account 605
+Created account 388
+Running: $~/go/bin/seid add-genesis-account sei1sgvg20grxxuygvz4aznf3xcpsxu94nq6k6chfc 1000000000usei --keyring-backend test
+Created account 636
+Running: $~/go/bin/seid add-genesis-account sei1e5lgsyr2evf8vpzphgjjnuc2wd44axpda8z7y4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cka7k2ajl8e6dmm3uvd4knlzuw3dkh8aaaca09 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1735zreuega4cc8ms82h5mslc86lq5tar9xgl7t 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1s87pp7vv9d5kynhdefg6e7f6q4a7gs0euxc78m 1000000000usei --keyring-backend test
+Created account 791
+Created account 543
+Created account 946
+Running: $~/go/bin/seid add-genesis-account sei185gs25gtkdkll64eqja2qtvqtqdq5mhr7h8c3t 1000000000usei --keyring-backend test
+Created account 883
+Running: $~/go/bin/seid add-genesis-account sei1e7k78zeg5k9q095jakd04jrsgmd2sy0eg8df8t 1000000000usei --keyring-backend test
+Created account 668
+Created account 759
+Created account 574
+Created account 233
+Created account 977
+Running: $~/go/bin/seid add-genesis-account sei17anee0vedymsfqxwfams6x0wn70xrtm6px5zz3 1000000000usei --keyring-backend test
+Created account 420
+Created account 264
+Running: $~/go/bin/seid add-genesis-account sei16vaafnrs9rua90qtac3xh67cmm85acjcsa922u 1000000000usei --keyring-backend test
+Created account 915
+Running: $~/go/bin/seid add-genesis-account sei146n7w2nhpfaengac6y3yawuppgy9n5w2qc28eh 1000000000usei --keyring-backend test
+Created account 296
+Created account 141
+Running: $~/go/bin/seid add-genesis-account sei186rgjmgjgucgc4specy3fh7q3g2rfuk8lu6gtk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1f5ksngzg2kvy25km9w6zlgzvxtj4jgm27xx8un 1000000000usei --keyring-backend test
+Created account 823
+Running: $~/go/bin/seid add-genesis-account sei1j76jxdp5h7jygjmakq2fw3qugq6xkay8nmfv50 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19a85q3ajffykkar8ypkupvsp5xp5hwjrmgxcfs 1000000000usei --keyring-backend test
+Created account 514
+Created account 358
+Created account 482
+Running: $~/go/bin/seid add-genesis-account sei1h739247scky7ljh8zahejgw5ruea6t4ddzherx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1h8pgvml3r9vuqvsatkquukz49e3umgte7wulrp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jxuz85lldewsu8l7kawcwg0nuzwgut97eg92gg 1000000000usei --keyring-backend test
+Created account 453
+Created account 327
+Running: $~/go/bin/seid add-genesis-account sei1yyfyghy2hcxgyvvmjmze4ujc994l7k37zeekha 1000000000usei --keyring-backend test
+Created account 730
+Running: $~/go/bin/seid add-genesis-account sei1uc8ncwe88euhtaxhdggwdgjkn7vpe9fvnlaeek 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1zydtrz2n9gfpvcxerz29rn0zv24vldpjgp9h6d 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1zfwjmhg8c0jv44juty3qpt49zcdluqeg5u9ex8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15ytw5n99sss0dv00zn39077n8maad43wx5j8gw 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1kkmegy20ey272pnar7d8v84csstjvk5c6j6dfu 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1s05yp94w7l2w0e07ynagwdcnh6r6x804dz3h8r 1000000000usei --keyring-backend test
+Created account 699
+Created account 172
+Running: $~/go/bin/seid add-genesis-account sei1ygzs5p6zfpndn26w0lc2esdjhu3u3f73c9uams 1000000000usei --keyring-backend test
+Created account 111
+Running: $~/go/bin/seid add-genesis-account sei1uuw3k60daqwrz3zlv6h7a7wx62l48emlr6q55z 1000000000usei --keyring-backend test
+Created account 853
+Running: $~/go/bin/seid add-genesis-account sei15mw9z6hmslxae966673m8dfq4y2uhkx4wynjlv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hgmvjrf0etj9ywvln0m2flyglaz3jpmsjm7rmy 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g8jdhcwagerkcj6533k843gj02qzpzt7yp064z 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1j9cn856kktmva74f4643nuz5ntt37dznhqy24h 1000000000usei --keyring-backend test
+Created account 637
+Running: $~/go/bin/seid add-genesis-account sei17tnmjd9j226f7vah3wzs2frfx24xugp6gcn26x 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vmkmtwaqn54m4j70d2ktd7gwez6svmmpqanlpu 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14pelhcpnflgtpv5es8y9sffrknaq6cqd7srj5n 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g72umktzyhc5uzmtuxrlcm6pcwq07vc5xvu2gv 1000000000usei --keyring-backend test
+Created account 606
+Running: $~/go/bin/seid add-genesis-account sei1h40y80aew2xs4qxz566a0xmp4npzzc0khyklh4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1r2l6al9pea250408xw8n9g9e8hzr03un6jukaf 1000000000usei --keyring-backend test
+Created account 50
+Running: $~/go/bin/seid add-genesis-account sei103urvzrm739ext9jdxwhept6v8t5yzvzwl9ghj 1000000000usei --keyring-backend test
+Created account 544
+Created account 234
+Created account 17
+Created account 204
+Created account 389
+Created account 792
+Running: $~/go/bin/seid add-genesis-account sei1kjn34pzah02gfsh324zrw0vwst6h8nd9npl3j2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei156w9fahncjrqfzh37kxuv6km9d7u4m4m9f39jd 1000000000usei --keyring-backend test
+Created account 1010
+Created account 760
+Created account 824
+Running: $~/go/bin/seid add-genesis-account sei14nn8uh0u66urkmhz2hx3sr7d6k2nt9fqj3s0j8 1000000000usei --keyring-backend test
+Created account 884
+Created account 80
+Created account 916
+Created account 575
+Created account 142
+Running: $~/go/bin/seid add-genesis-account sei1p62vk4qkw76369adkcc9uq8hz8v2zhwcewcg2k 1000000000usei --keyring-backend test
+Created account 328
+Running: $~/go/bin/seid add-genesis-account sei1d8jmusgvmvvn65kj0arrhd4r37y5mggxj77m2x 1000000000usei --keyring-backend test
+Created account 359
+Created account 265
+Created account 978
+Running: $~/go/bin/seid add-genesis-account sei1uka759caxfnjyznvjsvj7utw85y0nwmythsnz2 1000000000usei --keyring-backend test
+Created account 947
+Created account 700
+Created account 421
+Running: $~/go/bin/seid add-genesis-account sei1qu8l6vcxpdk62545tr4y0ajr9cyjkq5j7zpz79 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gn6upcndsr6xqeyw87qwgqxlunxawwlfxvyw0e 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1lh446k88jfxf7wfvzl7ks9duqylkvr39uywh70 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dq632ajdqu84nzex8kvscmjeryfhmvg98f98rj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1k8p4euh0zmuwzxgg0vd6gr2l2293wgm0acy87p 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei108l40d0xmg73fqnamtea4jarvvrzqvfkqhh4cd 1000000000usei --keyring-backend test
+Created account 731
+Created account 515
+Created account 854
+Running: $~/go/bin/seid add-genesis-account sei1xwsa8j9la80t5f98262hgcnk4k7j6gqqwkuyj2 1000000000usei --keyring-backend test
+Created account 669
+Running: $~/go/bin/seid add-genesis-account sei18pumyh55f4lxy79jpmyvyxxld75s3463ekd8p9 1000000000usei --keyring-backend test
+Created account 454
+Running: $~/go/bin/seid add-genesis-account sei1ade3pdzr8pujdfm5zycm7gu8r8z4jymsywx6qw 1000000000usei --keyring-backend test
+Created account 483
+Running: $~/go/bin/seid add-genesis-account sei1hd2a2kpfywfwpnmpqkquql0qmmmqqmragkll4j 1000000000usei --keyring-backend test
+Created account 297
+Running: $~/go/bin/seid add-genesis-account sei15fa7aa7t3jhtefca5xuczcpvk4a2de667gtmw5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hp3tg6dh2q93n8etcrj0qaw9xvshqd4exxmsws 1000000000usei --keyring-backend test
+Created account 793
+Running: $~/go/bin/seid add-genesis-account sei1z3qpt7u07q65x0790zvxlad4ehnd7nxjplk4k3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei149yaj7eta3tpccgrfur9kg0na92hgnxqn7utxp 1000000000usei --keyring-backend test
+Created account 112
+Created account 235
+Running: $~/go/bin/seid add-genesis-account sei127tnhgk0yzmt6nqfdnahlqs94dyva4yrvx02yw 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1p98ml8uas773effwcm0dr0cxu7lc5jham8z76j 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1es345a4dmnmqhyz53rzc2yxrcgxy8etdmswwgd 1000000000usei --keyring-backend test
+Created account 390
+Running: $~/go/bin/seid add-genesis-account sei1dx9l65nxa0muqnd7aky47344mm9wgfnvt2r4pk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gp4d6fslhzpyh24522hl246yaheqcl6aynu5pd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei164je5z26tpupxgck34aum8ee2sxlzxsm528uee 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14rpjte2rukn9cfg7kyjv3858hkqptqfv3hg39w 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13yfyxw8qpuf27hkwtmpvegz3vqsy0ug8agncfw 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tp5mgnr6d3q0rr7xhvus2x0hqu495f9j5y80mh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1c6gd2366n3uc9hhpdg0hdzh3htulek2juwrnw5 1000000000usei --keyring-backend test
+Created account 173
+Created account 51
+Created account 638
+Created account 885
+Running: $~/go/bin/seid add-genesis-account sei1q9apfamssczmkej94xvwy6zlmm7pqrcxstmh6r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14lyyeuwqlsndjz7zr4hdwq5aj2thgrhl5wshuq 1000000000usei --keyring-backend test
+Created account 607
+Created account 948
+Running: $~/go/bin/seid add-genesis-account sei14f8lv6yvnm753vrwf2fu4v9jne6ruawxuwk5qs 1000000000usei --keyring-backend test
+Created account 761
+Created account 205
+Running: $~/go/bin/seid add-genesis-account sei1cz9uyw7j9yrc4g0nv37ceh0yppphaz6jtr807r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18gt8p3pmcrnwknm5t2lgythcu2nmcgc0lsdx2h 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mgxl7kzh9vrz8qfqz26gt99aw90jp8ulhpzwl9 1000000000usei --keyring-backend test
+Created account 545
+Running: $~/go/bin/seid add-genesis-account sei1r2jzqv67r55eax9ppdcly69slu9avfmr8nuqqu 1000000000usei --keyring-backend test
+Created account 1011
+Created account 143
+Created account 576
+Running: $~/go/bin/seid add-genesis-account sei10p8k5rqvmhxmk7ak39e2xz0rqelststqlvhmfg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1n35u3xvyk092hpel58cn2ay0fxdglj8rwzkf5k 1000000000usei --keyring-backend test
+Created account 18
+Created account 329
+Created account 794
+Created account 917
+Created account 81
+Running: $~/go/bin/seid add-genesis-account sei1xyc4w6d3ns8zk7us3llry20z7g4ne2sftme4my 1000000000usei --keyring-backend test
+Created account 455
+Running: $~/go/bin/seid add-genesis-account sei1la09f0wdcytpxzyz7nazah75cm9sjjyp35c3rt 1000000000usei --keyring-backend test
+Created account 266
+Created account 422
+Running: $~/go/bin/seid add-genesis-account sei1397d02aq2p5snt9fzdw3wjunvvuevwhhqn6nvy 1000000000usei --keyring-backend test
+Created account 298
+Created account 855
+Running: $~/go/bin/seid add-genesis-account sei1sxgcf4sf6je077azyc7hxc8v88jze5fsn0qg5y 1000000000usei --keyring-backend test
+Created account 701
+Running: $~/go/bin/seid add-genesis-account sei1sdw5z384j3v4mcnkz5syx4u8plkjhrjsgnaxpa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ttfg4jxktmrlk82rmjvy2j6z4tftlnlxffged6 1000000000usei --keyring-backend test
+Created account 979
+Running: $~/go/bin/seid add-genesis-account sei1zgspk55c4zwmhzv7seuzdfsprxgj48vq4uksrr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13p8rf43gmqmw7t2dz44jpj8p3jmkcrq7y5zd7k 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18etd8gw0ypahqsgrjjs8rxjfrd4kfpm2xjae2a 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1a8slgcva7der3qfu94nums9kcxec3tlvd86zrm 1000000000usei --keyring-backend test
+Created account 825
+Running: $~/go/bin/seid add-genesis-account sei1jfp8yzrtnv67klha47fjqj7dkyvsys36k8umea 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ge9hkhcr4p93uhyljl3s24uvajnzvtk2ylqxwl 1000000000usei --keyring-backend test
+Created account 360
+Created account 236
+Created account 516
+Running: $~/go/bin/seid add-genesis-account sei15dlm70gs4y4cxm6wpf9aqzkxt27p5j4w5gf6yz 1000000000usei --keyring-backend test
+Created account 670
+Running: $~/go/bin/seid add-genesis-account sei1raa5fqap5vpdzv6a6hqxlj05a52226f7azqcu8 1000000000usei --keyring-backend test
+Created account 113
+Created account 732
+Running: $~/go/bin/seid add-genesis-account sei10wf2ktvrz4f4jtzyjenpham4hwkmx7gkr2m8z3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12666d87jh4a7vne7y352xn9y8nl25z6hnwmx2d 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1s9xp3et0w8hqeefrkssckn8v6s6mgtcrvagufm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13fnuaezvr4rjke6r9469htwhewd364mx33w8lt 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17fm5fx9vmc0udm8qg7py9m9akntqmhy2wk9702 1000000000usei --keyring-backend test
+Created account 608
+Running: $~/go/bin/seid add-genesis-account sei1m67srzrs8kttt7ahs9ccqdvvpf4u62q6c0jxrl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hc38xu5a39avnw7hpwrcmyrewjs5kjgc2xvzzn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12s6x4p9m5jucwh4kyg8640tv9sqcy6nt72frfh 1000000000usei --keyring-backend test
+Created account 762
+Created account 484
+Running: $~/go/bin/seid add-genesis-account sei1lg4es5whg898hceegegqgeqmhg6gg8ha4lemg4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10czdsczvdhlf9numt4c979kendevdckefxh60w 1000000000usei --keyring-backend test
+Created account 52
+Running: $~/go/bin/seid add-genesis-account sei1e8n0tvfat2v6z7zfz3dve4nm0z79vvxmu9lwku 1000000000usei --keyring-backend test
+Created account 391
+Created account 1012
+Created account 949
+Running: $~/go/bin/seid add-genesis-account sei1uur7863mxjw3mkqe5fhw47m80c64jgkl030fvl 1000000000usei --keyring-backend test
+Created account 174
+Running: $~/go/bin/seid add-genesis-account sei13l2863ac38gcu9kfja9zayt32vglejujrc3u36 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1zculkl506k9thnrpqczvt4vlcv9wz3ge64z7ca 1000000000usei --keyring-backend test
+Created account 546
+Created account 639
+Running: $~/go/bin/seid add-genesis-account sei1keku4q639qt8022jzauu5rqlqjjg03ap069g75 1000000000usei --keyring-backend test
+Created account 144
+Running: $~/go/bin/seid add-genesis-account sei1x68xrj46y6qu0fkxh7s4w4txd2x5q79j4mvwt0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1w8gzh6lkyuxpxuck9wey0mlc99ahte363ggjg5 1000000000usei --keyring-backend test
+Created account 577
+Created account 19
+Running: $~/go/bin/seid add-genesis-account sei1aw0g269tkmnt6dljqutg4vh8n2qcdghv275chg 1000000000usei --keyring-backend test
+Created account 330
+Created account 826
+Created account 456
+Running: $~/go/bin/seid add-genesis-account sei1astnyhcnd4v8rd4er9m2ws44prmzwecxxjy9k9 1000000000usei --keyring-backend test
+Created account 267
+Created account 886
+Running: $~/go/bin/seid add-genesis-account sei10mc55e7g69f3f6v52twtmvsssrfdlyxc33s6y0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei134euw6rk53x33atldk5rmtafrhywa437qwuxlj 1000000000usei --keyring-backend test
+Created account 702
+Created account 206
+Running: $~/go/bin/seid add-genesis-account sei1uv30vlsd486a0kpa7fmgee9f7k38pj3zq8jp9w 1000000000usei --keyring-backend test
+Created account 671
+Created account 918
+Created account 82
+Running: $~/go/bin/seid add-genesis-account sei1wktlj69v6zydvpjd6pmqy7vywtywdfkwrerwm5 1000000000usei --keyring-backend test
+Created account 299
+Running: $~/go/bin/seid add-genesis-account sei1pjnpea3tlfe9f5xwteelt69dqnpzzc8yn6vnc5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18yf6qm7vcnm4efhpnyrlxpccn8hl627mjfjpup 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16exr8z3djfxdjza5tvdv0g2rv9dwe5fd3pzcts 1000000000usei --keyring-backend test
+Created account 980
+Running: $~/go/bin/seid add-genesis-account sei1c038ra050cp4k9su6kusn8rj2zeds0y3wmtzhe 1000000000usei --keyring-backend test
+Created account 795
+Created account 361
+Created account 856
+Running: $~/go/bin/seid add-genesis-account sei1e2rq24tcmugycdpd27xfjv36azzn7f92w2p2pz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rnvp8ugmwkr3k6uga7qtgygvcztdpu6qz77vaa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1k8v969lr5ypt5ayvf7parjxygxxy8hrstmp34d 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15e6kyk9gh2qagumez9d7wh7ea308jqyjmugzm0 1000000000usei --keyring-backend test
+Created account 609
+Running: $~/go/bin/seid add-genesis-account sei1e0djkjte7h2y6yza4k89sdvcvh349u8cpejzuc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1q5a0wpay03t746qtn73yppz7q7zgzu36at99t8 1000000000usei --keyring-backend test
+Created account 114
+Running: $~/go/bin/seid add-genesis-account sei1qggc54jdug4nhq8g88nux4up8w40pa39ea847r 1000000000usei --keyring-backend test
+Created account 733
+Running: $~/go/bin/seid add-genesis-account sei108ackj0atkat0s5ekqlt43wdrgt96pdun3rccm 1000000000usei --keyring-backend test
+Created account 950
+Running: $~/go/bin/seid add-genesis-account sei1u8qhq66duycqgpv66efy30ysl2wa49s3cqqtjg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1sfvwr9zwgankmsykj2uqrn0lc6t25snd6m2k8n 1000000000usei --keyring-backend test
+Created account 1013
+Created account 237
+Created account 763
+Created account 485
+Created account 423
+Running: $~/go/bin/seid add-genesis-account sei180v9m7gttpc3c83w2z7ppvxh4khslxcwlx5f7r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pdrpgzc9hty5lsf646ej30f6fz8n74vahqlymy 1000000000usei --keyring-backend test
+Created account 53
+Created account 175
+Created account 20
+Created account 640
+Created account 517
+Running: $~/go/bin/seid add-genesis-account sei1jc2tm57nswhhkrgqzuvtxmeqqjyazu6jc8u2cd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ew9u97565jx8w7lmc36k2556c3qpfvg5jdqhjj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dmzn5zwgllwx6jz3l7uqdhehm0e4cfjgdwggjz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15w05wmtcjplall9jnca20vkmn044ck5fwz38lg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g4y4l3c2g5xadze7ka5y0vdxe3p7tsmxysw4vs 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hgez9rjr9h2suzqy4af2r6q3tkeraye4vdku2w 1000000000usei --keyring-backend test
+Created account 547
+Running: $~/go/bin/seid add-genesis-account sei1we745m6ccun04xuk22juwg6we0w8t5tscxycu3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ft6yls79ff6f7txcg7p77y4l8r20nt5rgf5u0k 1000000000usei --keyring-backend test
+Created account 703
+Created account 672
+Running: $~/go/bin/seid add-genesis-account sei1yxs3v9p9t2s5aesszty3uf8gppttyewyc3kqzt 1000000000usei --keyring-backend test
+Created account 578
+Created account 887
+Running: $~/go/bin/seid add-genesis-account sei12vpxlrczq3qg5yr47av9wxrwue3e5md9pszczy 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1r0hatlkr2lgqhmpn9pgalweze4760jrdcx465m 1000000000usei --keyring-backend test
+Created account 827
+Created account 145
+Running: $~/go/bin/seid add-genesis-account sei1p4w925p8s7fcq6gkltmalc87qxfmhspx9etfus 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fhg2gr3jhz792p3rfy4c97pjar4s2xkzyp9kc3 1000000000usei --keyring-backend test
+Created account 457
+Running: $~/go/bin/seid add-genesis-account sei1cdeeff25xh39jce9dyjnqhx0am4mkpa0s2gyrp 1000000000usei --keyring-backend test
+Created account 331
+Running: $~/go/bin/seid add-genesis-account sei1pzeq3dxmt46l337kccq0auaymm40rtt8vdm2lq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1shkrmnzt0faxsuumueura5nsrczdem8zu0zly9 1000000000usei --keyring-backend test
+Created account 981
+Created account 392
+Created account 83
+Running: $~/go/bin/seid add-genesis-account sei1wsweglxcj6wqpgje6xu5d0uk2wpqn52qc4gzqj 1000000000usei --keyring-backend test
+Created account 268
+Created account 207
+Running: $~/go/bin/seid add-genesis-account sei1kk9aaw337xnh7ygy78c834a5at9ftxtt3rvqwn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rlwxhnpajrlkdhm4tan9snwfredm5nghjzstp9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15qxl468uc0u3nsgjfze2l4vkl05dh7dzrtd75x 1000000000usei --keyring-backend test
+Created account 796
+Running: $~/go/bin/seid add-genesis-account sei1lxzcmqv3x0zkp5kl6789m8mkae0pru66hc3560 1000000000usei --keyring-backend test
+Created account 764
+Created account 919
+Created account 1014
+Created account 362
+Running: $~/go/bin/seid add-genesis-account sei19ynyv430zsuxk5wfq3fectf6tqfsr9g09r9mm2 1000000000usei --keyring-backend test
+Created account 300
+Running: $~/go/bin/seid add-genesis-account sei1x0u0rsq9ush0sn3ft53q6tnxf75wtkf4y5ax2r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rk27f7s50z0p2763xjxtavc4p4xy3qnnnl52qg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dgrc9dq6mfnslnc20znacrtk2kdquccawzeatq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jy7ecls86ketuclayhuus93twgne0seyt7386m 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hyrp9nd5c0nzafv8shhfs30qn7s36z72glwgxe 1000000000usei --keyring-backend test
+Created account 610
+Running: $~/go/bin/seid add-genesis-account sei1695svwcr0ee39yh2zsy640s83gtl3zhgqwh0ux 1000000000usei --keyring-backend test
+Created account 951
+Running: $~/go/bin/seid add-genesis-account sei1q2e9uhpm3dt2delenusj0389tx8tnqp254057y 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16q8uductlrn3cnrnke93rp0f95k8g39rs3h749 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1m4sjd6nrl4dfzd2lm0emh00c2v5gj6z222cutz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1p2myu0c8g8fn4rp8weyt5zs3p2ndk38m9ezd23 1000000000usei --keyring-backend test
+Created account 424
+Created account 734
+Created account 115
+Created account 54
+Running: $~/go/bin/seid add-genesis-account sei1nwqrgmcqq6t3grjhstm4pemg7ekxpq3rzya0y6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13pwva7ajlxmfj4a34qc6q7tnzkksyvpkqkxd06 1000000000usei --keyring-backend test
+Created account 176
+Running: $~/go/bin/seid add-genesis-account sei1ghvtkt0sdv0fezh2nvnf97mr7f0jrfmvz855pl 1000000000usei --keyring-backend test
+Created account 857
+Running: $~/go/bin/seid add-genesis-account sei1prl9gqe6l4u6flcrh8m4rkgh05kg7m3l9pjsqx 1000000000usei --keyring-backend test
+Created account 21
+Created account 238
+Running: $~/go/bin/seid add-genesis-account sei1uf3whnkrmv2vxkxtq0l62hz8yurdjee6phna03 1000000000usei --keyring-backend test
+Created account 704
+Running: $~/go/bin/seid add-genesis-account sei18228mekrr6ek87y4leqajt6y4q3pr3pu24swhl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18j6kdj6e6tkajv6ssemlt6afwkc2um3c3xs208 1000000000usei --keyring-backend test
+Created account 548
+Created account 486
+Created account 673
+Created account 641
+Created account 393
+Created account 518
+Running: $~/go/bin/seid add-genesis-account sei10s8ltdnx2g6e6rj3tu5rwny8a3x3g0fjrnkzdl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ww5896n8u3qmfdp4w86ls0c2z8qzg66a0dyydc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1epvg942c7v3j3kc8yvs6ua9lv5zs4nkj0l0m7d 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fguap2a52c4ylf2g3e8n4rtf98zpjcw40l0qne 1000000000usei --keyring-backend test
+Created account 579
+Running: $~/go/bin/seid add-genesis-account sei166pj7pevzd0km9ruvzmaxpkfr0q0dq8rpkdh6k 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10ulumqqal22x7gq555a7g80qj0efpxvnejz3j2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1unf0ka5tz09vhk89zudsn6ynrlgmglw4jugk7p 1000000000usei --keyring-backend test
+Created account 888
+Running: $~/go/bin/seid add-genesis-account sei1fgzc5acs3zqsnsqan7aptdf887sk5sesl0whdm 1000000000usei --keyring-backend test
+Created account 458
+Running: $~/go/bin/seid add-genesis-account sei1c53kj86mr8hgs0y40n978ar68um3xqahm4ef26 1000000000usei --keyring-backend test
+Created account 208
+Created account 982
+Running: $~/go/bin/seid add-genesis-account sei12m5rz8p07ektxl7e4csuwp45gsduyeq985g6s0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12xxqjjmurdgx24xnc4dpzuufwqsvjtdcva9lur 1000000000usei --keyring-backend test
+Created account 828
+Created account 146
+Running: $~/go/bin/seid add-genesis-account sei13v53l60aa3fwt4l0hlarae54z7g8d4ul9cdupe 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1zetfhhhs8mgxr9d4xqejpcecac5nn5rtpys6mr 1000000000usei --keyring-backend test
+Created account 1015
+Created account 84
+Created account 332
+Running: $~/go/bin/seid add-genesis-account sei19a8a9nfevvx4pf58axts34nmz98f7rj2ukelqe 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t9tl3z84s5qeffhx5vmkv7q2ad3hplz279fgy6 1000000000usei --keyring-backend test
+Created account 797
+Created account 269
+Running: $~/go/bin/seid add-genesis-account sei10mgshdq4w3vgmlcwsvd0pep53s0myerm29q9zp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tsctm5cex5jgzu3fq6hv3l2vn509vgnk7nmfm9 1000000000usei --keyring-backend test
+Created account 301
+Created account 920
+Created account 116
+Running: $~/go/bin/seid add-genesis-account sei1k4vce69hsqk4judtwryeprts5jc5jzm9e4dwxp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1u4hfrywep5ch33srrvuzwuudu3y6hpman9g7j2 1000000000usei --keyring-backend test
+Created account 22
+Created account 55
+Created account 425
+Created account 735
+Created account 363
+Running: $~/go/bin/seid add-genesis-account sei12gfqakx5c57vhpawgc2kx2sfdefu52uf7cmylk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1txsuumx4rcv4eduw28lhvnpga3lcpumt2jw6u5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13deg6zs26sw20vlyjqm40hwrm7460qfcy025mq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei15x7heevc5tr2t5ssp0qzqchqg0jfzv45h8hlpq 1000000000usei --keyring-backend test
+Created account 765
+Running: $~/go/bin/seid add-genesis-account sei15et7m4kc75ule6ym6n85u4rsdh9welnfn4jzfa 1000000000usei --keyring-backend test
+Created account 952
+Running: $~/go/bin/seid add-genesis-account sei1dv3strymwq9putaasz2yga74rq3tsle5x6xgq5 1000000000usei --keyring-backend test
+Created account 549
+Created account 858
+Created account 519
+Created account 611
+Running: $~/go/bin/seid add-genesis-account sei1madp7wqvnm7w9lysg5xn7ge2yfyrm5mlsn6tvy 1000000000usei --keyring-backend test
+Created account 705
+Running: $~/go/bin/seid add-genesis-account sei1ad2tfhzxxkn68gzl9djdmw2g274x7c7q6tfplk 1000000000usei --keyring-backend test
+Created account 177
+Running: $~/go/bin/seid add-genesis-account sei19adkqxsw23xame3t8653fxl23uw5gdzzc4h39j 1000000000usei --keyring-backend test
+Created account 487
+Running: $~/go/bin/seid add-genesis-account sei12xxjvyc7rnwg4ekl65gcz6dnv64p5s986dh7x6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1eqjeda5v0a4jjnqs0f8x4gq0pggl5867jca4gy 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1aezcgl2vvtsrcevm2d7zt9mlvp2htmd8rljg88 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1efjnfwl8a2d2rtrm27wccenlh6fdtmvk79hyzd 1000000000usei --keyring-backend test
+Created account 580
+Created account 674
+Running: $~/go/bin/seid add-genesis-account sei1aqklkc3hgx7f306f8h62psxe4nhk5aqpk7g8vw 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10cyk9rzdsk3tk807ff3yfwrx3ucm8y7rvzkc6c 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tekvmuyyrd547c0cl3un5sswphtl7l9yymn48v 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tmesuj263sg8hc0dedsgwpg92yswf2rqyhh8kq 1000000000usei --keyring-backend test
+Created account 642
+Running: $~/go/bin/seid add-genesis-account sei1u0eem73xwqmexkcxzyppgznmdtwxf4u02z3vyr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wld2rax2d9ehw523efdqxe7ltlxxmc40awsxxt 1000000000usei --keyring-backend test
+Created account 983
+Created account 239
+Created account 147
+Created account 333
+Running: $~/go/bin/seid add-genesis-account sei1cuwe6ep7ffvsunqd3wd7pedwk26e8jl97uftmx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1sa67qu6f6ate0vld7qxtscwz8h0hqflru3ts00 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tk8nyhxzy0y8jl5y83ys5ze3m3vs96u658mnr2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10360r452zfxq67x56zvks88msc4g9fpc38wh3k 1000000000usei --keyring-backend test
+Created account 798
+Running: $~/go/bin/seid add-genesis-account sei18ugz2fhf77u6lv0rth368rurffgspqnu0e53vp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1tq4h82wf8lvhhhcg77tct5p6ja29etgk37rfy0 1000000000usei --keyring-backend test
+Created account 209
+Created account 459
+Running: $~/go/bin/seid add-genesis-account sei17gfe29edp7drjwxqatz8lllyflg47hf7mrcz5l 1000000000usei --keyring-backend test
+Created account 921
+Running: $~/go/bin/seid add-genesis-account sei104rz6sym48nqlvedhsh0v630f2de74rr96ulsf 1000000000usei --keyring-backend test
+Created account 85
+Running: $~/go/bin/seid add-genesis-account sei1ufc44yjv9ap5nmyumly0td4g8ut0ekpk6f208d 1000000000usei --keyring-backend test
+Created account 829
+Created account 1016
+Created account 766
+Created account 736
+Created account 394
+Created account 889
+Created account 302
+Running: $~/go/bin/seid add-genesis-account sei1g8a84pyvwh22p7jxu7n4aq3amjpnj7a4jue769 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1a5r7fjk9dw3q7yqc9df8v76mhdprdu0x29wt56 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gunmuea9ylrkqgsjk228rlmgedwpqvth36dz5l 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19qvtdk5l4h7cgz9f6ysrk7s3wz3uwatpfkyvp7 1000000000usei --keyring-backend test
+Created account 270
+Created account 117
+Running: $~/go/bin/seid add-genesis-account sei1jqc2c3t4jtlfpjkqs0tztlgv8rqmstyr7l0clq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ec4gl02d6m7t5wmfdmjdyev55wseqrtn662d45 1000000000usei --keyring-backend test
+Created account 488
+Created account 23
+Created account 550
+Created account 364
+Running: $~/go/bin/seid add-genesis-account sei1f0j4fj42eazmxkae6p5rytxh7h3hrq8g0hytk2 1000000000usei --keyring-backend test
+Created account 612
+Running: $~/go/bin/seid add-genesis-account sei1xws2tf8gtl9fza7qv3vp23y2svm82qmvsu0n80 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei103k3ulw4eumkgpqw9hptw3d7wjar4gzgjkqcnv 1000000000usei --keyring-backend test
+Created account 706
+Created account 426
+Running: $~/go/bin/seid add-genesis-account sei1rflfmpus8wuulf96helxptmnjua9y8zeau0nda 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19m94wjnf5kzv37pac6q7vnkm64eatft6vt0h5k 1000000000usei --keyring-backend test
+Created account 953
+Created account 178
+Running: $~/go/bin/seid add-genesis-account sei1gxj8xj83hxy78ww0jj0my4kgmh9wws2dv9p809 1000000000usei --keyring-backend test
+Created account 859
+Running: $~/go/bin/seid add-genesis-account sei1nvrr9sqylms3nhd048pcwqeuv6vezrdv7e738c 1000000000usei --keyring-backend test
+Created account 56
+Running: $~/go/bin/seid add-genesis-account sei157qpfxz3rtvzzdrjpmfkghvrchfsuhka00k5dv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1gfgdel7zcfs8e6gcxvj2ynmwqfhlekw7r685dv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1sszw3dyezqmm6vxsxszh09sxdyd5vawwvez3aj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1qlg7k9h0fh92txkuyum2vcum6p0et5sdkgz3ey 1000000000usei --keyring-backend test
+Created account 581
+Running: $~/go/bin/seid add-genesis-account sei1h230065pslz2zk85l06d07rugw6wmfzlyvm454 1000000000usei --keyring-backend test
+Created account 520
+Created account 148
+Created account 334
+Running: $~/go/bin/seid add-genesis-account sei1udy58pmkfvna030jyplwa9s32me6xj4e66wca6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13yv9fn98hcd2pl28c02v4mc0nunhgjgwprz6tq 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nawua2cl5n29899d6w26mamhxzx9pfgxuyxqnp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18zkae87ewdyg4y9v8632zknpsfu3f7c5ngkut0 1000000000usei --keyring-backend test
+Created account 210
+Running: $~/go/bin/seid add-genesis-account sei179fha8p62tx8py7wfdlarmnmrqk88dfcl0k2ms 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mr4vjsqh6p5qa96kyh8empnhy245hae04ceux8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jq52337nm86w5r3cads949uwh5a0a369h89zgn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pcq0yp0e27jj5w33v86dvyzd80ef9l4xfs5qsy 1000000000usei --keyring-backend test
+Created account 643
+Running: $~/go/bin/seid add-genesis-account sei10hqjrzkejmkpec6ft3u4ckc20eadpg3wm84akd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10tlw94ruy8t2lfn8mr04rrpywq27yt96u2ues3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1menp98m3fzp26u8uha43ent7gkfw3m6trzmdd9 1000000000usei --keyring-backend test
+Created account 460
+Created account 984
+Running: $~/go/bin/seid add-genesis-account sei196cdag73u7pz64zcf5uwmk0cgr6uyn6x2jwzqr 1000000000usei --keyring-backend test
+Created account 240
+Created account 675
+Created account 799
+Running: $~/go/bin/seid add-genesis-account sei1z79sf6gsrvyunwfc2exhlrd27muf8jcpxdqvne 1000000000usei --keyring-backend test
+Created account 86
+Created account 922
+Running: $~/go/bin/seid add-genesis-account sei1azy9qf6h53wtmza0fypywzs2f8lpx0677p5f9q 1000000000usei --keyring-backend test
+Created account 830
+Running: $~/go/bin/seid add-genesis-account sei1kw6mx0cjrwup7lddjzvy2sk687scyrh9utmp5z 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18n758l5cm8n7dms0w35mng938trcfjus7rqggh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1s8pxgpef72qnug9qe8jl8tmtejx4a2v5h0nujw 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1c2jthm3t0hc4av8umy82stm9w8xzr75mh5sn2q 1000000000usei --keyring-backend test
+Created account 271
+Created account 303
+Created account 427
+Created account 395
+Running: $~/go/bin/seid add-genesis-account sei1c75nrkv35tl2347r6uznqmqw2fymlgugkj7fqm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yjvshnkvfe8luug6q736g227h4f9cml2nknk7s 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ntgvz5r4d2qhdq2gedxpwy5dcv5nfdq2nhe3pq 1000000000usei --keyring-backend test
+Created account 737
+Created account 489
+Running: $~/go/bin/seid add-genesis-account sei193704y58jpvst7cc7xt753pcj2s8rj0dr5n04n 1000000000usei --keyring-backend test
+Created account 1017
+Running: $~/go/bin/seid add-genesis-account sei10s209htxuh7yr2pwllvygvc629c8n24s68vuek 1000000000usei --keyring-backend test
+Created account 890
+Running: $~/go/bin/seid add-genesis-account sei1xqnjyggef5l7ymrq2y22qft0k57kzjg825c5cn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16l6vjazgzd56gyvys0x75gxqemzczw5z44g6hu 1000000000usei --keyring-backend test
+Created account 179
+Created account 365
+Created account 118
+Created account 24
+Running: $~/go/bin/seid add-genesis-account sei1yepjjrxww3x0v3294tz9tc3qpjregeddwdc3z0 1000000000usei --keyring-backend test
+Created account 613
+Created account 211
+Created account 767
+Created account 954
+Running: $~/go/bin/seid add-genesis-account sei1q4syxn8hlk9yd709melvvgfvd9guhxlv70gz4q 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nmfmrqjz8xrf4zzq4j04rvvkfagppyz6809hca 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ffmpy944chjg94jgcr64wzfkre0ysma6uazjgr 1000000000usei --keyring-backend test
+Created account 860
+Running: $~/go/bin/seid add-genesis-account sei1nclr7js4mjvlpwy4fvyymxaq7t6hs80s06n2a2 1000000000usei --keyring-backend test
+Created account 582
+Created account 149
+Running: $~/go/bin/seid add-genesis-account sei1zp2mdyq795ntnf4qv7748xq9r2mpfdnuclex74 1000000000usei --keyring-backend test
+Created account 551
+Running: $~/go/bin/seid add-genesis-account sei13vanc4kwq8jefg8jfcfd2kkdndxdfc96dyc8qv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14804qz4c5c2dl8wxug4tghhntj3vmkquh40j5r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rrpmh2s9jmne87h32edj3t4t6kut47n2un8cdv 1000000000usei --keyring-backend test
+Created account 707
+Created account 57
+Running: $~/go/bin/seid add-genesis-account sei1ax09tvp2zyjst9kg639njqje842vdwqweetwq5 1000000000usei --keyring-backend test
+Created account 831
+Created account 87
+Running: $~/go/bin/seid add-genesis-account sei13ltpxk2utyvh64cnurwzrc5w7ywrr4awx333hs 1000000000usei --keyring-backend test
+Created account 985
+Created account 800
+Running: $~/go/bin/seid add-genesis-account sei1952p0xdkvslka68xz8h64f0c7mvkhvprpzg9p8 1000000000usei --keyring-backend test
+Created account 521
+Running: $~/go/bin/seid add-genesis-account sei1fuknzxjj9cyrpznp0zaqkc4hez5vc8cresk7vc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1aajnvj8nau06ws9as383z73jyerc2qjaa3jmtm 1000000000usei --keyring-backend test
+Created account 335
+Running: $~/go/bin/seid add-genesis-account sei1r9ndvlzg8unh6w275l3lr0qew2edlpet2ks3tf 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1wp0q530jaj4jk2a2kez3uy7z8pvnq3t22slxd8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vgrrl76apgapm3up0jjaap026e79zuc59keaf9 1000000000usei --keyring-backend test
+Created account 241
+Running: $~/go/bin/seid add-genesis-account sei1f4t33cm5k4zae7a5y6kzyzsege748xv3carj8u 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1zahkufutfdakfhscmqesg35vw9nw0ye52alaq2 1000000000usei --keyring-backend test
+Created account 461
+Created account 644
+Running: $~/go/bin/seid add-genesis-account sei1c4997gmg79vttwwmnfx593f93xnngc3ylsjesp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hzu7uplcwnmpz6pzdzanm876klurzu6rz9gac3 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dnkpkz4qq3avg90n7gp2mr5v85ggtsvdyrf2gv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hsf90vmuklngty2qs7qlmk4h3v955c7c8qhptd 1000000000usei --keyring-backend test
+Created account 676
+Running: $~/go/bin/seid add-genesis-account sei1hhtxt3w5u7kgsannz7d9n86hd0mr7qprjpjscf 1000000000usei --keyring-backend test
+Created account 396
+Running: $~/go/bin/seid add-genesis-account sei1j9qz9uayk9t5e83as4d6d9madlykyp0kckza5q 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1agx75t6r9kwzq30kud93z02zfffdwgawx78qs7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19y8q0vedxmj5ll6s096v53jqfegcn8dxvm4xks 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mz6nmpxss9c6nt62vw8j3nxr50nhtd40hkuny5 1000000000usei --keyring-backend test
+Created account 180
+Created account 272
+Created account 428
+Running: $~/go/bin/seid add-genesis-account sei1fe88ev64nypalvx94n0923lkc74t3uaygj2h4p 1000000000usei --keyring-backend test
+Created account 738
+Created account 304
+Created account 1018
+Running: $~/go/bin/seid add-genesis-account sei1c7l2sh7jk9lrqpath26hh6ha7vnrkjz78g440m 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1v8kfr26rtax8qfzaftlzsvzvnwl9peya8csaec 1000000000usei --keyring-backend test
+Created account 490
+Created account 614
+Running: $~/go/bin/seid add-genesis-account sei195mhyr92qjsna7a5mcaljhl40w3mat6kccwkjm 1000000000usei --keyring-backend test
+Created account 923
+Created account 583
+Created account 212
+Created account 119
+Created account 861
+Created account 768
+Running: $~/go/bin/seid add-genesis-account sei1rwwm6vcdzzdve22026rkdlmp6kpz8t8mga3l99 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17waq7clgff7jfw6ja7mllf4hywaw7hnsfy8lra 1000000000usei --keyring-backend test
+Created account 708
+Created account 25
+Running: $~/go/bin/seid add-genesis-account sei1xgaleecyn9lw73wqxzlt45fpf6f4kn5744zt52 1000000000usei --keyring-backend test
+Created account 986
+Created account 552
+Running: $~/go/bin/seid add-genesis-account sei1kkhn3jl7nv7p6t4geqk8vwqkcz4canjeehx6wp 1000000000usei --keyring-backend test
+Created account 88
+Running: $~/go/bin/seid add-genesis-account sei1scps5cxqmkhd3tw4jf0sx0ff9q0r3ggghwjcgh 1000000000usei --keyring-backend test
+Created account 150
+Created account 891
+Created account 522
+Running: $~/go/bin/seid add-genesis-account sei1hvxsj74kpp7pmumg0sdy25henkvmhpxqcestsc 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17zprw70rsh4z6qwffxsy7l0hkctwlj7xq550y0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jkugqwu7d938j9jp4hp4myuhpthxqn7lm4ahnc 1000000000usei --keyring-backend test
+Created account 366
+Created account 336
+Running: $~/go/bin/seid add-genesis-account sei13lwna75xf36v3tyc6fhye39762zzfuzjn7scn7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12ldr55aga3vm2h2dtlfsqxghjucryf34u4eg8a 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1w8ak73wyrf4zdq8c5arez62y7hff5fknlqftzv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1dqa3fpy4r2vv6l4nwvxwa00nth9ktugjcgqjtp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hvxxq575luet8v94ymr40kkspksjcdkv8damc5 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xpm3a9jtdpyqz7hv7g3dplsxmzwukwzcn7t755 1000000000usei --keyring-backend test
+Created account 677
+Running: $~/go/bin/seid add-genesis-account sei1fv6r8wp8nlxe2t32v69d4s303523g83nxjdhas 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mk5rqq6ph4lv6cjl6aufwfqlgfdrxuwcayw7uz 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16dt36e3ykeqk63aw3q6s6qn676rl8vmg6mnh45 1000000000usei --keyring-backend test
+Created account 832
+Created account 801
+Created account 58
+Running: $~/go/bin/seid add-genesis-account sei1w4wx9gwzhcvuan9gw85pzfe8pmshvq233w4ejr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei148gqy0em7cef45hejug2pjc9te0vz782mh4l8x 1000000000usei --keyring-backend test
+Created account 462
+Running: $~/go/bin/seid add-genesis-account sei1nrdj64zy4e85fc3l4hmahmh3ynsuhcm88fxc2s 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1awnzx2f3g4vajeeydypzs4pmu9hyvg0mc0am4e 1000000000usei --keyring-backend test
+Created account 955
+Created account 242
+Created account 273
+Created account 645
+Running: $~/go/bin/seid add-genesis-account sei1mp8vs98q65v8rttfwtqh60cu202m5vtl9tnx4x 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13u4c62atq4f48p7nrw5nf6sa7kgnadnc6w30xm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei185nkj4fqxkjzx708jr42hz2see5jmnxedskfam 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1c83m7nuu050rphyllafz97ftvr8s2f5uakfdh8 1000000000usei --keyring-backend test
+Created account 213
+Created account 397
+Running: $~/go/bin/seid add-genesis-account sei1cxgfz64keld4uu7g80hh2tjyw03hyeltg9qxtv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t2axf6nvpcqakq5a9uzwg7zjmuf6lln22zd7gu 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1a4vl0gka9mw0vzl7etpa2h3ld06arjsmxtu4l9 1000000000usei --keyring-backend test
+Created account 181
+Running: $~/go/bin/seid add-genesis-account sei143stvmmhsuszqw2cglfq45dencx5gwkgeuzwef 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16j0m6n6g83qlmumtelrv372s2ju3ukf7ux0h9h 1000000000usei --keyring-backend test
+Created account 1019
+Running: $~/go/bin/seid add-genesis-account sei1sk4ftdapgh6ze0ju5c89peafcx5v7j6gzyul8g 1000000000usei --keyring-backend test
+Created account 615
+Created account 739
+Created account 862
+Running: $~/go/bin/seid add-genesis-account sei16w57n8ftwpg5g6knzfgkfceh50vgen48hwmwlh 1000000000usei --keyring-backend test
+Created account 769
+Created account 305
+Running: $~/go/bin/seid add-genesis-account sei1nvdd3stfv7fyugm8umx9ws6p033cpwp0npu3a7 1000000000usei --keyring-backend test
+Created account 491
+Created account 429
+Created account 987
+Created account 709
+Created account 924
+Created account 26
+Running: $~/go/bin/seid add-genesis-account sei1m4xm3pxpj0t5qjqqazc2uklktxm75fux6pgvrp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18u7n03tgaxr0s8cpl48mly9fuz9g9nrzumhx04 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nte36cnheq9qn7w6tp4qmhv8khm64ed9zqhpwd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1crwktr7s3puhl9s22yc7s9zywkzs3d6n0kn08p 1000000000usei --keyring-backend test
+Created account 151
+Running: $~/go/bin/seid add-genesis-account sei12ffpv3fm3m0rp3g7e4dkgt47z9uw9drgyd9lt9 1000000000usei --keyring-backend test
+Created account 120
+Running: $~/go/bin/seid add-genesis-account sei1awhze28m2nshaaj30rndzrzkez6npduzk8smmt 1000000000usei --keyring-backend test
+Created account 553
+Created account 367
+Created account 337
+Running: $~/go/bin/seid add-genesis-account sei1rjcsg5jv8ztr3wzprp9xeuwanz2nuqmvls6qth 1000000000usei --keyring-backend test
+Created account 892
+Running: $~/go/bin/seid add-genesis-account sei19vzfejjed2c5x6snusure36g56eaaxwjpvhkh4 1000000000usei --keyring-backend test
+Created account 584
+Created account 523
+Running: $~/go/bin/seid add-genesis-account sei1y0yx9229x0yu0g468f6kfr6j3qvw6zvemmptr8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1npdkyzgrhgrrwsgtym7ak4d2wp2q0sqyz5p7ul 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pgh95p9mj7pl8nkqnvpcpmtvg58nhf2aagkhl2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xg69smazkahq0kadkrkq8gvpnj0ezcdewpg5el 1000000000usei --keyring-backend test
+Created account 833
+Created account 463
+Running: $~/go/bin/seid add-genesis-account sei1zqp7vzfmyuetvjv6ceunpupxsth9ygxjr0jsuw 1000000000usei --keyring-backend test
+Created account 802
+Running: $~/go/bin/seid add-genesis-account sei10yu6sck6kd04gces7cr5d77utmrqdu4h9u3wv6 1000000000usei --keyring-backend test
+Created account 59
+Running: $~/go/bin/seid add-genesis-account sei1a9gxj3nrnjkph9gv29cpl2gs35q4jypkzte9sm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1g0vapaye8ssczux3n32ym39pwqwzelra96f5g9 1000000000usei --keyring-backend test
+Created account 678
+Running: $~/go/bin/seid add-genesis-account sei17y9w8suekuscve07tu0asxx8f3glqvpettd9y8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1jpgt2mqt3yjdgwqnaaa94zwarhtzjrmw4lslxa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19takrfyjy0e92lmsuaclckfj63wugjdp2a2ntj 1000000000usei --keyring-backend test
+Created account 89
+Running: $~/go/bin/seid add-genesis-account sei1rwm832msntzn58aagey86xzhj2633sz4ss6t4l 1000000000usei --keyring-backend test
+Created account 214
+Created account 956
+Running: $~/go/bin/seid add-genesis-account sei1nnfl7v8em09s82lpcqawqpamsrqk84qms7etdj 1000000000usei --keyring-backend test
+Created account 274
+Created account 646
+Created account 243
+Running: $~/go/bin/seid add-genesis-account sei17gx73h47urygsftudckgf477x6t3mykjzfhfrt 1000000000usei --keyring-backend test
+Created account 770
+Created account 740
+Running: $~/go/bin/seid add-genesis-account sei1us5qd4sga27yve9myqx2xxyx6g4qj82u4eygy9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1k2ff3ma9ade3eg82hmjw3vze5ewm99n7qgtcyj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1x3ejj84nw0p3qjl8t5ppvuw2lu0n877qfem689 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1rj4npl0p5ejt9f45xcftdv05axrcgd4ha86lhg 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yd7m8j50gllp47h8dkj03uphkz74afpnv92jz3 1000000000usei --keyring-backend test
+Created account 398
+Running: $~/go/bin/seid add-genesis-account sei190er3sshp559vdw7lkf7kv3k9zerntcmwfcrz6 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ecuegmttkhczjqukx9hyhrz2w3acrzt2ptwat5 1000000000usei --keyring-backend test
+Created account 616
+Running: $~/go/bin/seid add-genesis-account sei1vwk8dhpd2tpjek5v5qgjuz5ap3j7q2jyzzcc35 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12s2pm0zs2x7k638wuq3ktv74dqryzg3p3hygxj 1000000000usei --keyring-backend test
+Created account 1020
+Running: $~/go/bin/seid add-genesis-account sei1zgzysygwjfe8mg4pu0tv2wt2xph2l022lp8422 1000000000usei --keyring-backend test
+Created account 988
+Running: $~/go/bin/seid add-genesis-account sei1m9eh776lpyukth2utewjcxw43jyd6thm8znx3l 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19fnl2t4eyhruswn3qy0gj5sejwkwtc2kp4mjkd 1000000000usei --keyring-backend test
+Created account 925
+Created account 306
+Created account 182
+Running: $~/go/bin/seid add-genesis-account sei1n6s9xvqflyeaft0z4ls20g0yelkqvtslhhwskx 1000000000usei --keyring-backend test
+Created account 430
+Running: $~/go/bin/seid add-genesis-account sei1wd2ewzfxgeu2av9zvrlnlq589rhcs7dh3t5jyt 1000000000usei --keyring-backend test
+Created account 338
+Running: $~/go/bin/seid add-genesis-account sei1cjrfnp6ek9uadzu7fwyft75u4z0y3sc04d4pvg 1000000000usei --keyring-backend test
+Created account 554
+Created account 492
+Running: $~/go/bin/seid add-genesis-account sei15vnrxuzr54uhecmtw5glv402y6yvurv7dj23tx 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mmw0fv8vtt6aljn57gg23unmwnrvjae6ys4mws 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16dpvlm87kgr8swhj0lkdjr6w04myspu9r96etz 1000000000usei --keyring-backend test
+Created account 710
+Created account 27
+Running: $~/go/bin/seid add-genesis-account sei1ptlxc9996y958utd04v3tmhcaj7gdrqhe692td 1000000000usei --keyring-backend test
+Created account 863
+Created account 121
+Created account 152
+Running: $~/go/bin/seid add-genesis-account sei1nfrgdzyjg2vajrn36l9kx72l0qdl7zwut4l6c0 1000000000usei --keyring-backend test
+Created account 834
+Created account 679
+Running: $~/go/bin/seid add-genesis-account sei160pfnmyk86az23j6qje340mdctx600vp3c6glj 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei13f9scqsmhqzf7q4xv436e2n8yrsspauu6gspm7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1chgpgj8nh3e9zlhcra8mehqg7nf3x9getd64es 1000000000usei --keyring-backend test
+Created account 60
+Created account 524
+Running: $~/go/bin/seid add-genesis-account sei1kwdhnx5plxuh65fjd0l0eradness2nr87kfd0g 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cctg99k4c5e2qjw3usw84leet95qh0xusm8mvp 1000000000usei --keyring-backend test
+Created account 90
+Created account 464
+Running: $~/go/bin/seid add-genesis-account sei13v23q5rxeurdvhmejt7pvkw9w6sua4tt650dxm 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nufjx33z5hn6x9g7aqymsu7th05a89k7z00lt5 1000000000usei --keyring-backend test
+Created account 771
+Created account 585
+Created account 399
+Created account 741
+Created account 368
+Running: $~/go/bin/seid add-genesis-account sei1vhfptfh7x767472pmhzntahsmq2aqryflyccu9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1pzw0quydx3qg7wvjfwgugrj3kvzjw9wgcq22ad 1000000000usei --keyring-backend test
+Created account 893
+Running: $~/go/bin/seid add-genesis-account sei157rdldegllrr9xh279wq8srg073jlmwxltlpw4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1v97n97hgxz0ru25euzjpxqhzpa7v3tlf74ddm5 1000000000usei --keyring-backend test
+Created account 803
+Created account 215
+Created account 244
+Created account 957
+Running: $~/go/bin/seid add-genesis-account sei134hlpj4ka7frtc3jxyg7nn97mn2yqc64ewggh9 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17dc7hph0tgryfzkg8944vy59gap7jyud32kqn5 1000000000usei --keyring-backend test
+Created account 275
+Running: $~/go/bin/seid add-genesis-account sei1pdzxc7u9v8skg7nlfheztf32xc8k09g67yu0xt 1000000000usei --keyring-backend test
+Created account 647
+Created account 431
+Created account 1021
+Running: $~/go/bin/seid add-genesis-account sei1jhuth2axkeavr8hpqk7fly7gkspj492sn544np 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1fk3chna0tzw3vns7ej8x8sendlrjazqvfralwv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yjr7ft5cr6qdvgs4cuqht7xm7zstuqufmq3qmy 1000000000usei --keyring-backend test
+Created account 989
+Running: $~/go/bin/seid add-genesis-account sei14rn9cyzvtuzre3pufn64v0rfgykdd04axhjkcn 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1cgre49g45d2fsh6v6hnr89d6l9sjs465gy9jzy 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1csar529y8nt6tk2rhtnksayhjfnjlhfmncnqfa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1j0xhstqvq3un5308shp8epsdwcqu6ccvls3cmf 1000000000usei --keyring-backend test
+Created account 555
+Created account 339
+Created account 926
+Created account 617
+Running: $~/go/bin/seid add-genesis-account sei13q3thswwusddqwphy6dtc2gum6y70s7qcwzpg0 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19p5qp67e7lvfgp7gnvsquk7nrqsj4wv9krrtty 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei12v4enhlruumxnsw804h4fxs7m30yu5urytuswm 1000000000usei --keyring-backend test
+Created account 122
+Created account 711
+Running: $~/go/bin/seid add-genesis-account sei1gxxrajwzxdvm889rd2e2aqzjcxgwvh3m6xl223 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1mrllqmuaf8n0vgmh6ldarhufh6c7f5q6wg88na 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei14hn4thlxsydldmw959cq2qlh0qzg2nghv7wtzs 1000000000usei --keyring-backend test
+Created account 183
+Running: $~/go/bin/seid add-genesis-account sei1ft98sjhca8qwfxqmyfev3c53wuav4jkd9hmkgh 1000000000usei --keyring-backend test
+Created account 307
+Created account 864
+Running: $~/go/bin/seid add-genesis-account sei1l7xeclmuhwrhjgs44060rpx9a6tweejklx70n4 1000000000usei --keyring-backend test
+Created account 680
+Running: $~/go/bin/seid add-genesis-account sei1m9ksmknktlqrrac4dmjam8377wyqe88ljwzzlk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17lkquur04mqc22q36s0fx3a8a2ctfvymq9zmdy 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1r7csz9lyy80fzfmhdzwwjp8ax9rq2h437nf9f4 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei19e4eplrzpe9nek6g8auyuu4t96zye8ye4uzfqt 1000000000usei --keyring-backend test
+Created account 835
+Running: $~/go/bin/seid add-genesis-account sei1a0f65jm2u7u8v6xrees7mtapg0zr2hadcr5jc7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1sl0s87dv6076u3ma0yvlqe0whynjynhvhucu5z 1000000000usei --keyring-backend test
+Created account 153
+Running: $~/go/bin/seid add-genesis-account sei15cwzh23z5ktzdpc3egjg9hfcmrr4jd6nmsk5m2 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei17a9wduru8fvn522wzdfws0y88xprstjq7tkgfl 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1yxyl2jx502d4thna33gj8xmg2pcm2t6hjlgzdh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei18c9gpzhsn9xesn4eac2af9952npgaywgrachac 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1uq5fg6da67svu47jx9zp25kg0dtxl6lem5av4n 1000000000usei --keyring-backend test
+Created account 894
+Created account 493
+Running: $~/go/bin/seid add-genesis-account sei1xdkfp03zw6rdyzvy9s6t8y53lpzcjae3efqjv7 1000000000usei --keyring-backend test
+Created account 216
+Running: $~/go/bin/seid add-genesis-account sei1pqdf0cu8f9lezpns2kdphd26r4n7vkv5na0es7 1000000000usei --keyring-backend test
+Created account 525
+Created account 586
+Created account 28
+Created account 990
+Running: $~/go/bin/seid add-genesis-account sei1xv5dgfutfvrdvzt74s8rleq4fr7nqwgarzxapa 1000000000usei --keyring-backend test
+Created account 61
+Created account 91
+Created account 804
+Created account 400
+Running: $~/go/bin/seid add-genesis-account sei175adqa08e4cq8t8m2xqxj7kuk4aenngt7edsxp 1000000000usei --keyring-backend test
+Created account 369
+Created account 958
+Created account 123
+Created account 648
+Created account 772
+Created account 432
+Created account 742
+Created account 556
+Running: $~/go/bin/seid add-genesis-account sei1l3w6nkpyu6gud99c2wl3aw0ff4eavxhcxkh4j7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1ev5xgql4k9gp4fmv5z4kg79ndz3ghhv0ngzhzv 1000000000usei --keyring-backend test
+Created account 276
+Running: $~/go/bin/seid add-genesis-account sei1dj0f7uk8jvxxakz4wcfxg94mqx2l4w7y3nr6gj 1000000000usei --keyring-backend test
+Created account 245
+Created account 927
+Created account 340
+Created account 1022
+Running: $~/go/bin/seid add-genesis-account sei13mq53aypt4uymvzr6kscduwcfju9pv6skqtn4q 1000000000usei --keyring-backend test
+Created account 681
+Running: $~/go/bin/seid add-genesis-account sei1hfs2w23v62xa6ta0d8g662xndh650qgfvmlsar 1000000000usei --keyring-backend test
+Created account 618
+Running: $~/go/bin/seid add-genesis-account sei18z6gl90ge6xg6vc60uv93pk3thn3flpeke06pk 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1t90yfc0evucgpdkuzrxnm8nnj48x7ama5r4p7y 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei174xza28dyaawravm8zyfqdamkd47z82vfeqmwd 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1f08wdrh58xk5nf4trxctyu4a6t40lndmm4k4ja 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1z3ga3rc5uq0kvhsymjjcx0y35rc942h0p56xua 1000000000usei --keyring-backend test
+Created account 865
+Running: $~/go/bin/seid add-genesis-account sei1v0cmevljuqn53wqldm2kpfaxcn0ecnvu68gh73 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1eyxavlweqvgfya3aatknrpm9y72e5nh08j0t39 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1vtpgf0vrjs7pvcrlnklph0ygjxsmm7yj83dcaa 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1hd2kavdxe2mypfpuv6c3k6qmwdwzk7n4329zyh 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1xa7gpgpylqqf6asnj69j8ad0vnc23zeckc8wqp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei16anhkhr54n452cltaxc58gz55mfl877l3d6xmf 1000000000usei --keyring-backend test
+Created account 308
+Running: $~/go/bin/seid add-genesis-account sei1jvxdwaee2m5jsgtvqfqp7ls43j7c97u08wm4kv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1h3hpl66j6fypg7e4gtquyx4fdxefj3rzwd8scr 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1e6lfzcpxv73vq8z848x4y6md0ae3atnevwca3r 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1da7mjssr67zpzus4avrn52fduptwg7t85acag6 1000000000usei --keyring-backend test
+Created account 154
+Running: $~/go/bin/seid add-genesis-account sei1dh35gksw26scd099xxxxwxshaxq4fmjgsppj72 1000000000usei --keyring-backend test
+Created account 712
+Created account 433
+Running: $~/go/bin/seid add-genesis-account sei19pgq08arh5v7e7hw9k2ddhemh803urlymm3utq 1000000000usei --keyring-backend test
+Created account 836
+Created account 649
+Created account 494
+Created account 526
+Created account 743
+Created account 895
+Created account 587
+Running: $~/go/bin/seid add-genesis-account sei14fczff4yjjslu6jxmq38w368aj58ukxg0wwt59 1000000000usei --keyring-backend test
+Created account 184
+Created account 29
+Created account 991
+Created account 959
+Running: $~/go/bin/seid add-genesis-account sei1vnapp553d4ldmshclvuhgtpwl8tgca9jw3z02s 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1trwvvlw05qrnz0deypx6jmqvzr9677k9kdagj4 1000000000usei --keyring-backend test
+Created account 805
+Created account 277
+Created account 619
+Running: $~/go/bin/seid add-genesis-account sei1dcvva4k5du4muedhja7nk9rn8fze0u0lw8p536 1000000000usei --keyring-backend test
+Created account 773
+Created account 557
+Created account 401
+Created account 370
+Running: $~/go/bin/seid add-genesis-account sei1detnvp2skpn0qq3fprm2alhzxjjsak6v65qcpn 1000000000usei --keyring-backend test
+Created account 928
+Running: $~/go/bin/seid add-genesis-account sei1qlfcj6d62ygaa5dskn8amx7w6rmj7z4mc32ndl 1000000000usei --keyring-backend test
+Created account 92
+Running: $~/go/bin/seid add-genesis-account sei1x9kfhn5pvxfth2szvttl6qr0jtzerlqcv9wj3n 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1zgrqh9gz6e0cf8u4ffnlgwseljgm6sav889x6z 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei10mzwud9wy4gkd6kxuv0l4y6yd5wnlfxq9p9hf7 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1r4zjs30kr234xpr9nkpr3c6w2nl6dnzn0f8uap 1000000000usei --keyring-backend test
+Created account 309
+Running: $~/go/bin/seid add-genesis-account sei1f6le609udlkwa0n40r7xm80wt7clgwzvj3avjv 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1telxvfxr3erl0y63fwrsc0h0pev6qkf4kq70aw 1000000000usei --keyring-backend test
+Created account 866
+Running: $~/go/bin/seid add-genesis-account sei1w9rtpqtvdkpz48cxkju2c35566zlsc9wjuqmf8 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1nk4gvn2yprqy0yvgqlxgzzeny6qmul0ynrxfr6 1000000000usei --keyring-backend test
+Created account 246
+Running: $~/go/bin/seid add-genesis-account sei1v6ppzyjv0554lf4qfdykwrx9vaz8uxvrd984zj 1000000000usei --keyring-backend test
+Created account 896
+Created account 495
+Created account 30
+Created account 185
+Created account 588
+Created account 650
+Running: $~/go/bin/seid add-genesis-account sei14n237zlvrldyxfsv87qadxwvy74pnlk7t7ftwp 1000000000usei --keyring-backend test
+Running: $~/go/bin/seid add-genesis-account sei1uarh0uud90ykpldzq3spyre6eyq3scrtgjl32k 1000000000usei --keyring-backend test
+Created account 774
+Created account 278
+Created account 960
+Created account 929
+Created account 402
+Running: $~/go/bin/seid add-genesis-account sei1pzvyp2n3v5jg3437e2795m5u63sg6kpkw9ww6e 1000000000usei --keyring-backend test
+Created account 371
+Created account 867
+Created account 247
+Created account 897
+Running: $~/go/bin/seid add-genesis-account sei1gs6jvyadeqkly5c963y3xhrrhsqkd3ge548c3z 1000000000usei --keyring-backend test
+Created account 898
+Created 1023 accounts
+Writing results to genesis file

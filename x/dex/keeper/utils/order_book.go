@@ -38,7 +38,7 @@ func PopulateAllOrderbooks(
 	keeper *keeper.Keeper,
 	contractsAndPairs map[string][]types.Pair,
 ) map[string]map[types.Pair]*types.OrderBook {
-	var orderBooks map[string]map[types.Pair]*types.OrderBook
+	var orderBooks = map[string]map[types.Pair]*types.OrderBook{}
 	wg := sync.WaitGroup{}
 	for contractAddr, pairs := range contractsAndPairs {
 		for _, pair := range pairs {

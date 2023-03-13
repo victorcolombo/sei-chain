@@ -3,6 +3,7 @@ package abci
 import (
 	"context"
 	"fmt"
+	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	seiutils "github.com/sei-protocol/sei-chain/utils"
@@ -35,6 +36,7 @@ func (w KeeperWrapper) HandleEBDeposit(ctx context.Context, sdkCtx sdk.Context, 
 }
 
 func (w KeeperWrapper) GetDepositSudoMsg(ctx sdk.Context, typedContractAddr typesutils.ContractAddress) wasm.SudoOrderPlacementMsg {
+	startTime := time.Now().UnixMicro()
 	depositMemState := dexutils.GetMemState(ctx.Context()).GetDepositInfo(ctx, typedContractAddr).Get()
 	contractDepositInfo := seiutils.Map(
 		depositMemState,
@@ -51,6 +53,8 @@ func (w KeeperWrapper) GetDepositSudoMsg(ctx sdk.Context, typedContractAddr type
 	if err := w.BankKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, contractAddr, escrowed); err != nil {
 		panic(err)
 	}
+	endTime := time.Now().UnixMicro()
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] Endblock GetDepositSudoMsg latency is %d", endTime-startTime))
 	return wasm.SudoOrderPlacementMsg{
 		OrderPlacements: wasm.OrderPlacementMsgDetails{
 			Orders:   []types.Order{},

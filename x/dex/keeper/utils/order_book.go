@@ -37,18 +37,15 @@ func PopulateAllOrderbooks(
 	ctx sdk.Context,
 	keeper *keeper.Keeper,
 	contractsAndPairs map[string][]types.Pair,
-) map[string]map[types.Pair]*types.OrderBook {
-	var orderBooks = map[string]map[types.Pair]*types.OrderBook{}
+) *datastructures.TypedNestedSyncMap[string, dextypesutils.PairString, *types.OrderBook] {
+	var orderBooks = datastructures.NewTypedNestedSyncMap[string, dextypesutils.PairString, *types.OrderBook]()
 	wg := sync.WaitGroup{}
 	for contractAddr, pairs := range contractsAndPairs {
 		for _, pair := range pairs {
 			wg.Add(1)
 			go func(contractAddr string, pair types.Pair) {
 				orderBook := PopulateOrderbook(ctx, keeper, dextypesutils.ContractAddress(contractAddr), pair)
-				if orderBooks[contractAddr] == nil {
-					orderBooks[contractAddr] = map[types.Pair]*types.OrderBook{}
-				}
-				orderBooks[contractAddr][pair] = orderBook
+				orderBooks.StoreNested(contractAddr, dextypesutils.GetPairString(&pair), orderBook)
 				wg.Done()
 			}(contractAddr, pair)
 		}

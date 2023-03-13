@@ -123,7 +123,6 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 	executionTerminationSignals := datastructures.NewTypedSyncMap[string, chan struct{}]()
 	registeredPairs := datastructures.NewTypedSyncMap[string, []types.Pair]()
 	allContractAndPairs := map[string][]types.Pair{}
-	orderBooks := datastructures.NewTypedNestedSyncMap[string, dextypesutils.PairString, *types.OrderBook]()
 	startTime := time.Now().UnixMicro()
 	totalContracts := len(validContractsInfo)
 	totalStoreLatency := int64(0)
@@ -144,18 +143,9 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 
 	// Parallelize populating orderbooks for performance concern
 	startPopulateTime := time.Now().UnixMicro()
-	allOrderBooks := dexkeeperutils.PopulateAllOrderbooks(ctx, keeper, allContractAndPairs)
+	orderBooks := dexkeeperutils.PopulateAllOrderbooks(ctx, keeper, allContractAndPairs)
 	endPopulateTime := time.Now().UnixMicro()
 	populateLatency := endPopulateTime - startPopulateTime
-
-	for addr, contractOrderBooks := range allOrderBooks {
-		for pair, orderBook := range contractOrderBooks {
-			startStoreTime := time.Now().UnixMicro()
-			orderBooks.StoreNested(addr, dextypesutils.GetPairString(&pair), orderBook)
-			endStoreTime := time.Now().UnixMicro()
-			totalStoreLatency += endStoreTime - startStoreTime
-		}
-	}
 
 	endTime := time.Now().UnixMicro()
 	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] newEnv process total %d contracts took %d time, totalStore latency %d, totalGetPairs latency %d, totalOrderBook latency %d ", totalContracts, endTime-startTime, totalStoreLatency, totalGetLatency, populateLatency))

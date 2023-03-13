@@ -54,7 +54,7 @@ func (w KeeperWrapper) GetDepositSudoMsg(ctx sdk.Context, typedContractAddr type
 		panic(err)
 	}
 	endTime := time.Now().UnixMicro()
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] Endblock GetDepositSudoMsg latency is %d", endTime-startTime))
+	ctx.Logger().Debug(fmt.Sprintf("[SeiChain-Debug] Endblock GetDepositSudoMsg latency is %d", endTime-startTime))
 	return wasm.SudoOrderPlacementMsg{
 		OrderPlacements: wasm.OrderPlacementMsgDetails{
 			Orders:   []types.Order{},

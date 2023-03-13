@@ -165,7 +165,9 @@ func handleDeposits(spanCtx context.Context, ctx sdk.Context, env *environment, 
 	_, span := (*tracer).Start(spanCtx, "handleDeposits")
 	defer span.End()
 	keeperWrapper := dexkeeperabci.KeeperWrapper{Keeper: keeper}
-	for _, contract := range env.validContractsInfo {
+	contractInfos := env.validContractsInfo
+	startTime := time.Now().UnixMicro()
+	for _, contract := range contractInfos {
 		if !contract.NeedOrderMatching {
 			continue
 		}
@@ -173,6 +175,8 @@ func handleDeposits(spanCtx context.Context, ctx sdk.Context, env *environment, 
 			env.failedContractAddresses.Add(contract.ContractAddr)
 		}
 	}
+	endTime := time.Now().UnixMicro()
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock handleDeposits over %d contracts takes %d time", len(contractInfos), endTime-startTime))
 }
 
 func handleSettlements(ctx context.Context, sdkCtx sdk.Context, env *environment, keeper *keeper.Keeper, tracer *otrace.Tracer) {

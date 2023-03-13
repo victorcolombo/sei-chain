@@ -126,22 +126,34 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 	startTime := time.Now().UnixMicro()
 	totalContracts := len(validContractsInfo)
 	totalContractPairs := 0
+	totalStoreLatency := int64(0)
+	totalGetLatency := int64(0)
+	totalOrderbookLatency := int64(0)
 	for _, contract := range validContractsInfo {
+		loopStart := time.Now().UnixMicro()
 		finalizeBlockMessages.Store(contract.ContractAddr, dextypeswasm.NewSudoFinalizeBlockMsg())
 		settlementsByContract.Store(contract.ContractAddr, []*types.SettlementEntry{})
 		executionTerminationSignals.Store(contract.ContractAddr, make(chan struct{}, 1))
+		getStart := time.Now().UnixMicro()
+		totalStoreLatency += getStart - loopStart
 		contractPairs := keeper.GetAllRegisteredPairs(ctx, contract.ContractAddr)
+		getComplete := time.Now().UnixMicro()
+		totalGetLatency += getComplete - getStart
 		registeredPairs.Store(contract.ContractAddr, contractPairs)
 		for _, pair := range contractPairs {
 			pair := pair
-			orderBooks.StoreNested(contract.ContractAddr, dextypesutils.GetPairString(&pair), dexkeeperutils.PopulateOrderbook(
-				ctx, keeper, dextypesutils.ContractAddress(contract.ContractAddr), pair,
-			))
+			orderStartTime := time.Now().UnixMicro()
+			orderBook := dexkeeperutils.PopulateOrderbook(ctx, keeper, dextypesutils.ContractAddress(contract.ContractAddr), pair)
+			orderEndTime := time.Now().UnixMicro()
+			totalOrderbookLatency += orderEndTime - orderStartTime
+			orderBooks.StoreNested(contract.ContractAddr, dextypesutils.GetPairString(&pair), orderBook)
+			storeNestedCompleteTime := time.Now().UnixMicro()
+			totalStoreLatency += storeNestedCompleteTime - orderEndTime
 		}
 		totalContractPairs += len(contractPairs)
 	}
 	endTime := time.Now().UnixMicro()
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] newEnv processed total %d contracts with %d pairs takes %d microseconds", totalContracts, totalContractPairs, endTime-startTime))
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] newEnv process total %d contracts took %d time, totalStore latency %d, totalGetPairs latency %d, totalOrderBook latency %d ", totalContracts, endTime-startTime, totalStoreLatency, totalGetLatency, totalOrderbookLatency))
 	return &environment{
 		validContractsInfo:          validContractsInfo,
 		failedContractAddresses:     datastructures.NewSyncSet([]string{}),

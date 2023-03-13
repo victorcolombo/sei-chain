@@ -45,6 +45,9 @@ func PopulateAllOrderbooks(
 			wg.Add(1)
 			go func(contractAddr string, pair types.Pair) {
 				orderBook := PopulateOrderbook(ctx, keeper, dextypesutils.ContractAddress(contractAddr), pair)
+				if orderBooks[contractAddr] == nil {
+					orderBooks[contractAddr] = map[types.Pair]*types.OrderBook{}
+				}
 				orderBooks[contractAddr][pair] = orderBook
 				wg.Done()
 			}(contractAddr, pair)

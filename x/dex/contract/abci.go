@@ -48,9 +48,10 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	defer span.End()
 
 	env := newEnv(ctx, validContractsInfo, keeper)
+	handleDepositStartTime := time.Now().UnixMicro()
+
 	cachedCtx, msCached := cacheContext(ctx, env)
 	memStateCopy := dexutils.GetMemState(cachedCtx.Context()).DeepCopy()
-	handleDepositStartTime := time.Now().UnixMicro()
 	handleDeposits(spanCtx, cachedCtx, env, keeper, tracer)
 	handleDepositCompleteTime := time.Now().UnixMicro()
 
@@ -82,7 +83,7 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	orderMatchLatency := orderMatchCompleteTime - handleDepositCompleteTime
 	prepareLatency := handleDepositStartTime - startTime
 	handleDepositLatency := handleDepositCompleteTime - handleDepositStartTime
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock total latency: %d, prepareLatency %d, handleDeposit %d, orderMatch %d, handleSettlements %d, handleFinalizeBlock %d",
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock total latency: %d, prepareEnvLatency %d, handleDeposit %d, orderMatch %d, handleSettlements %d, handleFinalizeBlock %d",
 		totalLatency, prepareLatency, handleDepositLatency, orderMatchLatency, handleSettlementsLatency, handleFinalizeBlockLatency))
 
 	if env.failedContractAddresses.Size() == 0 {

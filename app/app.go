@@ -987,9 +987,13 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 			return &resp, nil
 		}
 	}
-	ctx.Logger().Info("optimistic processing ineligible")
+	waitForOpComplete := time.Now()
+	waitLatency := waitForOpComplete.UnixMicro() - startTime.UnixMicro()
+	ctx.Logger().Info(fmt.Sprintf("optimistic processing ineligible, waited %dms", waitLatency))
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)
-
+	processCompleteTime := time.Now()
+	processLatency := processCompleteTime.UnixMicro() - waitForOpComplete.UnixMicro()
+	ctx.Logger().Info(fmt.Sprintf("app.ProcessBlock took %dms", processLatency))
 	app.SetDeliverStateToCommit()
 	appHash := app.WriteStateToCommitAndGetWorkingHash()
 	resp := app.getFinalizeBlockResponse(appHash, events, txResults, endBlockResp)

@@ -42,13 +42,15 @@ type environment struct {
 }
 
 func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo []types.ContractInfoV2, tracingInfo *tracing.Info) ([]types.ContractInfoV2, sdk.Context, bool) {
+	startTime := time.Now().UnixMicro()
 	tracer := tracingInfo.Tracer
 	spanCtx, span := tracingInfo.Start("DexEndBlockerAtomic")
 	defer span.End()
-	startTime := time.Now().UnixMicro()
+
 	env := newEnv(ctx, validContractsInfo, keeper)
 	cachedCtx, msCached := cacheContext(ctx, env)
 	memStateCopy := dexutils.GetMemState(cachedCtx.Context()).DeepCopy()
+	handleDepositStartTime := time.Now().UnixMicro()
 	handleDeposits(spanCtx, cachedCtx, env, keeper, tracer)
 	handleDepositCompleteTime := time.Now().UnixMicro()
 
@@ -78,9 +80,10 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	handleFinalizeBlockLatency := handleFinalizeBlocksTime - handleSettlementsCompleteTime
 	handleSettlementsLatency := handleSettlementsCompleteTime - orderMatchCompleteTime
 	orderMatchLatency := orderMatchCompleteTime - handleDepositCompleteTime
-	handleDepositLatency := handleDepositCompleteTime - startTime
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock total latency: %d, handleDeposit %d, orderMatch %d, handleSettlements %d, handleFinalizeBlock %d",
-		totalLatency, handleDepositLatency, orderMatchLatency, handleSettlementsLatency, handleFinalizeBlockLatency))
+	prepareLatency := handleDepositStartTime - startTime
+	handleDepositLatency := handleDepositCompleteTime - handleDepositStartTime
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock total latency: %d, prepareLatency %d, handleDeposit %d, orderMatch %d, handleSettlements %d, handleFinalizeBlock %d",
+		totalLatency, prepareLatency, handleDepositLatency, orderMatchLatency, handleSettlementsLatency, handleFinalizeBlockLatency))
 
 	if env.failedContractAddresses.Size() == 0 {
 		msCached.Write()
@@ -162,11 +165,11 @@ func decorateContextForContract(ctx sdk.Context, contractInfo types.ContractInfo
 
 func handleDeposits(spanCtx context.Context, ctx sdk.Context, env *environment, keeper *keeper.Keeper, tracer *otrace.Tracer) {
 	// Handle deposit sequentially since they mutate `bank` state which is shared by all contracts
+	startTime := time.Now().UnixMicro()
 	_, span := (*tracer).Start(spanCtx, "handleDeposits")
 	defer span.End()
 	keeperWrapper := dexkeeperabci.KeeperWrapper{Keeper: keeper}
 	contractInfos := env.validContractsInfo
-	startTime := time.Now().UnixMicro()
 	for _, contract := range contractInfos {
 		if !contract.NeedOrderMatching {
 			continue

@@ -48,6 +48,7 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	defer span.End()
 
 	env := newEnv(ctx, validContractsInfo, keeper)
+
 	handleDepositStartTime := time.Now().UnixMicro()
 
 	cachedCtx, msCached := cacheContext(ctx, env)
@@ -122,6 +123,9 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 	executionTerminationSignals := datastructures.NewTypedSyncMap[string, chan struct{}]()
 	registeredPairs := datastructures.NewTypedSyncMap[string, []types.Pair]()
 	orderBooks := datastructures.NewTypedNestedSyncMap[string, dextypesutils.PairString, *types.OrderBook]()
+	startTime := time.Now().UnixMicro()
+	totalContracts := len(validContractsInfo)
+	totalContractPairs := 0
 	for _, contract := range validContractsInfo {
 		finalizeBlockMessages.Store(contract.ContractAddr, dextypeswasm.NewSudoFinalizeBlockMsg())
 		settlementsByContract.Store(contract.ContractAddr, []*types.SettlementEntry{})
@@ -134,7 +138,10 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 				ctx, keeper, dextypesutils.ContractAddress(contract.ContractAddr), pair,
 			))
 		}
+		totalContractPairs += len(contractPairs)
 	}
+	endTime := time.Now().UnixMicro()
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] newEnv processed total %d contracts with %d pairs takes %d microseconds", totalContracts, totalContractPairs, endTime-startTime))
 	return &environment{
 		validContractsInfo:          validContractsInfo,
 		failedContractAddresses:     datastructures.NewSyncSet([]string{}),

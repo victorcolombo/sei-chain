@@ -55,11 +55,12 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	runner := NewParallelRunner(func(contract types.ContractInfoV2) {
 		orderMatchingRunnable(spanCtx, cachedCtx, env, keeper, contract, tracer)
 	}, validContractsInfo, cachedCtx)
-	orderMatchCompleteTime := time.Now().UnixMicro()
+
 	_, err := logging.LogIfNotDoneAfter(ctx.Logger(), func() (struct{}, error) {
 		runner.Run()
 		return struct{}{}, nil
 	}, LogRunnerRunAfter, "runner run")
+	orderMatchCompleteTime := time.Now().UnixMicro()
 	if err != nil {
 		// this should never happen
 		panic(err)
@@ -71,6 +72,16 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	handleFinalizedBlocks(spanCtx, cachedCtx, env, keeper, tracer)
 	handleFinalizeBlocksTime := time.Now().UnixMicro()
 	// No error is thrown for any contract. This should happen most of the time.
+
+	completeTime := time.Now().UnixMicro()
+	totalLatency := completeTime - startTime
+	handleFinalizeBlockLatency := handleFinalizeBlocksTime - handleSettlementsCompleteTime
+	handleSettlementsLatency := handleSettlementsCompleteTime - orderMatchCompleteTime
+	orderMatchLatency := orderMatchCompleteTime - handleDepositCompleteTime
+	handleDepositLatency := handleDepositCompleteTime - startTime
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock total latency: %d, handleDeposit %d, orderMatch %d, handleSettlements %d, handleFinalizeBlock %d",
+		totalLatency, handleDepositLatency, orderMatchLatency, handleSettlementsLatency, handleFinalizeBlockLatency))
+
 	if env.failedContractAddresses.Size() == 0 {
 		msCached.Write()
 		return env.validContractsInfo, ctx, true
@@ -95,18 +106,9 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 			continue
 		}
 	}
-
 	// restore keeper in-memory state
 	newGoContext := context.WithValue(ctx.Context(), dexutils.DexMemStateContextKey, memStateCopy)
-	completeTime := time.Now().UnixMicro()
-	totalLatency := completeTime - startTime
-	remainingLatency := completeTime - handleFinalizeBlocksTime
-	handleFinalizeBlockLatency := handleFinalizeBlocksTime - handleSettlementsCompleteTime
-	handleSettlementsLatency := handleSettlementsCompleteTime - orderMatchCompleteTime
-	orderMatchLatency := orderMatchCompleteTime - handleDepositCompleteTime
-	handleDepositLatency := handleDepositCompleteTime - startTime
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock total latency: %d, handleDeposit %d, orderMatch %d, handleSettlements %d, handleFinalizeBlock %d, remaining %d",
-		totalLatency, handleDepositLatency, orderMatchLatency, handleSettlementsLatency, handleFinalizeBlockLatency, remainingLatency))
+
 	return filterNewValidContracts(ctx, env), ctx.WithContext(newGoContext), false
 }
 

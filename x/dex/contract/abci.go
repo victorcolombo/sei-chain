@@ -123,8 +123,6 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 	executionTerminationSignals := datastructures.NewTypedSyncMap[string, chan struct{}]()
 	registeredPairs := datastructures.NewTypedSyncMap[string, []types.Pair]()
 	allContractAndPairs := map[string][]types.Pair{}
-	startTime := time.Now().UnixMicro()
-	totalContracts := len(validContractsInfo)
 	totalStoreLatency := int64(0)
 	totalGetLatency := int64(0)
 	for _, contract := range validContractsInfo {
@@ -142,13 +140,7 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 	}
 
 	// Parallelize populating orderbooks for performance concern
-	startPopulateTime := time.Now().UnixMicro()
 	orderBooks := dexkeeperutils.PopulateAllOrderbooks(ctx, keeper, allContractAndPairs)
-	endPopulateTime := time.Now().UnixMicro()
-	populateLatency := endPopulateTime - startPopulateTime
-
-	endTime := time.Now().UnixMicro()
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] newEnv process total %d contracts took %d time, totalStore latency %d, totalGetPairs latency %d, totalOrderBook latency %d ", totalContracts, endTime-startTime, totalStoreLatency, totalGetLatency, populateLatency))
 	return &environment{
 		validContractsInfo:          validContractsInfo,
 		failedContractAddresses:     datastructures.NewSyncSet([]string{}),
@@ -180,7 +172,6 @@ func decorateContextForContract(ctx sdk.Context, contractInfo types.ContractInfo
 
 func handleDeposits(spanCtx context.Context, ctx sdk.Context, env *environment, keeper *keeper.Keeper, tracer *otrace.Tracer) {
 	// Handle deposit sequentially since they mutate `bank` state which is shared by all contracts
-	startTime := time.Now().UnixMicro()
 	_, span := (*tracer).Start(spanCtx, "handleDeposits")
 	defer span.End()
 	keeperWrapper := dexkeeperabci.KeeperWrapper{Keeper: keeper}
@@ -193,8 +184,6 @@ func handleDeposits(spanCtx context.Context, ctx sdk.Context, env *environment, 
 			env.failedContractAddresses.Add(contract.ContractAddr)
 		}
 	}
-	endTime := time.Now().UnixMicro()
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] EndBlock handleDeposits over %d contracts takes %d time", len(contractInfos), endTime-startTime))
 }
 
 func handleSettlements(ctx context.Context, sdkCtx sdk.Context, env *environment, keeper *keeper.Keeper, tracer *otrace.Tracer) {
@@ -259,6 +248,7 @@ func handleFinalizedBlocks(ctx context.Context, sdkCtx sdk.Context, env *environ
 }
 
 func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *environment, keeper *keeper.Keeper, contractInfo types.ContractInfoV2, tracer *otrace.Tracer) {
+	startTime := time.Now().UnixMicro()
 	_, span := (*tracer).Start(ctx, "orderMatchingRunnable")
 	defer span.End()
 	defer func() {
@@ -282,12 +272,16 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	pairs, pairFound := env.registeredPairs.Load(contractInfo.ContractAddr)
 	orderBooks, found := env.orderBooks.Load(contractInfo.ContractAddr)
 
+	finishLoadingTime := time.Now().UnixMicro()
+
 	if !pairFound || !found {
 		sdkContext.Logger().Error(fmt.Sprintf("No pair or order book for %s", contractInfo.ContractAddr))
 		env.failedContractAddresses.Add(contractInfo.ContractAddr)
 	} else if orderResultsMap, settlements, err := HandleExecutionForContract(ctx, sdkContext, contractInfo, keeper, pairs, orderBooks, tracer); err != nil {
 		sdkContext.Logger().Error(fmt.Sprintf("Error for EndBlock of %s", contractInfo.ContractAddr))
 		env.failedContractAddresses.Add(contractInfo.ContractAddr)
+		endHandleExecutionTime := time.Now().UnixMicro()
+		sdkContext.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable loading latency %d, handleExecution latency %d", finishLoadingTime-startTime, endHandleExecutionTime-finishLoadingTime))
 	} else {
 		for account, orderResults := range orderResultsMap {
 			// only add to finalize message for contract addresses
@@ -299,12 +293,15 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 			}
 		}
 		env.settlementsByContract.Store(contractInfo.ContractAddr, settlements)
+		endStoreSettlementsTime := time.Now().UnixMicro()
+		sdkContext.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable loading latency %d, storeSettlement latency %d", finishLoadingTime-startTime, endStoreSettlementsTime-finishLoadingTime))
 	}
 
 	// ordering of events doesn't matter since events aren't part of consensus
 	env.eventManagerMutex.Lock()
 	defer env.eventManagerMutex.Unlock()
 	parentSdkContext.EventManager().EmitEvents(sdkContext.EventManager().Events())
+
 }
 
 func filterNewValidContracts(ctx sdk.Context, env *environment) []types.ContractInfoV2 {

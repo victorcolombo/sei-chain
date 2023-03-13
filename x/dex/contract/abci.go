@@ -122,13 +122,12 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 	settlementsByContract := datastructures.NewTypedSyncMap[string, []*types.SettlementEntry]()
 	executionTerminationSignals := datastructures.NewTypedSyncMap[string, chan struct{}]()
 	registeredPairs := datastructures.NewTypedSyncMap[string, []types.Pair]()
+	allContractAndPairs := map[string][]types.Pair{}
 	orderBooks := datastructures.NewTypedNestedSyncMap[string, dextypesutils.PairString, *types.OrderBook]()
 	startTime := time.Now().UnixMicro()
 	totalContracts := len(validContractsInfo)
-	totalContractPairs := 0
 	totalStoreLatency := int64(0)
 	totalGetLatency := int64(0)
-	totalOrderbookLatency := int64(0)
 	for _, contract := range validContractsInfo {
 		loopStart := time.Now().UnixMicro()
 		finalizeBlockMessages.Store(contract.ContractAddr, dextypeswasm.NewSudoFinalizeBlockMsg())
@@ -140,20 +139,26 @@ func newEnv(ctx sdk.Context, validContractsInfo []types.ContractInfoV2, keeper *
 		getComplete := time.Now().UnixMicro()
 		totalGetLatency += getComplete - getStart
 		registeredPairs.Store(contract.ContractAddr, contractPairs)
-		for _, pair := range contractPairs {
-			pair := pair
-			orderStartTime := time.Now().UnixMicro()
-			orderBook := dexkeeperutils.PopulateOrderbook(ctx, keeper, dextypesutils.ContractAddress(contract.ContractAddr), pair)
-			orderEndTime := time.Now().UnixMicro()
-			totalOrderbookLatency += orderEndTime - orderStartTime
-			orderBooks.StoreNested(contract.ContractAddr, dextypesutils.GetPairString(&pair), orderBook)
-			storeNestedCompleteTime := time.Now().UnixMicro()
-			totalStoreLatency += storeNestedCompleteTime - orderEndTime
-		}
-		totalContractPairs += len(contractPairs)
+		allContractAndPairs[contract.ContractAddr] = contractPairs
 	}
+
+	// Parallelize populating orderbooks for performance concern
+	startPopulateTime := time.Now().UnixMicro()
+	allOrderBooks := dexkeeperutils.PopulateAllOrderbooks(ctx, keeper, allContractAndPairs)
+	endPopulateTime := time.Now().UnixMicro()
+	populateLatency := endPopulateTime - startPopulateTime
+
+	for addr, contractOrderBooks := range allOrderBooks {
+		for pair, orderBook := range contractOrderBooks {
+			startStoreTime := time.Now().UnixMicro()
+			orderBooks.StoreNested(addr, dextypesutils.GetPairString(&pair), orderBook)
+			endStoreTime := time.Now().UnixMicro()
+			totalStoreLatency += endStoreTime - startStoreTime
+		}
+	}
+
 	endTime := time.Now().UnixMicro()
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] newEnv process total %d contracts took %d time, totalStore latency %d, totalGetPairs latency %d, totalOrderBook latency %d ", totalContracts, endTime-startTime, totalStoreLatency, totalGetLatency, totalOrderbookLatency))
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] newEnv process total %d contracts took %d time, totalStore latency %d, totalGetPairs latency %d, totalOrderBook latency %d ", totalContracts, endTime-startTime, totalStoreLatency, totalGetLatency, populateLatency))
 	return &environment{
 		validContractsInfo:          validContractsInfo,
 		failedContractAddresses:     datastructures.NewSyncSet([]string{}),

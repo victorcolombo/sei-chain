@@ -49,7 +49,7 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	env := newEnv(ctx, validContractsInfo, keeper)
 	cachedCtx, msCached := cacheContext(ctx, env)
 	memStateCopy := dexutils.GetMemState(cachedCtx.Context()).DeepCopy()
-	handleDeposits(cachedCtx, env, keeper, tracer)
+	handleDeposits(spanCtx, cachedCtx, env, keeper, tracer)
 	handleDepositCompleteTime := time.Now().UnixMicro()
 
 	runner := NewParallelRunner(func(contract types.ContractInfoV2) {
@@ -160,8 +160,10 @@ func decorateContextForContract(ctx sdk.Context, contractInfo types.ContractInfo
 	)
 }
 
-func handleDeposits(ctx sdk.Context, env *environment, keeper *keeper.Keeper, tracer *otrace.Tracer) {
+func handleDeposits(spanCtx context.Context, ctx sdk.Context, env *environment, keeper *keeper.Keeper, tracer *otrace.Tracer) {
 	// Handle deposit sequentially since they mutate `bank` state which is shared by all contracts
+	_, span := (*tracer).Start(spanCtx, "handleDeposits")
+	defer span.End()
 	keeperWrapper := dexkeeperabci.KeeperWrapper{Keeper: keeper}
 	for _, contract := range env.validContractsInfo {
 		if !contract.NeedOrderMatching {
@@ -235,6 +237,8 @@ func handleFinalizedBlocks(ctx context.Context, sdkCtx sdk.Context, env *environ
 }
 
 func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *environment, keeper *keeper.Keeper, contractInfo types.ContractInfoV2, tracer *otrace.Tracer) {
+	_, span := (*tracer).Start(ctx, "orderMatchingRunnable")
+	defer span.End()
 	defer func() {
 		if channel, ok := env.executionTerminationSignals.Load(contractInfo.ContractAddr); ok {
 			_, err := logging.LogIfNotDoneAfter(sdkContext.Logger(), func() (struct{}, error) {

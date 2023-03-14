@@ -45,6 +45,14 @@ func CallPreExecutionHooks(
 	return nil
 }
 
+var TotalExecuteLatency = int64(0)
+var TotalCancelLatency = int64(0)
+var TotalAddLimitOrderLatency = int64(0)
+var TotalFillMarketOrderLatency = int64(0)
+var TotalFillLimitOrderLatency = int64(0)
+var TotalUpdateOrderLatency = int64(0)
+var TotalFlushLatency = int64(0)
+
 func ExecutePair(
 	ctx sdk.Context,
 	contractAddr string,
@@ -52,26 +60,40 @@ func ExecutePair(
 	dexkeeper *keeper.Keeper,
 	orderbook *types.OrderBook,
 ) []*types.SettlementEntry {
+	startTime := time.Now().UnixMicro()
 	typedContractAddr := dextypesutils.ContractAddress(contractAddr)
 	typedPairStr := dextypesutils.GetPairString(&pair)
 
 	// First cancel orders
 	cancelForPair(ctx, typedContractAddr, typedPairStr, orderbook)
+	endCancelOrderTime := time.Now().UnixMicro()
+	TotalCancelLatency += endCancelOrderTime - startTime
 	// Add all limit orders to the orderbook
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
 	limitBuys := orders.GetLimitOrders(types.PositionDirection_LONG)
 	limitSells := orders.GetLimitOrders(types.PositionDirection_SHORT)
 	exchange.AddOutstandingLimitOrdersToOrderbook(orderbook, limitBuys, limitSells)
+	endAddOrderTime := time.Now().UnixMicro()
+	TotalAddLimitOrderLatency += endAddOrderTime - endCancelOrderTime
 	// Fill market orders
 	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
+	endFillMarketTime := time.Now().UnixMicro()
+	TotalFillMarketOrderLatency += endFillMarketTime - endAddOrderTime
 	// Fill limit orders
 	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
 	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
+	endFillLimitTime := time.Now().UnixMicro()
+	TotalFillLimitOrderLatency += endFillLimitTime - endFillMarketTime
+
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
+	endUpdateOrderTime := time.Now().UnixMicro()
+	TotalUpdateOrderLatency += endUpdateOrderTime - endFillLimitTime
 
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
 	dexkeeperutils.FlushOrderbook(ctx, dexkeeper, typedContractAddr, orderbook)
-
+	endTime := time.Now().UnixMicro()
+	TotalFlushLatency = endTime - endUpdateOrderTime
+	TotalExecuteLatency += endTime - startTime
 	return totalOutcome.Settlements
 }
 
@@ -187,7 +209,6 @@ func GetOrderIDToSettledQuantities(settlements []*types.SettlementEntry) map[uin
 }
 
 func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *keeper.Keeper, registeredPairs []types.Pair, orderBooks *datastructures.TypedSyncMap[dextypesutils.PairString, *types.OrderBook]) ([]*types.SettlementEntry, []*types.Cancellation) {
-	startTime := time.Now().UnixMicro()
 
 	typedContractAddr := dextypesutils.ContractAddress(contractAddr)
 	orderResults := []*types.Order{}
@@ -236,8 +257,6 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 	}
 	wg.Wait()
 	dexkeeper.SetMatchResult(ctx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
-	endTime := time.Now().UnixMicro()
-	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] ExecutePairsInParallel total latency %d", endTime-startTime))
 	return settlements, cancelResults
 }
 

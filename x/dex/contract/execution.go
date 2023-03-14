@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	otrace "go.opentelemetry.io/otel/trace"
@@ -45,13 +46,14 @@ func CallPreExecutionHooks(
 	return nil
 }
 
-var TotalExecuteLatency = int64(0)
-var TotalCancelLatency = int64(0)
-var TotalAddLimitOrderLatency = int64(0)
-var TotalFillMarketOrderLatency = int64(0)
-var TotalFillLimitOrderLatency = int64(0)
-var TotalMergeLatency = int64(0)
-var TotalUpdateOrderLatency = int64(0)
+var TotalExecuteLatency = atomic.Int64{}
+var TotalCancelLatency = atomic.Int64{}
+var TotalGetLimitOrdersLatency = atomic.Int64{}
+var TotalAddLimitOrderLatency = atomic.Int64{}
+var TotalFillMarketOrderLatency = atomic.Int64{}
+var TotalFillLimitOrderLatency = atomic.Int64{}
+var TotalMergeLatency = atomic.Int64{}
+var TotalUpdateOrderLatency = atomic.Int64{}
 
 func ExecutePair(
 	ctx sdk.Context,
@@ -67,34 +69,37 @@ func ExecutePair(
 	// First cancel orders
 	cancelForPair(ctx, typedContractAddr, typedPairStr, orderbook)
 	endCancelOrderTime := time.Now().UnixMicro()
-	TotalCancelLatency += endCancelOrderTime - startTime
+	TotalCancelLatency.Add(endCancelOrderTime - startTime)
 	// Add all limit orders to the orderbook
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
 	limitBuys := orders.GetLimitOrders(types.PositionDirection_LONG)
 	limitSells := orders.GetLimitOrders(types.PositionDirection_SHORT)
+	endGetLimitOrdersTime := time.Now().UnixMicro()
+	TotalGetLimitOrdersLatency.Add(endGetLimitOrdersTime - endCancelOrderTime)
+
 	exchange.AddOutstandingLimitOrdersToOrderbook(orderbook, limitBuys, limitSells)
 	endAddOrderTime := time.Now().UnixMicro()
-	TotalAddLimitOrderLatency += endAddOrderTime - endCancelOrderTime
+	TotalAddLimitOrderLatency.Add(endAddOrderTime - endCancelOrderTime)
 	// Fill market orders
 	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
 	endFillMarketTime := time.Now().UnixMicro()
-	TotalFillMarketOrderLatency += endFillMarketTime - endAddOrderTime
+	TotalFillMarketOrderLatency.Add(endFillMarketTime - endAddOrderTime)
 	// Fill limit orders
 	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
 	endFillLimitTime := time.Now().UnixMicro()
-	TotalFillLimitOrderLatency += endFillLimitTime - endFillMarketTime
+	TotalFillLimitOrderLatency.Add(endFillLimitTime - endFillMarketTime)
 	// Merge order outcome
 	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
 	endMergeTime := time.Now().UnixMicro()
-	TotalMergeLatency += endMergeTime - endFillLimitTime
+	TotalMergeLatency.Add(endMergeTime - endFillLimitTime)
 
 	// Update
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
 	dexkeeperutils.FlushOrderbook(ctx, dexkeeper, typedContractAddr, orderbook)
 	endTime := time.Now().UnixMicro()
-	TotalUpdateOrderLatency += endTime - endFillLimitTime
-	TotalExecuteLatency += endTime - startTime
+	TotalUpdateOrderLatency.Add(endTime - endMergeTime)
+	TotalExecuteLatency.Add(endTime - startTime)
 	return totalOutcome.Settlements
 }
 

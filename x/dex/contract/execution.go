@@ -129,12 +129,12 @@ func matchMarketOrderForPair(
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
 	endGetBlockOrderTime := time.Now().UnixMicro()
 	TotalGetBlockOrderLatency.Add(endGetBlockOrderTime - startTime)
-	marketBuys := orders.GetSortedMarketOrders(types.PositionDirection_LONG, true)
-	endGetLongOrdersTime := time.Now().UnixMicro()
-	TotalGetLongOrdersLatency.Add(endGetLongOrdersTime - endGetBlockOrderTime)
-	marketSells := orders.GetSortedMarketOrders(types.PositionDirection_SHORT, true)
-	endGetShortOrdersTime := time.Now().UnixMicro()
-	TotalGetShortOrdersLatency.Add(endGetShortOrdersTime - endGetLongOrdersTime)
+
+	marketOrders := orders.GetBidirectionalSortedMarketOrders(true)
+	marketBuys := marketOrders[types.PositionDirection_LONG]
+	marketSells := marketOrders[types.PositionDirection_SHORT]
+	endGetOrdersTime := time.Now().UnixMicro()
+	TotalGetShortOrdersLatency.Add(endGetOrdersTime - endGetBlockOrderTime)
 	marketBuyOutcome := exchange.MatchMarketOrders(
 		ctx,
 		marketBuys,
@@ -143,7 +143,7 @@ func matchMarketOrderForPair(
 		orders,
 	)
 	endMarketBuyTime := time.Now().UnixMicro()
-	TotalMarketBuyLatency.Add(endMarketBuyTime - endGetShortOrdersTime)
+	TotalMarketBuyLatency.Add(endMarketBuyTime - endGetOrdersTime)
 	marketSellOutcome := exchange.MatchMarketOrders(
 		ctx,
 		marketSells,

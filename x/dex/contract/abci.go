@@ -66,7 +66,7 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	}, LogRunnerRunAfter, "runner run")
 	orderMatchCompleteTime := time.Now().UnixMicro()
 	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable TotalExecuteLatency: %d, TotalCancelLatency: %d, TotalAddLimitOrderLatency: %d, TotalFillMarketOrderLatency:%d, TotalFillLimitOrderLatency:%d, TotalUpdateOrderLatency:%d, TotalFlushLatency:%d",
-		TotalExecuteLatency, TotalCancelLatency, TotalAddLimitOrderLatency, TotalFillMarketOrderLatency, TotalFillLimitOrderLatency, TotalUpdateOrderLatency, TotalFlushLatency)
+		TotalExecuteLatency, TotalCancelLatency, TotalAddLimitOrderLatency, TotalFillMarketOrderLatency, TotalFillLimitOrderLatency, TotalUpdateOrderLatency, TotalFlushLatency))
 
 	if err != nil {
 		// this should never happen

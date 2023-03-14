@@ -50,8 +50,8 @@ var TotalCancelLatency = int64(0)
 var TotalAddLimitOrderLatency = int64(0)
 var TotalFillMarketOrderLatency = int64(0)
 var TotalFillLimitOrderLatency = int64(0)
+var TotalMergeLatency = int64(0)
 var TotalUpdateOrderLatency = int64(0)
-var TotalFlushLatency = int64(0)
 
 func ExecutePair(
 	ctx sdk.Context,
@@ -81,18 +81,19 @@ func ExecutePair(
 	TotalFillMarketOrderLatency += endFillMarketTime - endAddOrderTime
 	// Fill limit orders
 	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
-	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
 	endFillLimitTime := time.Now().UnixMicro()
 	TotalFillLimitOrderLatency += endFillLimitTime - endFillMarketTime
+	// Merge order outcome
+	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
+	endMergeTime := time.Now().UnixMicro()
+	TotalMergeLatency += endMergeTime - endFillLimitTime
 
+	// Update
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
-	endUpdateOrderTime := time.Now().UnixMicro()
-	TotalUpdateOrderLatency += endUpdateOrderTime - endFillLimitTime
-
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
 	dexkeeperutils.FlushOrderbook(ctx, dexkeeper, typedContractAddr, orderbook)
 	endTime := time.Now().UnixMicro()
-	TotalFlushLatency = endTime - endUpdateOrderTime
+	TotalUpdateOrderLatency += endTime - endFillLimitTime
 	TotalExecuteLatency += endTime - startTime
 	return totalOutcome.Settlements
 }
@@ -224,24 +225,24 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 		pair := pair
 		pairCtx := ctx.WithMultiStore(multi.NewStore(ctx.MultiStore(), GetPerPairWhitelistMap(contractAddr, pair))).WithEventManager(sdk.NewEventManager())
 		go func() {
-			startTime := time.Now().UnixMicro()
+			//startTime := time.Now().UnixMicro()
 			defer wg.Done()
 			pairCopy := pair
 			pairStr := dextypesutils.GetPairString(&pairCopy)
 			MoveTriggeredOrderForPair(ctx, typedContractAddr, pairStr, dexkeeper)
 			orderbook, found := orderBooks.Load(pairStr)
-			endLoadingOrderBookTime := time.Now().UnixMicro()
+			//endLoadingOrderBookTime := time.Now().UnixMicro()
 
 			if !found {
 				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
 			}
 
 			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook.DeepCopy())
-			endExecutingPairTime := time.Now().UnixMicro()
+			//endExecutingPairTime := time.Now().UnixMicro()
 
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)
-			endPrepareCancelTime := time.Now().UnixMicro()
+			//endPrepareCancelTime := time.Now().UnixMicro()
 
 			mu.Lock()
 			defer mu.Unlock()
@@ -251,8 +252,8 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 			settlements = append(settlements, pairSettlements...)
 			// ordering of events doesn't matter since events aren't part of consensus
 			ctx.EventManager().EmitEvents(pairCtx.EventManager().Events())
-			endTime := time.Now().UnixMicro()
-			ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] Execution pair %s total time %d, loadOrderbook latency: %d, ExecutePair latency: %d, PrepareCancel latency: %d, GetMatchResults latency: %d", pairStr, endTime-startTime, endLoadingOrderBookTime-startTime, endExecutingPairTime-endLoadingOrderBookTime, endPrepareCancelTime-endExecutingPairTime, endTime-endPrepareCancelTime))
+			//endTime := time.Now().UnixMicro()
+			//ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] Execution pair %s total time %d, loadOrderbook latency: %d, ExecutePair latency: %d, PrepareCancel latency: %d, GetMatchResults latency: %d", pairStr, endTime-startTime, endLoadingOrderBookTime-startTime, endExecutingPairTime-endLoadingOrderBookTime, endPrepareCancelTime-endExecutingPairTime, endTime-endPrepareCancelTime))
 		}()
 	}
 	wg.Wait()

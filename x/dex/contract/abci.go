@@ -280,9 +280,8 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	} else if orderResultsMap, settlements, err := HandleExecutionForContract(ctx, sdkContext, contractInfo, keeper, pairs, orderBooks, tracer); err != nil {
 		sdkContext.Logger().Error(fmt.Sprintf("Error for EndBlock of %s", contractInfo.ContractAddr))
 		env.failedContractAddresses.Add(contractInfo.ContractAddr)
-		endHandleExecutionTime := time.Now().UnixMicro()
-		sdkContext.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable loading latency %d, handleExecution latency %d", finishLoadingTime-startTime, endHandleExecutionTime-finishLoadingTime))
 	} else {
+		finishExecutionTime := time.Now().UnixMicro()
 		for account, orderResults := range orderResultsMap {
 			// only add to finalize message for contract addresses
 			if msg, ok := env.finalizeBlockMessages.Load(account); ok {
@@ -294,7 +293,8 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 		}
 		env.settlementsByContract.Store(contractInfo.ContractAddr, settlements)
 		endStoreSettlementsTime := time.Now().UnixMicro()
-		sdkContext.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable loading latency %d, storeSettlement latency %d", finishLoadingTime-startTime, endStoreSettlementsTime-finishLoadingTime))
+		sdkContext.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable loading latency %d, HandleExecutionForContract latency %d, store settlements latency %d", finishLoadingTime-startTime, finishExecutionTime-finishLoadingTime, endStoreSettlementsTime-finishExecutionTime))
+
 	}
 
 	// ordering of events doesn't matter since events aren't part of consensus

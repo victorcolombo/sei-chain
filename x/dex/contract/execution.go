@@ -187,6 +187,8 @@ func GetOrderIDToSettledQuantities(settlements []*types.SettlementEntry) map[uin
 }
 
 func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *keeper.Keeper, registeredPairs []types.Pair, orderBooks *datastructures.TypedSyncMap[dextypesutils.PairString, *types.OrderBook]) ([]*types.SettlementEntry, []*types.Cancellation) {
+	startTime := time.Now().UnixMicro()
+
 	typedContractAddr := dextypesutils.ContractAddress(contractAddr)
 	orderResults := []*types.Order{}
 	cancelResults := []*types.Cancellation{}
@@ -201,17 +203,24 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 		pair := pair
 		pairCtx := ctx.WithMultiStore(multi.NewStore(ctx.MultiStore(), GetPerPairWhitelistMap(contractAddr, pair))).WithEventManager(sdk.NewEventManager())
 		go func() {
+			startTime := time.Now().UnixMicro()
 			defer wg.Done()
 			pairCopy := pair
 			pairStr := dextypesutils.GetPairString(&pairCopy)
 			MoveTriggeredOrderForPair(ctx, typedContractAddr, pairStr, dexkeeper)
 			orderbook, found := orderBooks.Load(pairStr)
+			endLoadingOrderBookTime := time.Now().UnixMicro()
+
 			if !found {
 				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
 			}
+
 			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook.DeepCopy())
+			endExecutingPairTime := time.Now().UnixMicro()
+
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)
+			endPrepareCancelTime := time.Now().UnixMicro()
 
 			mu.Lock()
 			defer mu.Unlock()
@@ -221,11 +230,14 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 			settlements = append(settlements, pairSettlements...)
 			// ordering of events doesn't matter since events aren't part of consensus
 			ctx.EventManager().EmitEvents(pairCtx.EventManager().Events())
+			endTime := time.Now().UnixMicro()
+			ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] Execution pair %s total time %d, loadOrderbook latency: %d, ExecutePair latency: %d, PrepareCancel latency: %d, GetMatchResults latency: %d", pairStr, endTime-startTime, endLoadingOrderBookTime-startTime, endExecutingPairTime-endLoadingOrderBookTime, endPrepareCancelTime-endExecutingPairTime, endTime-endPrepareCancelTime))
 		}()
 	}
 	wg.Wait()
 	dexkeeper.SetMatchResult(ctx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
-
+	endTime := time.Now().UnixMicro()
+	ctx.Logger().Info(fmt.Sprintf("[SeiChain-Debug] ExecutePairsInParallel total latency %d", endTime-startTime))
 	return settlements, cancelResults
 }
 

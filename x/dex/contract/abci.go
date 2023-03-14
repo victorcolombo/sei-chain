@@ -248,7 +248,7 @@ func handleFinalizedBlocks(ctx context.Context, sdkCtx sdk.Context, env *environ
 }
 
 func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *environment, keeper *keeper.Keeper, contractInfo types.ContractInfoV2, tracer *otrace.Tracer) {
-	startTime := time.Now().UnixMicro()
+	//startTime := time.Now().UnixMicro()
 	_, span := (*tracer).Start(ctx, "orderMatchingRunnable")
 	defer span.End()
 	defer func() {
@@ -272,7 +272,7 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	pairs, pairFound := env.registeredPairs.Load(contractInfo.ContractAddr)
 	orderBooks, found := env.orderBooks.Load(contractInfo.ContractAddr)
 
-	finishLoadingTime := time.Now().UnixMicro()
+	//finishLoadingTime := time.Now().UnixMicro()
 
 	if !pairFound || !found {
 		sdkContext.Logger().Error(fmt.Sprintf("No pair or order book for %s", contractInfo.ContractAddr))
@@ -281,7 +281,7 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 		sdkContext.Logger().Error(fmt.Sprintf("Error for EndBlock of %s", contractInfo.ContractAddr))
 		env.failedContractAddresses.Add(contractInfo.ContractAddr)
 	} else {
-		finishExecutionTime := time.Now().UnixMicro()
+		//finishExecutionTime := time.Now().UnixMicro()
 		for account, orderResults := range orderResultsMap {
 			// only add to finalize message for contract addresses
 			if msg, ok := env.finalizeBlockMessages.Load(account); ok {
@@ -292,9 +292,8 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 			}
 		}
 		env.settlementsByContract.Store(contractInfo.ContractAddr, settlements)
-		endStoreSettlementsTime := time.Now().UnixMicro()
-		sdkContext.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable loading latency %d, HandleExecutionForContract latency %d, store settlements latency %d", finishLoadingTime-startTime, finishExecutionTime-finishLoadingTime, endStoreSettlementsTime-finishExecutionTime))
-
+		//endStoreSettlementsTime := time.Now().UnixMicro()
+		//sdkContext.Logger().Info(fmt.Sprintf("[SeiChain-Debug] orderMatchingRunnable loading latency %d, HandleExecutionForContract latency %d, store settlements latency %d", finishLoadingTime-startTime, finishExecutionTime-finishLoadingTime, endStoreSettlementsTime-finishExecutionTime))
 	}
 
 	// ordering of events doesn't matter since events aren't part of consensus

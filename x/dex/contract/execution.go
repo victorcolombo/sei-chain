@@ -70,24 +70,67 @@ func ExecutePair(
 	cancelForPair(ctx, typedContractAddr, typedPairStr, orderbook)
 	endCancelOrderTime := time.Now().UnixMicro()
 	TotalCancelLatency.Add(endCancelOrderTime - startTime)
+
 	// Add all limit orders to the orderbook
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
-	limitBuys := orders.GetLimitOrders(types.PositionDirection_LONG)
-	limitSells := orders.GetLimitOrders(types.PositionDirection_SHORT)
+	ordersMap := orders.GetOrdersByCriteriaMap(
+		map[types.OrderType]bool{
+			types.OrderType_LIMIT:       true,
+			types.OrderType_MARKET:      true,
+			types.OrderType_FOKMARKET:   true,
+			types.OrderType_LIQUIDATION: true,
+		},
+		map[types.PositionDirection]bool{
+			types.PositionDirection_LONG:  true,
+			types.PositionDirection_SHORT: true,
+		})
+
+	limitBuys := ordersMap[types.OrderType_LIMIT][types.PositionDirection_LONG]
+	limitSells := ordersMap[types.OrderType_LIMIT][types.PositionDirection_SHORT]
 	endGetLimitOrdersTime := time.Now().UnixMicro()
 	TotalGetLimitOrdersLatency.Add(endGetLimitOrdersTime - endCancelOrderTime)
 
 	exchange.AddOutstandingLimitOrdersToOrderbook(orderbook, limitBuys, limitSells)
 	endAddOrderTime := time.Now().UnixMicro()
 	TotalAddLimitOrderLatency.Add(endAddOrderTime - endGetLimitOrdersTime)
+
 	// Fill market orders
-	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
+	var marketBuys []*types.Order
+	var marketSells []*types.Order
+	marketOrderTypes := []types.OrderType{
+		types.OrderType_MARKET,
+		types.OrderType_FOKMARKET,
+		types.OrderType_LIQUIDATION,
+	}
+	for _, orderType := range marketOrderTypes {
+		marketBuys = append(marketBuys, ordersMap[orderType][types.PositionDirection_LONG]...)
+		marketSells = append(marketSells, ordersMap[orderType][types.PositionDirection_SHORT]...)
+	}
+	marketBuys = orders.SortOrders(marketBuys, types.PositionDirection_LONG)
+	marketSells = orders.SortOrders(marketSells, types.PositionDirection_SHORT)
+	marketBuyOutcome := exchange.MatchMarketOrders(
+		ctx,
+		marketBuys,
+		orderbook.Shorts,
+		types.PositionDirection_LONG,
+		orders,
+	)
+	marketSellOutcome := exchange.MatchMarketOrders(
+		ctx,
+		marketSells,
+		orderbook.Longs,
+		types.PositionDirection_SHORT,
+		orders,
+	)
+	marketOrderOutcome := marketBuyOutcome.Merge(&marketSellOutcome)
 	endFillMarketTime := time.Now().UnixMicro()
 	TotalFillMarketOrderLatency.Add(endFillMarketTime - endAddOrderTime)
+
 	// Fill limit orders
 	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
 	endFillLimitTime := time.Now().UnixMicro()
 	TotalFillLimitOrderLatency.Add(endFillLimitTime - endFillMarketTime)
+
 	// Merge order outcome
 	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
 	endMergeTime := time.Now().UnixMicro()
@@ -111,49 +154,6 @@ func cancelForPair(
 ) {
 	cancels := dexutils.GetMemState(ctx.Context()).GetBlockCancels(ctx, typedContractAddr, typedPairStr)
 	exchange.CancelOrders(cancels.Get(), orderbook)
-}
-
-var TotalGetBlockOrderLatency = atomic.Int64{}
-var TotalGetLongOrdersLatency = atomic.Int64{}
-var TotalGetShortOrdersLatency = atomic.Int64{}
-var TotalMarketBuyLatency = atomic.Int64{}
-var TotalMarketSellLatency = atomic.Int64{}
-
-func matchMarketOrderForPair(
-	ctx sdk.Context,
-	typedContractAddr dextypesutils.ContractAddress,
-	typedPairStr dextypesutils.PairString,
-	orderbook *types.OrderBook,
-) exchange.ExecutionOutcome {
-	startTime := time.Now().UnixMicro()
-	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
-	endGetBlockOrderTime := time.Now().UnixMicro()
-	TotalGetBlockOrderLatency.Add(endGetBlockOrderTime - startTime)
-
-	marketOrders := orders.GetBidirectionalSortedMarketOrders(true)
-	marketBuys := marketOrders[types.PositionDirection_LONG]
-	marketSells := marketOrders[types.PositionDirection_SHORT]
-	endGetOrdersTime := time.Now().UnixMicro()
-	TotalGetShortOrdersLatency.Add(endGetOrdersTime - endGetBlockOrderTime)
-	marketBuyOutcome := exchange.MatchMarketOrders(
-		ctx,
-		marketBuys,
-		orderbook.Shorts,
-		types.PositionDirection_LONG,
-		orders,
-	)
-	endMarketBuyTime := time.Now().UnixMicro()
-	TotalMarketBuyLatency.Add(endMarketBuyTime - endGetOrdersTime)
-	marketSellOutcome := exchange.MatchMarketOrders(
-		ctx,
-		marketSells,
-		orderbook.Longs,
-		types.PositionDirection_SHORT,
-		orders,
-	)
-	endMarketSellTime := time.Now().UnixMicro()
-	TotalMarketSellLatency.Add(endMarketSellTime - endMarketBuyTime)
-	return marketBuyOutcome.Merge(&marketSellOutcome)
 }
 
 func MoveTriggeredOrderForPair(

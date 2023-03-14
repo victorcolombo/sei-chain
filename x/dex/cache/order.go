@@ -118,45 +118,25 @@ func (o *BlockOrders) GetSortedMarketOrders(direction types.PositionDirection, i
 	return res
 }
 
-func (o *BlockOrders) GetBidirectionalSortedMarketOrders(includeLiquidationOrders bool) map[types.PositionDirection][]*types.Order {
-	includedOrderTypes := map[types.OrderType]bool{
-		types.OrderType_MARKET:      true,
-		types.OrderType_FOKMARKET:   true,
-		types.OrderType_LIQUIDATION: includeLiquidationOrders,
-	}
-	directions := map[types.PositionDirection]bool{
-		types.PositionDirection_LONG:  true,
-		types.PositionDirection_SHORT: true,
-	}
-
-	bidirectionalResp := o.getOrdersByCriterias(includedOrderTypes, directions)
-	for direction := range bidirectionalResp {
-		res := bidirectionalResp[direction]
-		sort.SliceStable(res, func(i, j int) bool {
-			// a price of 0 indicates that there is no worst price for the order, so it should
-			// always be ranked at the top.
-			if res[i].Price.IsZero() {
-				return true
-			} else if res[j].Price.IsZero() {
-				return false
-			}
-			switch direction {
-			case types.PositionDirection_LONG:
-				return res[i].Price.GT(res[j].Price)
-			case types.PositionDirection_SHORT:
-				return res[i].Price.LT(res[j].Price)
-			default:
-				panic("Unknown direction")
-			}
-		})
-	}
-	for direction := range directions {
-		if bidirectionalResp[direction] == nil {
-			bidirectionalResp[direction] = []*types.Order{}
+func (o *BlockOrders) SortOrders(orders []*types.Order, direction types.PositionDirection) []*types.Order {
+	sort.SliceStable(orders, func(i, j int) bool {
+		// a price of 0 indicates that there is no worst price for the order, so it should
+		// always be ranked at the top.
+		if orders[i].Price.IsZero() {
+			return true
+		} else if orders[j].Price.IsZero() {
+			return false
 		}
-	}
-
-	return bidirectionalResp
+		switch direction {
+		case types.PositionDirection_LONG:
+			return orders[i].Price.GT(orders[j].Price)
+		case types.PositionDirection_SHORT:
+			return orders[i].Price.LT(orders[j].Price)
+		default:
+			panic("Unknown direction")
+		}
+	})
+	return orders
 }
 
 func (o *BlockOrders) GetLimitOrders(direction types.PositionDirection) []*types.Order {
@@ -164,7 +144,8 @@ func (o *BlockOrders) GetLimitOrders(direction types.PositionDirection) []*types
 }
 
 func (o *BlockOrders) GetTriggeredOrders() []*types.Order {
-	return o.getOrdersByCriteriaMap(
+	var orders []*types.Order
+	orderMap := o.GetOrdersByCriteriaMap(
 		map[types.OrderType]bool{
 			types.OrderType_STOPLOSS:  true,
 			types.OrderType_STOPLIMIT: true,
@@ -173,6 +154,13 @@ func (o *BlockOrders) GetTriggeredOrders() []*types.Order {
 			types.PositionDirection_LONG:  true,
 			types.PositionDirection_SHORT: true,
 		})
+
+	for orderType := range orderMap {
+		for direction := range orderMap[orderType] {
+			orders = append(orders, orderMap[orderType][direction]...)
+		}
+	}
+	return orders
 }
 
 func (o *BlockOrders) getOrdersByCriteria(orderType types.OrderType, direction types.PositionDirection) []*types.Order {
@@ -197,33 +185,20 @@ func (o *BlockOrders) getOrdersByCriteria(orderType types.OrderType, direction t
 	return res
 }
 
-func (o *BlockOrders) getOrdersByCriterias(orderTypes map[types.OrderType]bool, directions map[types.PositionDirection]bool) map[types.PositionDirection][]*types.Order {
-	res := map[types.PositionDirection][]*types.Order{}
-	iterator := sdk.KVStorePrefixIterator(o.orderStore, []byte{})
-
-	defer iterator.Close()
-
-	for ; iterator.Valid(); iterator.Next() {
-		var val types.Order
-		if err := val.Unmarshal(iterator.Value()); err != nil {
-			panic(err)
+func (o *BlockOrders) GetOrdersByCriteriaMap(orderTypes map[types.OrderType]bool, directions map[types.PositionDirection]bool) map[types.OrderType]map[types.PositionDirection][]*types.Order {
+	res := map[types.OrderType]map[types.PositionDirection][]*types.Order{}
+	// Prefill with empty arrays
+	for orderType := range orderTypes {
+		for direction := range directions {
+			if _, ok := res[orderType]; !ok {
+				res[orderType] = map[types.PositionDirection][]*types.Order{}
+			}
+			if _, ok := res[orderType][direction]; !ok {
+				res[orderType][direction] = []*types.Order{}
+			}
 		}
-		if !orderTypes[val.OrderType] || !directions[val.PositionDirection] {
-			continue
-		}
-		if val.Status == types.OrderStatus_FAILED_TO_PLACE {
-			continue
-		}
-		if res[val.PositionDirection] == nil {
-			res[val.PositionDirection] = []*types.Order{}
-		}
-		res[val.PositionDirection] = append(res[val.PositionDirection], &val)
 	}
-	return res
-}
 
-func (o *BlockOrders) getOrdersByCriteriaMap(orderType map[types.OrderType]bool, direction map[types.PositionDirection]bool) []*types.Order {
-	res := []*types.Order{}
 	iterator := sdk.KVStorePrefixIterator(o.orderStore, []byte{})
 
 	defer iterator.Close()
@@ -233,16 +208,17 @@ func (o *BlockOrders) getOrdersByCriteriaMap(orderType map[types.OrderType]bool,
 		if err := val.Unmarshal(iterator.Value()); err != nil {
 			panic(err)
 		}
-		if _, ok := orderType[val.OrderType]; !ok {
+		if _, ok := orderTypes[val.OrderType]; !ok {
 			continue
 		}
-		if _, ok := direction[val.PositionDirection]; !ok {
+		if _, ok := directions[val.PositionDirection]; !ok {
 			continue
 		}
 		if val.Status == types.OrderStatus_FAILED_TO_PLACE {
 			continue
 		}
-		res = append(res, &val)
+		orders := res[val.OrderType][val.PositionDirection]
+		orders = append(orders, &val)
 	}
 	return res
 }

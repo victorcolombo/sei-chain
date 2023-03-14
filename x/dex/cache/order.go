@@ -217,8 +217,7 @@ func (o *BlockOrders) GetOrdersByCriteriaMap(orderTypes map[types.OrderType]bool
 		if val.Status == types.OrderStatus_FAILED_TO_PLACE {
 			continue
 		}
-		orders := res[val.OrderType][val.PositionDirection]
-		orders = append(orders, &val)
+		res[val.OrderType][val.PositionDirection] = append(res[val.OrderType][val.PositionDirection], &val)
 	}
 	return res
 }

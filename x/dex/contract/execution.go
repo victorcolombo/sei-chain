@@ -79,7 +79,7 @@ func ExecutePair(
 
 	exchange.AddOutstandingLimitOrdersToOrderbook(orderbook, limitBuys, limitSells)
 	endAddOrderTime := time.Now().UnixMicro()
-	TotalAddLimitOrderLatency.Add(endAddOrderTime - endCancelOrderTime)
+	TotalAddLimitOrderLatency.Add(endAddOrderTime - endGetLimitOrdersTime)
 	// Fill market orders
 	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
 	endFillMarketTime := time.Now().UnixMicro()

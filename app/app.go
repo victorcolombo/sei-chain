@@ -1531,6 +1531,8 @@ func (app *App) startCompactionRoutine(db dbm.DB) {
 				time.Sleep(10 * time.Second)
 				if err := goleveldb.DB().CompactRange(leveldbutils.Range{Start: nil, Limit: nil}); err != nil {
 					app.Logger().Info(fmt.Sprintf("TONYTEST error compacting %s", err))
+				} else {
+					app.Logger().Info("TONYTEST compaction finished")
 				}
 			}
 		} else {

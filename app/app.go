@@ -13,6 +13,7 @@ import (
 	"time"
 
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"
+	"github.com/cosmos/cosmos-sdk/telemetry"
 
 	"github.com/sei-protocol/sei-chain/aclmapping"
 	aclutils "github.com/sei-protocol/sei-chain/aclmapping/utils"
@@ -944,6 +945,7 @@ func (app *App) ClearOptimisticProcessingInfo() {
 
 func (app *App) ProcessProposalHandler(ctx sdk.Context, req *abci.RequestProcessProposal) (*abci.ResponseProcessProposal, error) {
 	if app.optimisticProcessingInfo == nil {
+		start := time.Now()
 		completionSignal := make(chan struct{}, 1)
 		optimisticProcessingInfo := &OptimisticProcessingInfo{
 			Height:     req.Height,
@@ -963,6 +965,8 @@ func (app *App) ProcessProposalHandler(ctx sdk.Context, req *abci.RequestProcess
 				optimisticProcessingInfo.Events = events
 				optimisticProcessingInfo.TxRes = txResults
 				optimisticProcessingInfo.EndBlockResp = endBlockResp
+				duration := time.Since(start)
+				telemetry.SetGauge(float32(duration), "sei", "process_proposal_process_block")
 				optimisticProcessingInfo.Completion <- struct{}{}
 			}()
 		}
@@ -982,14 +986,20 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 		ctx.Logger().Info(fmt.Sprintf("FinalizeBlock took %dms", duration/time.Millisecond))
 	}()
 
+	var start time.Time
 	if app.optimisticProcessingInfo != nil {
 		<-app.optimisticProcessingInfo.Completion
+		start = time.Now()
 		if !app.optimisticProcessingInfo.Aborted && bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
 			app.SetProcessProposalStateToCommit()
 			appHash := app.WriteStateToCommitAndGetWorkingHash()
 			resp := app.getFinalizeBlockResponse(appHash, app.optimisticProcessingInfo.Events, app.optimisticProcessingInfo.TxRes, app.optimisticProcessingInfo.EndBlockResp)
+			duration := time.Since(start)
+			telemetry.SetGauge(float32(duration), "sei", "finalize_block_op")
 			return &resp, nil
 		}
+	} else {
+		start = time.Now()
 	}
 	ctx.Logger().Info("optimistic processing ineligible")
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)
@@ -997,6 +1007,8 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 	app.SetDeliverStateToCommit()
 	appHash := app.WriteStateToCommitAndGetWorkingHash()
 	resp := app.getFinalizeBlockResponse(appHash, events, txResults, endBlockResp)
+	duration := time.Since(start)
+	telemetry.SetGauge(float32(duration), "sei", "finalize_block_no_op")
 	return &resp, nil
 }
 

@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/cosmos/cosmos-sdk/telemetry"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/sei-protocol/sei-chain/utils/metrics"
 	abci "github.com/tendermint/tendermint/abci/types"
@@ -46,6 +47,10 @@ func (app *App) DeliverTx(ctx sdk.Context, req abci.RequestDeliverTx) abci.Respo
 }
 
 func (app *App) Commit(ctx context.Context) (res *abci.ResponseCommit, err error) {
+	start := time.Now()
+	defer func() {
+		telemetry.SetGauge(float32(time.Since(start)), "sei", "commit_duration")
+	}()
 	if app.tracingInfo.BlockSpan != nil {
 		defer (*app.tracingInfo.BlockSpan).End()
 	}

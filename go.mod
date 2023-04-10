@@ -273,6 +273,6 @@ replace (
 	github.com/cosmos/iavl => github.com/sei-protocol/sei-iavl v0.1.3
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	github.com/keybase/go-keychain => github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4
-	github.com/tendermint/tendermint => github.com/sei-protocol/sei-tendermint v0.2.5-0.20230410143157-80b857254ace
+	github.com/tendermint/tendermint => github.com/sei-protocol/sei-tendermint v0.2.5-0.20230410143433-4e744a18bb17
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2
 )

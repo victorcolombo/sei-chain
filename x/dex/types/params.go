@@ -21,11 +21,11 @@ const (
 	DefaultPriceSnapshotRetention = 24 * 3600  // default to one day
 	DefaultBeginBlockGasLimit     = 200000000  // 200M
 	DefaultEndBlockGasLimit       = 1000000000 // 1B
-	DefaultDefaultGasPerOrder     = 10000
-	DefaultDefaultGasPerCancel    = 5000
+	DefaultDefaultGasPerOrder     = 55000
+	DefaultDefaultGasPerCancel    = 53000
 )
 
-var DefaultSudoCallGasPrice = sdk.NewDecWithPrec(1, 1) // 0.1
+var DefaultSudoCallGasPrice = sdk.NewDecWithPrec(1, 2) // 0.01
 
 var _ paramtypes.ParamSet = (*Params)(nil)
 

@@ -137,7 +137,7 @@ func (c *LoadTestClient) generateMessage(config Config, key cryptotypes.PrivKey,
 
 	switch messageType {
 	case Vortex:
-		msgs = c.generateVortexOrder(config, key)
+		msgs = c.generateVortexOrder(config, key, config.WasmMsgTypes.Vortex.NumOrdersPerTx)
 	case WasmMintNft:
 		contract := config.WasmMsgTypes.MintNftType.ContractAddr
 		// TODO: Potentially just hard code the Funds amount here
@@ -362,6 +362,82 @@ func generateDexOrderPlacements(config Config, key cryptotypes.PrivKey, msgPerTx
 	return orderPlacements
 }
 
+func (c *LoadTestClient) generateVortexOrder(config Config, key cryptotypes.PrivKey, numOrders int64) []sdk.Msg {
+	var msgs []sdk.Msg
+	contract := config.WasmMsgTypes.Vortex.ContractAddr
+
+	// Randomly select Position Direction
+	var direction dextypes.PositionDirection
+	if rand.Float64() < 0.5 {
+		direction = dextypes.PositionDirection_LONG
+	} else {
+		direction = dextypes.PositionDirection_SHORT
+	}
+
+	// Sample Dex Order Type
+	var orderType dextypes.OrderType
+	msgType := config.MsgTypeDistr.SampleDexMsgs()
+
+	switch msgType {
+	case Limit:
+		orderType = dextypes.OrderType_LIMIT
+	case Market:
+		orderType = dextypes.OrderType_MARKET
+	default:
+		panic(fmt.Sprintf("Unknown message type %s\n", msgType))
+	}
+
+	// Generate Amount
+	price := config.PriceDistr.Sample()
+	quantity := config.QuantityDistr.Sample()
+	amount, err := sdk.ParseCoinsNormalized(fmt.Sprintf("%d%s", price.Mul(quantity).Ceil().RoundInt64(), "usei"))
+	if err != nil {
+		panic(err)
+	}
+
+	// If placing short order on vortex, first deposit for buying power
+	if direction == dextypes.PositionDirection_SHORT {
+		amountDeposit, err := sdk.ParseCoinsNormalized(fmt.Sprintf("%d%s", price.Mul(quantity).Ceil().RoundInt64(), "usei"))
+		if err != nil {
+			panic(err)
+		}
+		vortexDeposit := &wasmtypes.MsgExecuteContract{
+			Sender:   sdk.AccAddress(key.PubKey().Address()).String(),
+			Contract: contract,
+			Msg:      wasmtypes.RawContractMessage([]byte("{\"deposit\":{}}")),
+			Funds:    amountDeposit,
+		}
+		msgs = append(msgs, vortexDeposit)
+	}
+
+	var orderPlacements []*dextypes.Order
+
+	for j := 0; j < int(numOrders); j++ {
+		vortexOrder := &dextypes.Order{
+			Account:           sdk.AccAddress(key.PubKey().Address()).String(),
+			ContractAddr:      contract,
+			PositionDirection: direction,
+			Price:             price.Quo(FromMili),
+			Quantity:          quantity.Quo(FromMili),
+			PriceDenom:        "SEI",
+			AssetDenom:        "ATOM",
+			OrderType:         orderType,
+			Data:              VortexData,
+		}
+		orderPlacements = append(orderPlacements, vortexOrder)
+	}
+	vortexOrderMsg := &dextypes.MsgPlaceOrders{
+		Creator:      sdk.AccAddress(key.PubKey().Address()).String(),
+		Orders:       orderPlacements,
+		ContractAddr: contract,
+		Funds:        amount,
+	}
+
+	msgs = append(msgs, vortexOrderMsg)
+
+	return msgs
+}
+
 func generateOracleMessage(key cryptotypes.PrivKey) sdk.Msg {
 	valAddr := sdk.ValAddress(key.PubKey().Address()).String()
 	addr := sdk.AccAddress(key.PubKey().Address()).String()
@@ -409,73 +485,6 @@ func (c *LoadTestClient) generateStakingMsg(delegatorAddr string, chosenValidato
 		}
 	}
 	return msg
-}
-
-func (c *LoadTestClient) generateVortexOrder(config Config, key cryptotypes.PrivKey) []sdk.Msg {
-	var msgs []sdk.Msg
-	contract := config.WasmMsgTypes.Vortex.ContractAddr
-
-	// Randomly select Position Direction
-	var direction dextypes.PositionDirection
-	if rand.Float64() < 0.5 {
-		direction = dextypes.PositionDirection_LONG
-	} else {
-		direction = dextypes.PositionDirection_SHORT
-	}
-
-	// Sample Dex Order Type
-	var orderType dextypes.OrderType
-	msgType := config.MsgTypeDistr.SampleDexMsgs()
-
-	switch msgType {
-	case Limit:
-		orderType = dextypes.OrderType_LIMIT
-	case Market:
-		orderType = dextypes.OrderType_MARKET
-	default:
-		panic(fmt.Sprintf("Unknown message type %s\n", msgType))
-	}
-
-	// Generate Amount
-	price := config.PriceDistr.Sample()
-	quantity := config.QuantityDistr.Sample()
-	amount, err := sdk.ParseCoinsNormalized(fmt.Sprintf("%d%s", price.Mul(quantity).Ceil().RoundInt64(), "usei"))
-	if err != nil {
-		panic(err)
-	}
-
-	// If placing short order on vortex, first deposit for buying power
-	if direction == dextypes.PositionDirection_SHORT {
-		vortexDeposit := &wasmtypes.MsgExecuteContract{
-			Sender:   sdk.AccAddress(key.PubKey().Address()).String(),
-			Contract: contract,
-			Msg:      wasmtypes.RawContractMessage([]byte("{\"deposit\":{}}")),
-			Funds:    amount,
-		}
-		msgs = append(msgs, vortexDeposit)
-	}
-
-	vortexOrder := &dextypes.Order{
-		Account:           sdk.AccAddress(key.PubKey().Address()).String(),
-		ContractAddr:      contract,
-		PositionDirection: direction,
-		Price:             price.Quo(FromMili),
-		Quantity:          quantity.Quo(FromMili),
-		PriceDenom:        "SEI",
-		AssetDenom:        "ATOM",
-		OrderType:         orderType,
-		Data:              VortexData,
-	}
-	vortexOrderMsg := &dextypes.MsgPlaceOrders{
-		Creator:      sdk.AccAddress(key.PubKey().Address()).String(),
-		Orders:       []*dextypes.Order{vortexOrder},
-		ContractAddr: contract,
-		Funds:        amount,
-	}
-
-	msgs = append(msgs, vortexOrderMsg)
-
-	return msgs
 }
 
 func getLastHeight(blockchainEndpoint string) int {

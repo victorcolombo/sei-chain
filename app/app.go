@@ -831,7 +831,7 @@ func New(
 		}
 	}
 
-	if loadLatest {
+	loadVersionHandler := func() error {
 		if err := app.LoadLatestVersion(); err != nil {
 			tmos.Exit(err.Error())
 		}
@@ -840,6 +840,13 @@ func New(
 		if err := app.WasmKeeper.InitializePinnedCodes(ctx); err != nil {
 			tmos.Exit(fmt.Sprintf("failed initialize pinned codes %s", err))
 		}
+		return nil
+	}
+
+	if loadLatest {
+		loadVersionHandler()
+	} else {
+		app.SetLoadVersionHandler(loadVersionHandler)
 	}
 
 	app.ScopedIBCKeeper = scopedIBCKeeper

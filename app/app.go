@@ -344,6 +344,8 @@ type App struct {
 
 	// Stores mapping counter name to counter value
 	metricCounter *map[string]float32
+
+	mounter func()
 }
 
 // New returns a reference to an initialized blockchain app
@@ -777,9 +779,12 @@ func New(
 	app.SetStoreUpgradeHandlers()
 
 	// initialize stores
-	app.MountKVStores(keys)
-	app.MountTransientStores(tkeys)
-	app.MountMemoryStores(memKeys)
+	app.mounter = func() {
+		app.MountKVStores(keys)
+		app.MountTransientStores(tkeys)
+		app.MountMemoryStores(memKeys)
+	}
+	app.mounter()
 
 	// initialize BaseApp
 	app.SetInitChainer(app.InitChainer)

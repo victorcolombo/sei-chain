@@ -25,4 +25,5 @@ do
 	echo "Backed up snapshot for height "$HALT_HEIGHT" which took "$elapsed" seconds"
     HALT_HEIGHT=$(expr $HALT_HEIGHT + $SNAPSHOT_INTERVAL)
     cd $HOME
+    sleep 600
 done

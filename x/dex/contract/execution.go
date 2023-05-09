@@ -49,26 +49,39 @@ func ExecutePair(
 	pair types.Pair,
 	dexkeeper *keeper.Keeper,
 	orderbook *types.OrderBook,
+	tracer *otrace.Tracer,
+	tracerCtx context.Context,
 ) []*types.SettlementEntry {
+	tracerCtx, span := (*tracer).Start(tracerCtx, "ExecutePair")
+	defer span.End()
 	typedContractAddr := types.ContractAddress(contractAddr)
 	typedPairStr := types.GetPairString(&pair)
 
 	// First cancel orders
+	span.AddEvent("cancelForPair")
 	cancelForPair(ctx, dexkeeper, typedContractAddr, pair)
 	// Add all limit orders to the orderbook
+	span.AddEvent("getMemState")
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
+	span.AddEvent("GetLimitOrders_LONG")
 	limitBuys := orders.GetLimitOrders(types.PositionDirection_LONG)
+	span.AddEvent("GetLimitOrders_SHORT")
 	limitSells := orders.GetLimitOrders(types.PositionDirection_SHORT)
+	span.AddEvent("exchange.AddOutstandingLimitOrdersToOrderbook")
 	exchange.AddOutstandingLimitOrdersToOrderbook(ctx, dexkeeper, limitBuys, limitSells)
 	// Fill market orders
+	span.AddEvent("matchMarketOrderForPair")
 	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
 	// Fill limit orders
+	span.AddEvent("MatchLimitOrders")
 	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
+	span.AddEvent("marketOrderOutcome.Merge")
 	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
+	span.AddEvent("UpdateTriggeredOrderForPair.Merge")
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
-
+	span.AddEvent("SetPriceStateFromExecutionOutcome")
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
-
+	span.AddEvent("done")
 	return totalOutcome.Settlements
 }
 
@@ -222,7 +235,7 @@ func ExecutePairsInParallel(
 				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
 			}
 			pairSpan.AddEvent("ExecutePair")
-			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook)
+			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook, tracer, tracerCtx)
 			pairSpan.AddEvent("GetOrderIDToSettledQuantities")
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			pairSpan.AddEvent("PrepareCancelUnfulfilledMarketOrders")

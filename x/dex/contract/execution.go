@@ -235,15 +235,22 @@ func HandleExecutionForContract(
 	orderBooks *datastructures.TypedSyncMap[types.PairString, *types.OrderBook],
 	tracer *otrace.Tracer,
 ) ([]*types.SettlementEntry, error) {
+	_, span := (*tracer).Start(ctx, "HandleExecutionForContract")
+	defer span.End()
 	executionStart := time.Now()
 	defer telemetry.ModuleMeasureSince(types.ModuleName, executionStart, "handle_execution_for_contract_ms")
 	contractAddr := contract.ContractAddr
 
 	// Call contract hooks so that contracts can do internal bookkeeping
+	span.AddEvent("HandleExecutionForContract: CallPreExecutionHooks start")
 	if err := CallPreExecutionHooks(ctx, sdkCtx, contractAddr, dexkeeper, registeredPairs, tracer); err != nil {
 		return []*types.SettlementEntry{}, err
 	}
+	span.AddEvent("HandleExecutionForContract: CallPreExecutionHooks end")
+
+	span.AddEvent("HandleExecutionForContract: ExecutePairsInParallel Start")
 	settlements := ExecutePairsInParallel(sdkCtx, contractAddr, dexkeeper, registeredPairs, orderBooks)
+	span.AddEvent("HandleExecutionForContract: ExecutePairsInParallel end")
 	defer EmitSettlementMetrics(settlements)
 
 	return settlements, nil

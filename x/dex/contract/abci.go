@@ -233,10 +233,18 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 		return
 	}
 	parentSdkContext := sdkContext
+	span.AddEvent("orderMatchingRunnable: decorateContextForContract start")
 	sdkContext = decorateContextForContract(sdkContext, contractInfo, keeper.GetParams(sdkContext).EndBlockGasLimit)
+	span.AddEvent("orderMatchingRunnable: decorateContextForContract end")
 	sdkContext.Logger().Debug(fmt.Sprintf("End block for %s with balance of %d", contractInfo.ContractAddr, contractInfo.RentBalance))
+
+	span.AddEvent("orderMatchingRunnable: env.registeredPairs.Load(contractInfo.ContractAddr) start")
 	pairs, pairFound := env.registeredPairs.Load(contractInfo.ContractAddr)
+	span.AddEvent("orderMatchingRunnable: env.registeredPairs.Load(contractInfo.ContractAddr) end")
+
+	span.AddEvent("orderMatchingRunnable: env.orderBooks.Load(contractInfo.ContractAddr) start")
 	orderBooks, found := env.orderBooks.Load(contractInfo.ContractAddr)
+	span.AddEvent("orderMatchingRunnable: env.orderBooks.Load(contractInfo.ContractAddr) end")
 
 	if !pairFound || !found {
 		sdkContext.Logger().Error(fmt.Sprintf("No pair or order book for %s", contractInfo.ContractAddr))
@@ -245,13 +253,17 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 		sdkContext.Logger().Error(fmt.Sprintf("Error for EndBlock of %s", contractInfo.ContractAddr))
 		env.addError(contractInfo.ContractAddr, err)
 	} else {
+		span.AddEvent("orderMatchingRunnable: env.settlementsByContract.Store(contractInfo.ContractAddr, settlements) start")
 		env.settlementsByContract.Store(contractInfo.ContractAddr, settlements)
+		span.AddEvent("orderMatchingRunnable: env.settlementsByContract.Store(contractInfo.ContractAddr, settlements) start")
 	}
 
+	span.AddEvent("orderMatchingRunnable: storing events start")
 	// ordering of events doesn't matter since events aren't part of consensus
 	env.eventManagerMutex.Lock()
 	defer env.eventManagerMutex.Unlock()
 	parentSdkContext.EventManager().EmitEvents(sdkContext.EventManager().Events())
+	span.AddEvent("orderMatchingRunnable: storing events end")
 }
 
 func filterNewValidContracts(ctx sdk.Context, env *environment) []types.ContractInfoV2 {

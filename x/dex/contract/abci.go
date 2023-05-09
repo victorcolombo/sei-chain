@@ -214,7 +214,7 @@ func handleUnfulfilledMarketOrders(ctx context.Context, sdkCtx sdk.Context, env 
 }
 
 func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *environment, keeper *keeper.Keeper, contractInfo types.ContractInfoV2, tracer *otrace.Tracer) {
-	_, span := (*tracer).Start(ctx, "orderMatchingRunnable")
+	tracerCtx, span := (*tracer).Start(ctx, "orderMatchingRunnable")
 	defer span.End()
 	defer telemetry.MeasureSince(time.Now(), "dex", "order_matching_runnable")
 	defer func() {
@@ -249,7 +249,7 @@ func orderMatchingRunnable(ctx context.Context, sdkContext sdk.Context, env *env
 	if !pairFound || !found {
 		sdkContext.Logger().Error(fmt.Sprintf("No pair or order book for %s", contractInfo.ContractAddr))
 		env.addError(contractInfo.ContractAddr, errors.New("no pair found (internal error)"))
-	} else if settlements, err := HandleExecutionForContract(ctx, sdkContext, contractInfo, keeper, pairs, orderBooks, tracer); err != nil {
+	} else if settlements, err := HandleExecutionForContract(tracerCtx, sdkContext, contractInfo, keeper, pairs, orderBooks, tracer); err != nil {
 		sdkContext.Logger().Error(fmt.Sprintf("Error for EndBlock of %s", contractInfo.ContractAddr))
 		env.addError(contractInfo.ContractAddr, err)
 	} else {

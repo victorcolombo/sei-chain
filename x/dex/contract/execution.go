@@ -192,7 +192,7 @@ func ExecutePairsInParallel(
 	tracer *otrace.Tracer,
 	ctx context.Context,
 ) []*types.SettlementEntry {
-	_, span := (*tracer).Start(ctx, "ExecutePairsInParallel")
+	tracerCtx, span := (*tracer).Start(ctx, "ExecutePairsInParallel")
 	defer span.End()
 
 	typedContractAddr := types.ContractAddress(contractAddr)
@@ -209,7 +209,7 @@ func ExecutePairsInParallel(
 		pair := pair
 		pairCtx := sdkCtx.WithMultiStore(multi.NewStore(sdkCtx.MultiStore(), GetPerPairWhitelistMap(contractAddr, pair))).WithEventManager(sdk.NewEventManager())
 		go func() {
-			_, pairSpan := (*tracer).Start(ctx, "execeute pair")
+			_, pairSpan := (*tracer).Start(tracerCtx, "execeute pair")
 			defer pairSpan.End()
 
 			defer wg.Done()
@@ -257,7 +257,7 @@ func HandleExecutionForContract(
 	orderBooks *datastructures.TypedSyncMap[types.PairString, *types.OrderBook],
 	tracer *otrace.Tracer,
 ) ([]*types.SettlementEntry, error) {
-	_, span := (*tracer).Start(ctx, "HandleExecutionForContract")
+	tracerCtx, span := (*tracer).Start(ctx, "HandleExecutionForContract")
 	defer span.End()
 	executionStart := time.Now()
 	defer telemetry.ModuleMeasureSince(types.ModuleName, executionStart, "handle_execution_for_contract_ms")
@@ -277,7 +277,7 @@ func HandleExecutionForContract(
 		registeredPairs,
 		orderBooks,
 		tracer,
-		ctx,
+		tracerCtx,
 	)
 	span.AddEvent("HandleExecutionForContract: ExecutePairsInParallel end")
 	defer EmitSettlementMetrics(settlements)

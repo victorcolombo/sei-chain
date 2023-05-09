@@ -183,7 +183,18 @@ func GetOrderIDToSettledQuantities(settlements []*types.SettlementEntry) map[uin
 	return res
 }
 
-func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *keeper.Keeper, registeredPairs []types.Pair, orderBooks *datastructures.TypedSyncMap[types.PairString, *types.OrderBook]) []*types.SettlementEntry {
+func ExecutePairsInParallel(
+	sdkCtx sdk.Context,
+	contractAddr string,
+	dexkeeper *keeper.Keeper,
+	registeredPairs []types.Pair,
+	orderBooks *datastructures.TypedSyncMap[types.PairString, *types.OrderBook],
+	tracer *otrace.Tracer,
+	ctx context.Context,
+) []*types.SettlementEntry {
+	_, span := (*tracer).Start(ctx, "ExecutePairsInParallel")
+	defer span.End()
+
 	typedContractAddr := types.ContractAddress(contractAddr)
 	orderResults := []*types.Order{}
 	cancelResults := []*types.Cancellation{}
@@ -196,32 +207,43 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 		wg.Add(1)
 
 		pair := pair
-		pairCtx := ctx.WithMultiStore(multi.NewStore(ctx.MultiStore(), GetPerPairWhitelistMap(contractAddr, pair))).WithEventManager(sdk.NewEventManager())
+		pairCtx := sdkCtx.WithMultiStore(multi.NewStore(sdkCtx.MultiStore(), GetPerPairWhitelistMap(contractAddr, pair))).WithEventManager(sdk.NewEventManager())
 		go func() {
+			_, pairSpan := (*tracer).Start(ctx, "execeute pair")
+			defer pairSpan.End()
+
 			defer wg.Done()
 			pairCopy := pair
 			pairStr := types.GetPairString(&pairCopy)
-			MoveTriggeredOrderForPair(ctx, typedContractAddr, pairStr, dexkeeper)
+			pairSpan.AddEvent("MoveTriggeredOrderForPair")
+			MoveTriggeredOrderForPair(sdkCtx, typedContractAddr, pairStr, dexkeeper)
 			orderbook, found := orderBooks.Load(pairStr)
 			if !found {
 				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
 			}
+			pairSpan.AddEvent("ExecutePair")
 			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook)
+			pairSpan.AddEvent("GetOrderIDToSettledQuantities")
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
+			pairSpan.AddEvent("PrepareCancelUnfulfilledMarketOrders")
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)
 
+			pairSpan.AddEvent("Waiting for lock")
 			mu.Lock()
 			defer mu.Unlock()
-			orders, cancels := GetMatchResults(ctx, typedContractAddr, types.GetPairString(&pairCopy))
+			pairSpan.AddEvent("Get Match Results")
+			orders, cancels := GetMatchResults(sdkCtx, typedContractAddr, types.GetPairString(&pairCopy))
+			pairSpan.AddEvent("Finish")
+			defer pairSpan.AddEvent("Finish")
 			orderResults = append(orderResults, orders...)
 			cancelResults = append(cancelResults, cancels...)
 			settlements = append(settlements, pairSettlements...)
 			// ordering of events doesn't matter since events aren't part of consensus
-			ctx.EventManager().EmitEvents(pairCtx.EventManager().Events())
+			sdkCtx.EventManager().EmitEvents(pairCtx.EventManager().Events())
 		}()
 	}
 	wg.Wait()
-	dexkeeper.SetMatchResult(ctx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
+	dexkeeper.SetMatchResult(sdkCtx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
 
 	return settlements
 }
@@ -248,8 +270,15 @@ func HandleExecutionForContract(
 	}
 	span.AddEvent("HandleExecutionForContract: CallPreExecutionHooks end")
 
-	span.AddEvent("HandleExecutionForContract: ExecutePairsInParallel Start")
-	settlements := ExecutePairsInParallel(sdkCtx, contractAddr, dexkeeper, registeredPairs, orderBooks)
+	settlements := ExecutePairsInParallel(
+		sdkCtx,
+		contractAddr,
+		dexkeeper,
+		registeredPairs,
+		orderBooks,
+		tracer,
+		ctx,
+	)
 	span.AddEvent("HandleExecutionForContract: ExecutePairsInParallel end")
 	defer EmitSettlementMetrics(settlements)
 

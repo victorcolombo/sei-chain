@@ -57,6 +57,7 @@ func ExecutePair(
 	cancelStart := time.Now()
 	cancelForPair(ctx, dexkeeper, typedContractAddr, pair)
 	totalCancelLatency := time.Since(cancelStart).Microseconds()
+
 	// Add all limit orders to the orderbook
 	addStart := time.Now()
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
@@ -91,14 +92,9 @@ func cancelForPair(
 	contractAddress types.ContractAddress,
 	pair types.Pair,
 ) {
-	startTime := time.Now()
 	cancels := dexutils.GetMemState(ctx.Context()).GetBlockCancels(ctx, contractAddress, types.GetPairString(&pair))
 	cancelOrders := cancels.Get()
-	endGetCancelTime := time.Now()
-	getLatency := time.Since(startTime).Microseconds()
 	exchange.CancelOrders(ctx, keeper, contractAddress, pair, cancelOrders)
-	cancelOrderLatency := time.Since(endGetCancelTime).Microseconds()
-	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Get cancel orders latency is %d, total %d cancel orders, execute latency is %d", getLatency, len(cancelOrders), cancelOrderLatency))
 }
 
 func matchMarketOrderForPair(

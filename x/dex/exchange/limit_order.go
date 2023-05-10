@@ -1,6 +1,7 @@
 package exchange
 
 import (
+	"fmt"
 	"math"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -87,6 +88,8 @@ func AddOutstandingLimitOrdersToOrderbook(
 	limitBuys []*types.Order,
 	limitSells []*types.Order,
 ) {
+	ctx.Logger().Info(fmt.Sprintf("CONTRACT-DDOS-2-DEBUG AddOutstandingLimitOrdersToOrderbook num limitBuys %d\n", len(limitBuys)))
+	ctx.Logger().Info(fmt.Sprintf("CONTRACT-DDOS-2-DEBUG AddOutstandingLimitOrdersToOrderbook num limitSells %d\n", len(limitSells)))
 	for _, order := range limitBuys {
 		addOrderToOrderBookEntry(ctx, keeper, order)
 	}

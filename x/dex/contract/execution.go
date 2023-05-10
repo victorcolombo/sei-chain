@@ -59,7 +59,7 @@ func ExecutePair(
 
 	// First cancel orders
 	span.AddEvent("cancelForPair")
-	cancelForPair(ctx, dexkeeper, typedContractAddr, pair)
+	cancelForPair(ctx, dexkeeper, typedContractAddr, pair, tracer, tracerCtx)
 	// Add all limit orders to the orderbook
 	span.AddEvent("getMemState")
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
@@ -71,7 +71,7 @@ func ExecutePair(
 	exchange.AddOutstandingLimitOrdersToOrderbook(ctx, dexkeeper, limitBuys, limitSells)
 	// Fill market orders
 	span.AddEvent("matchMarketOrderForPair")
-	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
+	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook, tracer, tracerCtx)
 	// Fill limit orders
 	span.AddEvent("MatchLimitOrders")
 	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
@@ -90,9 +90,16 @@ func cancelForPair(
 	keeper *keeper.Keeper,
 	contractAddress types.ContractAddress,
 	pair types.Pair,
+	tracer *otrace.Tracer,
+	tracerCtx context.Context,
 ) {
+	tracerCtx, span := (*tracer).Start(tracerCtx, "cancelForPair")
+	defer span.End()
+	span.AddEvent("cancelForPair")
 	cancels := dexutils.GetMemState(ctx.Context()).GetBlockCancels(ctx, contractAddress, types.GetPairString(&pair))
-	exchange.CancelOrders(ctx, keeper, contractAddress, pair, cancels.Get())
+	span.AddEvent("GetMemState")
+	exchange.CancelOrders(ctx, keeper, contractAddress, pair, cancels.Get(), tracer, tracerCtx)
+	span.AddEvent("CancelOrders")
 }
 
 func matchMarketOrderForPair(
@@ -100,10 +107,18 @@ func matchMarketOrderForPair(
 	typedContractAddr types.ContractAddress,
 	typedPairStr types.PairString,
 	orderbook *types.OrderBook,
+	tracer *otrace.Tracer,
+	tracerCtx context.Context,
 ) exchange.ExecutionOutcome {
+	tracerCtx, span := (*tracer).Start(tracerCtx, "matchMarketOrderForPair")
+	defer span.End()
+	span.AddEvent("matchMarketOrderForPair")
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
 	marketBuys := orders.GetSortedMarketOrders(types.PositionDirection_LONG)
 	marketSells := orders.GetSortedMarketOrders(types.PositionDirection_SHORT)
+	ctx.Logger().Info(fmt.Sprintf("CONTRACT-DDOS-2-DEBUG matchMarketOrderForPair, contract %s, pair %s, num marketBuys %d\n", typedContractAddr, typedPairStr, len(marketBuys)))
+	ctx.Logger().Info(fmt.Sprintf("CONTRACT-DDOS-2-DEBUG matchMarketOrderForPair, contract %s, pair %s, num marketSells %d\n", typedContractAddr, typedPairStr, len(marketSells)))
+	span.AddEvent("finished get sorted market buys, market sells")
 	marketBuyOutcome := exchange.MatchMarketOrders(
 		ctx,
 		marketBuys,
@@ -118,7 +133,10 @@ func matchMarketOrderForPair(
 		types.PositionDirection_SHORT,
 		orders,
 	)
-	return marketBuyOutcome.Merge(&marketSellOutcome)
+	span.AddEvent("finished MatchMarket Orders")
+	mergedMarketBuyOutcome := marketBuyOutcome.Merge(&marketSellOutcome)
+	span.AddEvent("finished mergedMarketBuyOutcome")
+	return mergedMarketBuyOutcome
 }
 
 func MoveTriggeredOrderForPair(

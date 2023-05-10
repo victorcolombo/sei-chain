@@ -82,9 +82,10 @@ func cancelForPair(
 	cancels := dexutils.GetMemState(ctx.Context()).GetBlockCancels(ctx, contractAddress, types.GetPairString(&pair))
 	endGetCancelTime := time.Now()
 	getLatency := time.Since(startTime).Microseconds()
-	exchange.CancelOrders(ctx, keeper, contractAddress, pair, cancels.Get())
+	cancelOrders := cancels.Get()
+	exchange.CancelOrders(ctx, keeper, contractAddress, pair, cancelOrders)
 	cancelOrderLatency := time.Since(endGetCancelTime).Microseconds()
-	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Get cancel orders latency is %d, total %d cancel orders, total latency is %d", getLatency, len(cancels.Get()), cancelOrderLatency))
+	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Get cancel orders latency is %d, total %d cancel orders, total latency is %d", getLatency, len(cancelOrders), cancelOrderLatency))
 }
 
 func matchMarketOrderForPair(

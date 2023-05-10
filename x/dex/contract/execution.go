@@ -81,7 +81,7 @@ func ExecutePair(
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
 	totalUpdate := time.Since(updateStart).Microseconds()
-	ctx.Logger().Info("[DEBUG] Cancel latency %d, add order latency %d, fill market latency %d, fill limit latency %d, update latency %d", totalCancelLatency, totalAddOrdersLatency, totalFillMarketLatency, totalFillLimit, totalUpdate)
+	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Cancel latency %d, add order latency %d, fill market latency %d, fill limit latency %d, update latency %d", totalCancelLatency, totalAddOrdersLatency, totalFillMarketLatency, totalFillLimit, totalUpdate))
 	return totalOutcome.Settlements
 }
 

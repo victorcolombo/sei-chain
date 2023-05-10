@@ -81,7 +81,7 @@ func ExecutePair(
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
 	totalUpdate := time.Since(updateStart).Microseconds()
-	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Cancel latency %d, add order latency %d, fill market latency %d, fill limit latency %d, update latency %d", totalCancelLatency, totalAddOrdersLatency, totalFillMarketLatency, totalFillLimit, totalUpdate))
+	ctx.Logger().Info(fmt.Sprintf("[DEBUG] %s: Cancel latency %d, add order latency %d, fill market latency %d, fill limit latency %d, update latency %d", contractAddr, totalCancelLatency, totalAddOrdersLatency, totalFillMarketLatency, totalFillLimit, totalUpdate))
 	return totalOutcome.Settlements
 }
 
@@ -211,7 +211,6 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 	mu := sync.Mutex{}
 	wg := sync.WaitGroup{}
 
-	startTime := time.Now()
 	for _, pair := range registeredPairs {
 		wg.Add(1)
 
@@ -226,7 +225,10 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 			if !found {
 				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
 			}
+			startTime := time.Now()
 			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook)
+			ctx.Logger().Info(fmt.Sprintf("[DEBUG] %s: Total execute pair latency %d for %d pairs", contractAddr, time.Since(startTime).Microseconds(), len(registeredPairs)))
+
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)
 
@@ -242,7 +244,6 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 	}
 	wg.Wait()
 	dexkeeper.SetMatchResult(ctx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
-	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Total execute pair latency %d for %d pairs", time.Since(startTime).Microseconds(), len(registeredPairs)))
 	return settlements
 }
 

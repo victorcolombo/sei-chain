@@ -267,7 +267,7 @@ func (am AppModule) BeginBlock(ctx sdk.Context, _ abci.RequestBeginBlock) {
 	// only write if all contracts have been processed
 	cachedStore.Write()
 	cacheLatency := time.Since(completeForLoopTime).Microseconds()
-	ctx.Logger().Info(fmt.Sprintf("Get contract latency %d, for loop latency %d, cache latency %d", getContractLatency, forLoopLatency, cacheLatency))
+	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Get contract latency %d, for loop latency %d, cache latency %d", getContractLatency, forLoopLatency, cacheLatency))
 }
 
 func (am AppModule) beginBlockForContract(ctx sdk.Context, contract types.ContractInfoV2, gasLimit uint64) {

@@ -207,9 +207,7 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 			if !found {
 				panic(fmt.Sprintf("Orderbook not found for %s", pairStr))
 			}
-			executePairStart := time.Now()
 			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook)
-			ctx.Logger().Info(fmt.Sprintf("Execute pair latency %d", time.Since(executePairStart).Microseconds()))
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)
 
@@ -225,7 +223,7 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 	}
 	wg.Wait()
 	dexkeeper.SetMatchResult(ctx, contractAddr, types.NewMatchResult(orderResults, cancelResults, settlements))
-	ctx.Logger().Info(fmt.Sprintf("Total execute pair latency %d", time.Since(startTime).Microseconds()))
+	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Total execute pair latency %d for %d pairs", time.Since(startTime).Microseconds(), len(registeredPairs)))
 	return settlements
 }
 

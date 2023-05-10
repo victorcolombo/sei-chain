@@ -57,6 +57,7 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 
 	handleDeposits(spanCtx, cachedCtx, env, keeper, tracer)
 
+	runnableStartTime := time.Now()
 	runner := NewParallelRunner(func(contract types.ContractInfoV2) {
 		orderMatchingRunnable(spanCtx, cachedCtx, env, keeper, contract, tracer)
 	}, validContractsInfo, cachedCtx)
@@ -65,6 +66,10 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 		runner.Run()
 		return struct{}{}, nil
 	}, LogRunnerRunAfter, "runner run")
+
+	runnableLatency := time.Since(runnableStartTime).Microseconds()
+	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Total orderMatchRunnable latency is %d", runnableLatency))
+
 	if err != nil {
 		// this should never happen
 		panic(err)

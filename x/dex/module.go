@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"sync"
 	"time"
 
 	"github.com/CosmWasm/wasmd/x/wasm"
@@ -259,9 +260,15 @@ func (am AppModule) BeginBlock(ctx sdk.Context, _ abci.RequestBeginBlock) {
 	allContracts := am.getAllContractInfo(ctx)
 	completeGetAllContractTime := time.Now()
 	getContractLatency := time.Since(startTime).Microseconds()
-	for _, contract := range allContracts {
-		am.beginBlockForContract(cachedCtx, contract, gasLimit)
+	wg := sync.WaitGroup{}
+	for _, nextContract := range allContracts {
+		wg.Add(1)
+		go func(contract types.ContractInfoV2) {
+			am.beginBlockForContract(cachedCtx, contract, gasLimit)
+			wg.Done()
+		}(nextContract)
 	}
+	wg.Wait()
 	forLoopLatency := time.Since(completeGetAllContractTime).Microseconds()
 	// only write if all contracts have been processed
 	cachedStore.Write()
@@ -280,15 +287,10 @@ func (am AppModule) beginBlockForContract(ctx sdk.Context, contract types.Contra
 		currentTimestamp := uint64(ctx.BlockTime().Unix())
 		ctx.Logger().Debug(fmt.Sprintf("Removing stale prices for ts %d", currentTimestamp))
 		priceRetention := am.keeper.GetParams(ctx).PriceSnapshotRetention
-		startTime := time.Now()
 		registeredPairs := am.keeper.GetAllRegisteredPairs(ctx, contractAddr)
-		endGetAllRegisterPairTime := time.Now()
-		getAllRegisterPairLatency := time.Since(startTime).Microseconds()
 		for _, pair := range registeredPairs {
 			am.keeper.DeletePriceStateBefore(ctx, contractAddr, currentTimestamp-priceRetention, pair)
 		}
-		deleteLatency := time.Since(endGetAllRegisterPairTime).Microseconds()
-		ctx.Logger().Info(fmt.Sprintf("[DEBUG] GetAllRegisteredPairs latency %d, total DeletePriceStateBefore latency %d", getAllRegisterPairLatency, deleteLatency))
 	}
 }
 

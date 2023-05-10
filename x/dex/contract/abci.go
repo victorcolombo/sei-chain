@@ -68,8 +68,7 @@ func EndBlockerAtomic(ctx sdk.Context, keeper *keeper.Keeper, validContractsInfo
 	}, LogRunnerRunAfter, "runner run")
 
 	runnableLatency := time.Since(runnableStartTime).Microseconds()
-	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Total orderMatchRunnable latency is %d, total cancel %d, total add orders %d, total fill market %d, total fill limit %d, total update %d ",
-		runnableLatency, totalCancel.Load(), totalAddOrders.Load(), totalFillMarket.Load(), totalFillLimit.Load(), totalUpdate.Load()))
+	ctx.Logger().Info(fmt.Sprintf("Total orderMatchRunnable latency is %d", runnableLatency))
 
 	if err != nil {
 		// this should never happen

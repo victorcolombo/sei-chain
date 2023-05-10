@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"sync"
-	"sync/atomic"
 	"time"
 
 	otrace "go.opentelemetry.io/otel/trace"
@@ -44,12 +43,6 @@ func CallPreExecutionHooks(
 	return nil
 }
 
-var totalCancel = atomic.Int64{}
-var totalAddOrders = atomic.Int64{}
-var totalFillMarket = atomic.Int64{}
-var totalFillLimit = atomic.Int64{}
-var totalUpdate = atomic.Int64{}
-
 func ExecutePair(
 	ctx sdk.Context,
 	contractAddr string,
@@ -63,31 +56,32 @@ func ExecutePair(
 	// First cancel orders
 	cancelStart := time.Now()
 	cancelForPair(ctx, dexkeeper, typedContractAddr, pair)
-	totalCancel.Add(time.Since(cancelStart).Microseconds())
+	totalCancelLatency := time.Since(cancelStart).Microseconds()
 	// Add all limit orders to the orderbook
 	addStart := time.Now()
 	orders := dexutils.GetMemState(ctx.Context()).GetBlockOrders(ctx, typedContractAddr, typedPairStr)
 	limitBuys := orders.GetLimitOrders(types.PositionDirection_LONG)
 	limitSells := orders.GetLimitOrders(types.PositionDirection_SHORT)
 	exchange.AddOutstandingLimitOrdersToOrderbook(ctx, dexkeeper, limitBuys, limitSells)
-	totalAddOrders.Add(time.Since(addStart).Microseconds())
+	totalAddOrdersLatency := time.Since(addStart).Microseconds()
 
 	// Fill market orders
 	fillMarketStart := time.Now()
 	marketOrderOutcome := matchMarketOrderForPair(ctx, typedContractAddr, typedPairStr, orderbook)
-	totalFillMarket.Add(time.Since(fillMarketStart).Microseconds())
+	totalFillMarketLatency := time.Since(fillMarketStart).Microseconds()
 
 	// Fill limit orders
 	fillLimitStart := time.Now()
 	limitOrderOutcome := exchange.MatchLimitOrders(ctx, orderbook)
-	totalFillLimit.Add(time.Since(fillLimitStart).Microseconds())
+	totalFillLimit := time.Since(fillLimitStart).Microseconds()
 
 	// Update result
 	updateStart := time.Now()
 	totalOutcome := marketOrderOutcome.Merge(&limitOrderOutcome)
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
-	totalUpdate.Add(time.Since(updateStart).Microseconds())
+	totalUpdate := time.Since(updateStart).Microseconds()
+	ctx.Logger().Info("[DEBUG] Cancel latency %d, add order latency %d, fill market latency %d, fill limit latency %d, update latency %d", totalCancelLatency, totalAddOrdersLatency, totalFillMarketLatency, totalFillLimit, totalUpdate)
 	return totalOutcome.Settlements
 }
 

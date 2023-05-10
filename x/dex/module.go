@@ -248,6 +248,7 @@ func (am AppModule) BeginBlock(ctx sdk.Context, _ abci.RequestBeginBlock) {
 		defer span.End()
 	}()
 
+	startTime := time.Now()
 	dexutils.GetMemState(ctx.Context()).Clear(ctx)
 	isNewEpoch, currentEpoch := am.keeper.IsNewEpoch(ctx)
 	if isNewEpoch {
@@ -255,11 +256,18 @@ func (am AppModule) BeginBlock(ctx sdk.Context, _ abci.RequestBeginBlock) {
 	}
 	cachedCtx, cachedStore := store.GetCachedContext(ctx)
 	gasLimit := am.keeper.GetParams(ctx).BeginBlockGasLimit
-	for _, contract := range am.getAllContractInfo(ctx) {
+	allContracts := am.getAllContractInfo(ctx)
+	completeGetAllContractTime := time.Now()
+	getContractLatency := time.Since(startTime).Microseconds()
+	for _, contract := range allContracts {
 		am.beginBlockForContract(cachedCtx, contract, gasLimit)
 	}
+	completeForLoopTime := time.Now()
+	forLoopLatency := time.Since(completeGetAllContractTime).Microseconds()
 	// only write if all contracts have been processed
 	cachedStore.Write()
+	cacheLatency := time.Since(completeForLoopTime).Microseconds()
+	ctx.Logger().Info(fmt.Sprintf("Get contract latency %d, for loop latency %d, cache latency %d", getContractLatency, forLoopLatency, cacheLatency))
 }
 
 func (am AppModule) beginBlockForContract(ctx sdk.Context, contract types.ContractInfoV2, gasLimit uint64) {

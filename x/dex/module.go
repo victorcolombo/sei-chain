@@ -21,7 +21,6 @@ import (
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
-	seisync "github.com/sei-protocol/sei-chain/sync"
 	"github.com/sei-protocol/sei-chain/utils"
 	"github.com/sei-protocol/sei-chain/utils/datastructures"
 	"github.com/sei-protocol/sei-chain/utils/tracing"
@@ -256,32 +255,36 @@ func (am AppModule) BeginBlock(ctx sdk.Context, _ abci.RequestBeginBlock) {
 		am.keeper.SetEpoch(ctx, currentEpoch)
 	}
 	cachedCtx, cachedStore := store.GetCachedContext(ctx)
-	gasLimit := am.keeper.GetParams(ctx).BeginBlockGasLimit
+	//gasLimit := am.keeper.GetParams(ctx).BeginBlockGasLimit
 	allContracts := am.getAllContractInfo(ctx)
 	completeGetAllContractTime := time.Now()
 	getContractLatency := time.Since(startTime).Microseconds()
+	keysToDelete := make(map[string][]*types.StoreAndKey, len(allContracts))
 	wg := sync.WaitGroup{}
-	for _, nextContract := range allContracts {
+	for _, contract := range allContracts {
 		wg.Add(1)
 		go func(contract types.ContractInfoV2) {
-			am.beginBlockForContract(cachedCtx, contract, gasLimit)
-			wg.Done()
-		}(nextContract)
+			defer wg.Done()
+			am.beginBlockForContract(cachedCtx, contract, keysToDelete)
+		}(contract)
 	}
 	wg.Wait()
+	for _, storeAndKeys := range keysToDelete {
+		for _, storeAndKey := range storeAndKeys {
+			storeAndKey.Store.Delete(storeAndKey.Key)
+		}
+	}
 	forLoopLatency := time.Since(completeGetAllContractTime).Microseconds()
 	// only write if all contracts have been processed
 	cachedStore.Write()
 	ctx.Logger().Info(fmt.Sprintf("[DEBUG] Get contract latency %d, for loop latency %d", getContractLatency, forLoopLatency))
 }
 
-func (am AppModule) beginBlockForContract(ctx sdk.Context, contract types.ContractInfoV2, gasLimit uint64) {
+func (am AppModule) beginBlockForContract(ctx sdk.Context, contract types.ContractInfoV2, keysToDelete map[string][]*types.StoreAndKey) {
 	_, span := am.tracingInfo.Start("DexBeginBlock")
 	contractAddr := contract.ContractAddr
 	span.SetAttributes(attribute.String("contract", contractAddr))
 	defer span.End()
-
-	ctx = ctx.WithGasMeter(seisync.NewGasWrapper(dexutils.GetGasMeterForLimit(gasLimit)))
 
 	if contract.NeedOrderMatching {
 		currentTimestamp := uint64(ctx.BlockTime().Unix())
@@ -289,7 +292,7 @@ func (am AppModule) beginBlockForContract(ctx sdk.Context, contract types.Contra
 		priceRetention := am.keeper.GetParams(ctx).PriceSnapshotRetention
 		registeredPairs := am.keeper.GetAllRegisteredPairs(ctx, contractAddr)
 		for _, pair := range registeredPairs {
-			am.keeper.DeletePriceStateBefore(ctx, contractAddr, currentTimestamp-priceRetention, pair)
+			am.keeper.CollectPriceStateKeysToDelete(ctx, contractAddr, currentTimestamp-priceRetention, pair, keysToDelete)
 		}
 	}
 }

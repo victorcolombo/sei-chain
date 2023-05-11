@@ -21,6 +21,19 @@ func (k Keeper) DeletePriceStateBefore(ctx sdk.Context, contractAddr string, tim
 	}
 }
 
+func (k Keeper) CollectPriceStateKeysToDelete(ctx sdk.Context, contractAddr string, timestamp uint64, pair types.Pair, keysToDelete map[string][]*types.StoreAndKey) {
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.PricePrefix(contractAddr, pair.PriceDenom, pair.AssetDenom))
+	for _, key := range k.getPriceKeysToDelete(store, timestamp) {
+		if _, ok := keysToDelete[contractAddr]; !ok {
+			keysToDelete[contractAddr] = []*types.StoreAndKey{}
+		}
+		keysToDelete[contractAddr] = append(keysToDelete[contractAddr], &types.StoreAndKey{
+			Store: store,
+			Key:   key,
+		})
+	}
+}
+
 func (k Keeper) getPriceKeysToDelete(store sdk.KVStore, timestamp uint64) [][]byte {
 	keys := [][]byte{}
 	iterator := sdk.KVStorePrefixIterator(store, []byte{})

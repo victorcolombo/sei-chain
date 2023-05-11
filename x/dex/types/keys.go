@@ -2,6 +2,7 @@ package types
 
 import (
 	"encoding/binary"
+	"github.com/cosmos/cosmos-sdk/store/prefix"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/address"
@@ -187,3 +188,8 @@ const (
 	MemDepositKey = "MemDeposit-"
 	MemCancelKey  = "MemCancel-"
 )
+
+type StoreAndKey struct {
+	Store prefix.Store
+	Key   []byte
+}

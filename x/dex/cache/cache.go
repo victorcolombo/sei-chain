@@ -16,6 +16,7 @@ const SynchronizationTimeoutInSeconds = 5
 type MemState struct {
 	storeKey    sdk.StoreKey
 	depositInfo *datastructures.TypedSyncMap[types.ContractAddress, *DepositInfo]
+	pairInfo    *datastructures.TypedSyncMap[types.ContractAddress, []*types.Pair]
 }
 
 func NewMemState(storeKey sdk.StoreKey) *MemState {

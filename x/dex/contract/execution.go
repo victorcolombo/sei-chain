@@ -82,7 +82,7 @@ func ExecutePair(
 	UpdateTriggeredOrderForPair(ctx, typedContractAddr, typedPairStr, dexkeeper, totalOutcome)
 	dexkeeperutils.SetPriceStateFromExecutionOutcome(ctx, dexkeeper, typedContractAddr, pair, totalOutcome)
 	totalUpdate := time.Since(updateStart).Microseconds()
-	ctx.Logger().Info(fmt.Sprintf("[DEBUG] %s: Cancel latency %d, add order latency %d, fill market latency %d, fill limit latency %d, update latency %d", contractAddr, totalCancelLatency, totalAddOrdersLatency, totalFillMarketLatency, totalFillLimit, totalUpdate))
+	ctx.Logger().Debug(fmt.Sprintf("[DEBUG] %s: Cancel latency %d, add order latency %d, fill market latency %d, fill limit latency %d, update latency %d", contractAddr, totalCancelLatency, totalAddOrdersLatency, totalFillMarketLatency, totalFillLimit, totalUpdate))
 	return totalOutcome.Settlements
 }
 
@@ -223,7 +223,7 @@ func ExecutePairsInParallel(ctx sdk.Context, contractAddr string, dexkeeper *kee
 			}
 			startTime := time.Now()
 			pairSettlements := ExecutePair(pairCtx, contractAddr, pair, dexkeeper, orderbook)
-			ctx.Logger().Info(fmt.Sprintf("[DEBUG] %s: Total execute pair latency %d for %d pairs", contractAddr, time.Since(startTime).Microseconds(), len(registeredPairs)))
+			ctx.Logger().Debug(fmt.Sprintf("[DEBUG] %s: Total execute pair latency %d for %d pairs", contractAddr, time.Since(startTime).Microseconds(), len(registeredPairs)))
 
 			orderIDToSettledQuantities := GetOrderIDToSettledQuantities(pairSettlements)
 			PrepareCancelUnfulfilledMarketOrders(pairCtx, typedContractAddr, pairStr, orderIDToSettledQuantities)

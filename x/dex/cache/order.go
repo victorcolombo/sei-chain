@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"fmt"
 	"sort"
+	"time"
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -132,11 +133,14 @@ func (o *BlockOrders) GetTriggeredOrders() []*types.Order {
 }
 
 func (o *BlockOrders) getOrdersByCriteria(orderType types.OrderType, direction types.PositionDirection) []*types.Order {
+	startTime := time.Now()
 	res := []*types.Order{}
 	iterator := sdk.KVStorePrefixIterator(o.orderStore, []byte{})
+	openLatency := time.Since(startTime).Microseconds()
 
 	defer iterator.Close()
 
+	startIterTime := time.Now()
 	iterCount := 0
 	for ; iterator.Valid(); iterator.Next() {
 		iterCount++
@@ -152,7 +156,8 @@ func (o *BlockOrders) getOrdersByCriteria(orderType types.OrderType, direction t
 		}
 		res = append(res, &val)
 	}
-	fmt.Printf("[SeiChain-Debug] getOrdersByCriteria itered through %d items\n", iterCount)
+	iterLatency := time.Since(startIterTime)
+	fmt.Printf("[SeiChain-Debug] getOrdersByCriteria itered through %d items, open latency %d, iter latency %d\n", iterCount, openLatency, iterLatency)
 	return res
 }
 

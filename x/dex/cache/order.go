@@ -2,6 +2,7 @@ package dex
 
 import (
 	"encoding/binary"
+	"fmt"
 	"sort"
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
@@ -136,7 +137,9 @@ func (o *BlockOrders) getOrdersByCriteria(orderType types.OrderType, direction t
 
 	defer iterator.Close()
 
+	iterCount := 0
 	for ; iterator.Valid(); iterator.Next() {
+		iterCount++
 		var val types.Order
 		if err := val.Unmarshal(iterator.Value()); err != nil {
 			panic(err)
@@ -149,6 +152,7 @@ func (o *BlockOrders) getOrdersByCriteria(orderType types.OrderType, direction t
 		}
 		res = append(res, &val)
 	}
+	fmt.Printf("[SeiChain-Debug] getOrdersByCriteria itered through %d items\n", iterCount)
 	return res
 }
 

@@ -1265,13 +1265,16 @@ func (app *App) BuildDependenciesAndRunTxs(ctx sdk.Context, txs [][]byte) ([]*ab
 
 	startTime := time.Now()
 	dependencyDag, err := app.AccessControlKeeper.BuildDependencyDag(ctx, app.txDecoder, app.GetAnteDepGenerator(), txs)
-	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] BuildDependencyDag for %d transactions took %d ms to complete at height %d", len(txs), time.Since(startTime).Milliseconds(), req.GetHeight()))
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] BuildDependencyDag for %d transactions took %d ms to complete", len(txs), time.Since(startTime).Milliseconds()))
 
 	// Start with a fresh state for the MemCache
 	ctx = ctx.WithContextMemCache(sdk.NewContextMemCache())
 	switch err {
 	case nil:
+		startTime = time.Now()
 		txResults, ctx = app.ProcessTxs(ctx, txs, dependencyDag, app.ProcessBlockConcurrent)
+		ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] ProcessTxs for %d transactions took %d ms to complete", len(txs), time.Since(startTime).Milliseconds()))
+
 	case acltypes.ErrGovMsgInBlock:
 		ctx.Logger().Info(fmt.Sprintf("Gov msg found while building DAG, processing synchronously: %s", err))
 		txResults = app.ProcessBlockSynchronous(ctx, txs)

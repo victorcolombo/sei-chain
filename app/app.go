@@ -1218,6 +1218,8 @@ func (app *App) ProcessTxs(
 		processBlockCache.Write()
 		return concurrentResults, ctx
 	}
+
+	startTime := time.Now()
 	// we need to add the wasm dependencies before we process synchronous otherwise it never gets included
 	ctx = app.addBadWasmDependenciesToContext(ctx, concurrentResults)
 	ctx.Logger().Error("Concurrent Execution failed, retrying with Synchronous")
@@ -1225,7 +1227,10 @@ func (app *App) ProcessTxs(
 	ctx.ContextMemCache().Clear()
 
 	txResults := app.ProcessBlockSynchronous(ctx, txs)
+
 	processBlockCache.Write()
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] Concurrent execution not elligible, process a single tx took %d ms to complete", time.Since(startTime).Milliseconds()))
+
 	return txResults, ctx
 }
 

@@ -1263,7 +1263,9 @@ func (app *App) PartitionOracleVoteTxs(ctx sdk.Context, txs [][]byte) (oracleVot
 func (app *App) BuildDependenciesAndRunTxs(ctx sdk.Context, txs [][]byte) ([]*abci.ExecTxResult, sdk.Context) {
 	var txResults []*abci.ExecTxResult
 
+	startTime := time.Now()
 	dependencyDag, err := app.AccessControlKeeper.BuildDependencyDag(ctx, app.txDecoder, app.GetAnteDepGenerator(), txs)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] BuildDependencyDag for %d transactions took %d ms to complete at height %d", len(txs), time.Since(startTime).Milliseconds(), req.GetHeight()))
 
 	// Start with a fresh state for the MemCache
 	ctx = ctx.WithContextMemCache(sdk.NewContextMemCache())
@@ -1334,7 +1336,7 @@ func (app *App) ProcessBlock(ctx sdk.Context, txs [][]byte, req BlockProcessRequ
 	// run other txs
 	otherResults, ctx := app.BuildDependenciesAndRunTxs(ctx, txs)
 	txResults = append(txResults, otherResults...)
-	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] Other transactions took %d ms to complete at height %d", time.Since(startTime).Milliseconds(), req.GetHeight()))
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] Other %d transactions took %d ms to complete at height %d", len(txs), time.Since(startTime).Milliseconds(), req.GetHeight()))
 
 	startTime = time.Now()
 	// Finalize all Bank Module Transfers here so that events are included

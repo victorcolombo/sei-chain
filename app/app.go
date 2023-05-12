@@ -1310,24 +1310,33 @@ func (app *App) ProcessBlock(ctx sdk.Context, txs [][]byte, req BlockProcessRequ
 		},
 	}
 
+	startTime := time.Now()
 	beginBlockResp := app.BeginBlock(ctx, beginBlockReq)
 	events = append(events, beginBlockResp.Events...)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] BeginBlock took %d ms to complete at height %d", time.Since(startTime).Milliseconds(), req.GetHeight()))
 
 	var txResults []*abci.ExecTxResult
 
+	startTime = time.Now()
 	oracleTxs, txs := app.PartitionOracleVoteTxs(ctx, txs)
 
 	// run the oracle txs
 	oracleResults, ctx := app.BuildDependenciesAndRunTxs(ctx, oracleTxs)
 	txResults = append(txResults, oracleResults...)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] OracleTx took %d ms to complete at height %d", time.Since(startTime).Milliseconds(), req.GetHeight()))
 
+	startTime = time.Now()
 	midBlockEvents := app.MidBlock(ctx, req.GetHeight())
 	events = append(events, midBlockEvents...)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] MidBlock took %d ms to complete at height %d", time.Since(startTime).Milliseconds(), req.GetHeight()))
 
+	startTime = time.Now()
 	// run other txs
 	otherResults, ctx := app.BuildDependenciesAndRunTxs(ctx, txs)
 	txResults = append(txResults, otherResults...)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] Other transactions took %d ms to complete at height %d", time.Since(startTime).Milliseconds(), req.GetHeight()))
 
+	startTime = time.Now()
 	// Finalize all Bank Module Transfers here so that events are included
 	lazyWriteEvents := app.BankKeeper.WriteDeferredOperations(ctx)
 	events = append(events, lazyWriteEvents...)
@@ -1335,6 +1344,7 @@ func (app *App) ProcessBlock(ctx sdk.Context, txs [][]byte, req BlockProcessRequ
 	endBlockResp := app.EndBlock(ctx, abci.RequestEndBlock{
 		Height: req.GetHeight(),
 	})
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] EndBlock took %d ms to complete at height %d", time.Since(startTime).Milliseconds(), req.GetHeight()))
 
 	events = append(events, endBlockResp.Events...)
 	app.RecordAndEmitMetrics(ctx)

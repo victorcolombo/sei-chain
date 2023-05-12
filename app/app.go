@@ -1108,6 +1108,7 @@ func (app *App) ProcessTxConcurrent(
 	txMsgAccessOpMapping acltypes.MsgIndexToAccessOpMapping,
 ) {
 	defer wg.Done()
+	startTime := time.Now()
 	// Store the Channels in the Context Object for each transaction
 	ctx = ctx.WithTxCompletionChannels(GetChannelsFromSignalMapping(txCompletionSignalingMap))
 	ctx = ctx.WithTxBlockingChannels(GetChannelsFromSignalMapping(txBlockingSignalsMap))
@@ -1119,6 +1120,8 @@ func (app *App) ProcessTxConcurrent(
 	// Deliver the transaction and store the result in the channel
 	resultChan <- ChannelResult{txIndex, app.DeliverTxWithResult(ctx, txBytes)}
 	metrics.IncrTxProcessTypeCounter(metrics.CONCURRENT)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] ProcessTxConcurrent execute a single tx took %d ms to complete", time.Since(startTime).Milliseconds()))
+
 }
 
 type ProcessBlockConcurrentFunction func(
@@ -1204,7 +1207,6 @@ func (app *App) ProcessTxs(
 	// runTx will write to this ephermeral CacheMultiStore, after the process block is done, Write() is called on this
 	// CacheMultiStore where it writes the data to the parent store (DeliverState) in sorted Key order to maintain
 	// deterministic ordering between validators in the case of concurrent deliverTXs
-	startTime := time.Now()
 	processBlockCtx, processBlockCache := app.CacheContext(ctx)
 	concurrentResults, ok := processBlockConcurrentFunction(
 		processBlockCtx,
@@ -1217,12 +1219,11 @@ func (app *App) ProcessTxs(
 		// Write the results back to the concurrent contexts - if concurrent execution fails,
 		// this should not be called and the state is rolled back and retried with synchronous execution
 		processBlockCache.Write()
-		ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] Concurrent execute a single tx took %d ms to complete", time.Since(startTime).Milliseconds()))
 
 		return concurrentResults, ctx
 	}
 
-	startTime = time.Now()
+	startTime := time.Now()
 	// we need to add the wasm dependencies before we process synchronous otherwise it never gets included
 	ctx = app.addBadWasmDependenciesToContext(ctx, concurrentResults)
 	ctx.Logger().Error("Concurrent Execution failed, retrying with Synchronous")

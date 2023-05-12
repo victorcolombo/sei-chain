@@ -1006,11 +1006,15 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 		}
 	}
 	ctx.Logger().Info("optimistic processing ineligible")
+	processStart := time.Now()
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] ProcessBlock took %d ms to complete for block %d", time.Since(processStart), req.GetHeight()))
 
+	commitStart := time.Now()
 	app.SetDeliverStateToCommit()
 	appHash := app.WriteStateToCommitAndGetWorkingHash()
 	resp := app.getFinalizeBlockResponse(appHash, events, txResults, endBlockResp)
+	ctx.Logger().Info(fmt.Sprintf("[Chain-Debug] Commit state and get response took %d ms to complete for block %d", time.Since(commitStart), req.GetHeight()))
 	return &resp, nil
 }
 

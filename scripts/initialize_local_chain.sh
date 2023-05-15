@@ -81,7 +81,6 @@ else
   exit 1
 fi
 
-exit 0
 ~/go/bin/seid config keyring-backend test
 
 # start the chain with log tracing

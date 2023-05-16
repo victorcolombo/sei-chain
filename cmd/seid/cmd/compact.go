@@ -40,6 +40,21 @@ func CompactCmd(defaultNodeHome string) *cobra.Command {
 					return err
 				}
 				fmt.Printf("compaction took %f seconds\n", time.Since(start).Seconds())
+
+				keyCnt, keySize, valSize := 0, 0, 0
+				iter, err := goleveldb.Iterator(nil, nil)
+				if err != nil {
+					return err
+				}
+				for ; iter.Valid(); iter.Next() {
+					keyCnt++
+					if keyCnt%10000 == 0 {
+						fmt.Printf("Iterated through %d KV pairs\n", keyCnt)
+					}
+					keySize += len(iter.Key())
+					valSize += len(iter.Value())
+				}
+				fmt.Printf("KV count: %d, total key size: %d, total value size: %d\n", keyCnt, keySize, valSize)
 			} else {
 				return errors.New("cannot compact non-levelDB")
 			}

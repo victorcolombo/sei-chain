@@ -996,13 +996,13 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)
 	startTime = time.Now()
 	app.SetDeliverStateToCommit()
-	fmt.Printf("[PSUDebug] SetDeliverStateToCommit took %d ms", time.Since(startTime).Milliseconds())
+	ctx.Logger().Info(fmt.Sprintf("[PSUDebug] SetDeliverStateToCommit took %d ms\n", time.Since(startTime).Milliseconds()))
 	startTime = time.Now()
 	appHash := app.WriteStateToCommitAndGetWorkingHash()
-	fmt.Printf("[PSUDebug] WriteStateToCommitAndGetWorkingHash took %d ms", time.Since(startTime).Milliseconds())
+	ctx.Logger().Info(fmt.Sprintf("[PSUDebug] WriteStateToCommitAndGetWorkingHash took %d ms\n", time.Since(startTime).Milliseconds()))
 	startTime = time.Now()
 	resp := app.getFinalizeBlockResponse(appHash, events, txResults, endBlockResp)
-	fmt.Printf("[PSUDebug] getFinalizeBlockResponse took %d ms", time.Since(startTime).Milliseconds())
+	ctx.Logger().Info(fmt.Sprintf("[PSUDebug] getFinalizeBlockResponse took %d ms\n", time.Since(startTime).Milliseconds()))
 	return &resp, nil
 }
 

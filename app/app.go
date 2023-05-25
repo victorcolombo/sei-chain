@@ -934,6 +934,8 @@ func (app *App) ClearOptimisticProcessingInfo() {
 }
 
 func (app *App) ProcessProposalHandler(ctx sdk.Context, req *abci.RequestProcessProposal) (*abci.ResponseProcessProposal, error) {
+	_, span := app.GetBaseApp().TracingInfo.Start("[PSUDebug] ProcessProposalHandler")
+	defer span.End()
 	// TODO: this check decodes transactions which is redone in subsequent processing. We might be able to optimize performance
 	// by recording the decoding results and avoid decoding again later on.
 	if !app.checkTotalBlockGasWanted(ctx, req.Txs) {
@@ -985,9 +987,15 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 	if app.optimisticProcessingInfo != nil {
 		<-app.optimisticProcessingInfo.Completion
 		if !app.optimisticProcessingInfo.Aborted && bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
+			startTime = time.Now()
 			app.SetProcessProposalStateToCommit()
+			ctx.Logger().Info(fmt.Sprintf("[PSUDebug] OP SetProcessProposalStateToCommit took %d ms\n", time.Since(startTime).Milliseconds()))
+			startTime = time.Now()
 			appHash := app.WriteStateToCommitAndGetWorkingHash()
+			ctx.Logger().Info(fmt.Sprintf("[PSUDebug] OP WriteStateToCommitAndGetWorkingHash took %d ms\n", time.Since(startTime).Milliseconds()))
+			startTime = time.Now()
 			resp := app.getFinalizeBlockResponse(appHash, app.optimisticProcessingInfo.Events, app.optimisticProcessingInfo.TxRes, app.optimisticProcessingInfo.EndBlockResp)
+			ctx.Logger().Info(fmt.Sprintf("[PSUDebug] OP getFinalizeBlockResponse took %d ms\n", time.Since(startTime).Milliseconds()))
 			return &resp, nil
 		}
 	}
@@ -1275,6 +1283,8 @@ func (app *App) BuildDependenciesAndRunTxs(ctx sdk.Context, txs [][]byte) ([]*ab
 }
 
 func (app *App) ProcessBlock(ctx sdk.Context, txs [][]byte, req BlockProcessRequest, lastCommit abci.CommitInfo) ([]abci.Event, []*abci.ExecTxResult, abci.ResponseEndBlock, error) {
+	_, span := app.GetBaseApp().TracingInfo.Start("[PSUDebug]ProcessBlock")
+	defer span.End()
 	goCtx := app.decorateContextWithDexMemState(ctx.Context())
 	ctx = ctx.WithContext(goCtx)
 

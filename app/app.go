@@ -994,8 +994,9 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 	ctx.Logger().Info("optimistic processing ineligible")
 	ctx = ctx.WithContext(app.decorateContextWithDexMemState(ctx.Context()))
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)
-
+	_, span := app.TracingInfo.Start("SetDeliverStateToCommit")
 	app.SetDeliverStateToCommit()
+	span.End()
 	appHash := app.WriteStateToCommitAndGetWorkingHash()
 	resp := app.getFinalizeBlockResponse(appHash, events, txResults, endBlockResp)
 	return &resp, nil

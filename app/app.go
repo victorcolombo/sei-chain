@@ -978,38 +978,47 @@ func (app *App) ProcessProposalHandler(ctx sdk.Context, req *abci.RequestProcess
 
 func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock) (*abci.ResponseFinalizeBlock, error) {
 	startTime := time.Now()
+	_, span := app.GetBaseApp().TracingInfo.Start("[PSUDebug] FinalizeBlock")
 	defer func() {
 		app.optimisticProcessingInfo = nil
 		duration := time.Since(startTime)
 		ctx.Logger().Info(fmt.Sprintf("FinalizeBlock took %dms", duration/time.Millisecond))
+		span.End()
 	}()
 
 	if app.optimisticProcessingInfo != nil {
 		<-app.optimisticProcessingInfo.Completion
 		if !app.optimisticProcessingInfo.Aborted && bytes.Equal(app.optimisticProcessingInfo.Hash, req.Hash) {
-			startTime = time.Now()
 			app.SetProcessProposalStateToCommit()
-			ctx.Logger().Info(fmt.Sprintf("[PSUDebug] OP SetProcessProposalStateToCommit took %d ms\n", time.Since(startTime).Milliseconds()))
+
 			startTime = time.Now()
+			_, span2 := app.GetBaseApp().TracingInfo.Start("[PSUDebug] OP WriteStateToCommitAndGetWorkingHash")
 			appHash := app.WriteStateToCommitAndGetWorkingHash()
+			span2.End()
 			ctx.Logger().Info(fmt.Sprintf("[PSUDebug] OP WriteStateToCommitAndGetWorkingHash took %d ms\n", time.Since(startTime).Milliseconds()))
 			startTime = time.Now()
+			_, span3 := app.GetBaseApp().TracingInfo.Start("[PSUDebug] OP getFinalizeBlockResponse")
 			resp := app.getFinalizeBlockResponse(appHash, app.optimisticProcessingInfo.Events, app.optimisticProcessingInfo.TxRes, app.optimisticProcessingInfo.EndBlockResp)
 			ctx.Logger().Info(fmt.Sprintf("[PSUDebug] OP getFinalizeBlockResponse took %d ms\n", time.Since(startTime).Milliseconds()))
+			span3.End()
 			return &resp, nil
 		}
 	}
 	ctx.Logger().Info("optimistic processing ineligible")
 	ctx = ctx.WithContext(app.decorateContextWithDexMemState(ctx.Context()))
+	_, span4 := app.GetBaseApp().TracingInfo.Start("[PSUDebug] ProcessBlock")
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)
-	startTime = time.Now()
+	span4.End()
 	app.SetDeliverStateToCommit()
-	ctx.Logger().Info(fmt.Sprintf("[PSUDebug] SetDeliverStateToCommit took %d ms\n", time.Since(startTime).Milliseconds()))
+	_, span5 := app.GetBaseApp().TracingInfo.Start("[PSUDebug] WriteStateToCommitAndGetWorkingHash")
 	startTime = time.Now()
 	appHash := app.WriteStateToCommitAndGetWorkingHash()
+	span5.End()
 	ctx.Logger().Info(fmt.Sprintf("[PSUDebug] WriteStateToCommitAndGetWorkingHash took %d ms\n", time.Since(startTime).Milliseconds()))
 	startTime = time.Now()
+	_, span6 := app.GetBaseApp().TracingInfo.Start("[PSUDebug] WriteStateToCommitAndGetWorkingHash")
 	resp := app.getFinalizeBlockResponse(appHash, events, txResults, endBlockResp)
+	span6.End()
 	ctx.Logger().Info(fmt.Sprintf("[PSUDebug] getFinalizeBlockResponse took %d ms\n", time.Since(startTime).Milliseconds()))
 	return &resp, nil
 }

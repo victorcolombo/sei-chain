@@ -994,11 +994,15 @@ func (app *App) FinalizeBlocker(ctx sdk.Context, req *abci.RequestFinalizeBlock)
 	ctx.Logger().Info("optimistic processing ineligible")
 	ctx = ctx.WithContext(app.decorateContextWithDexMemState(ctx.Context()))
 	events, txResults, endBlockResp, _ := app.ProcessBlock(ctx, req.Txs, req, req.DecidedLastCommit)
-	_, span := app.TracingInfo.Start("SetDeliverStateToCommit")
+	startTime = time.Now()
 	app.SetDeliverStateToCommit()
-	span.End()
+	fmt.Printf("[PSUDebug] SetDeliverStateToCommit took %d ms", time.Since(startTime).Milliseconds())
+	startTime = time.Now()
 	appHash := app.WriteStateToCommitAndGetWorkingHash()
+	fmt.Printf("[PSUDebug] WriteStateToCommitAndGetWorkingHash took %d ms", time.Since(startTime).Milliseconds())
+	startTime = time.Now()
 	resp := app.getFinalizeBlockResponse(appHash, events, txResults, endBlockResp)
+	fmt.Printf("[PSUDebug] getFinalizeBlockResponse took %d ms", time.Since(startTime).Milliseconds())
 	return &resp, nil
 }
 

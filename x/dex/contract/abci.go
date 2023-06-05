@@ -199,8 +199,6 @@ func getSudoPlaceOrderMessages(sdkCtx sdk.Context, validContractsInfos []types.C
 		resultMapToIndex[result.int] = result.SudoOrderPlacementMsg
 	}
 
-	keeperWrapper.BankKeeper.WriteDeferredOperations(sdkCtx)
-
 	return resultMapToIndex
 }
 
